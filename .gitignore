@@ -3,3 +3,4 @@ __pycache__/
 *.pyc
 video/node_modules
 video/out/
+conocimiento/.cache/

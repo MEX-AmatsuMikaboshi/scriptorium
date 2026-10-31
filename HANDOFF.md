@@ -36,6 +36,24 @@ elige uno de 73 de `video/src/iconos.json`, restringido por esquema JSON), premi
 comillas y signo de pregunta que se mueven. Ideas para seguir: más tipos de escena (línea del
 tiempo, mapa de conceptos), Lottie, imágenes de dominio público con efecto Ken Burns.
 
+## Biblioteca de conocimiento audiovisual (31 oct.)
+
+El usuario quiere juntar desde ya todo lo necesario para hacer video con código. El orden de prioridades es:
+videos explicativos ahora, modelos 2D/3D dentro de los videos después, caricaturas y anime al final. El trabajo lo
+harán sobre todo modelos locales, con mínima intervención de IAs grandes.
+
+- Se creó `conocimiento/`: 72 fichas verificadas (GitHub, npm, PyPI), 18 técnicas, 12 principios, 6 flujos, 27 recetas
+  Canvas 2D y 35 capacidades con sinónimos.
+- La consulta va por la CLI `saber`, que solo usa la biblioteca estándar: FTS5, capacidades y recomendación por
+  técnica. También hay una skill y un servidor MCP.
+- Las 23 consultas de prueba pasan.
+- `biblioteca-movimiento.html` (estaba suelta en la raíz) se movió a `conocimiento/recetas/canvas2d/`.
+- En el equipo hay Blender 5.2.2, Unity 6000.6 y 2022.3, y VRoid Studio 2.14. VRoid es probablemente el «otro
+  modelador» que el usuario no recordaba.
+- Pendiente: completar los metadatos de 6 fichas cuando se renueve el límite de la API de GitHub (comando en
+  `conocimiento/README.md`). Registrar la skill y el MCP en los agentes que use el usuario. Primeras escenas nuevas del
+  kit sugeridas por la biblioteca: línea del tiempo y mapa de conceptos (técnica `diagramas-y-mapas`).
+
 ## Decisiones tomadas (y por qué)
 
 - **WSL2 en vez de desactivar el Control inteligente de aplicaciones**: el usuario no quiso

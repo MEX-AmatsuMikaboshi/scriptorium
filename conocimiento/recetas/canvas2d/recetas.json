@@ -1,0 +1,600 @@
+[
+  {
+    "id": "curvas",
+    "nombre": "Laboratorio de curvas",
+    "categoria": "Fundamentos",
+    "fuente": "PDoomVideo · core.js",
+    "verificacion": "Verificado",
+    "nota_verificacion": "Traducido del código fuente o del prompt publicado",
+    "bucle_s": 3,
+    "que_se_mueve": "Cinco puntos viajan la misma distancia en el mismo tiempo con curvas distintas. Las marcas pálidas son la posición en cada cuadro a 24 fps: así lee un animador el espaciado.",
+    "pasos": [
+      "Calcula el progreso lineal k = seg(t, 0.35, 1.55).",
+      "Pásalo por la curva: x = lerp(x0, x1, curva(k)).",
+      "Nunca uses k directo: el movimiento lineal se ve mecánico."
+    ],
+    "parametros": [
+      "ease = smoothstep",
+      "easeOut = 1−(1−x)³",
+      "easeIn = x³",
+      "backOut s=1.9",
+      "elasticOut"
+    ],
+    "codigo": "draw(c, t) {\n    paper(c); const curves = [['ease', ease, S.blue], ['easeOut', easeOut, S.teal], ['easeIn', easeIn, S.violet], ['backOut', backOut, S.red], ['elasticOut', elasticOut, S.ochre]];\n    const x0 = 150, x1 = 560, fade = 1 - seg(t, 2.75, 3);\n    curves.forEach(([name, f, col], i) => { const y = 62 + i * 58, r = boil('c' + i, t);\n      c.font = '600 12px \"JetBrains Mono\", monospace'; c.fillStyle = S.ink; c.textAlign = 'right'; c.textBaseline = 'middle'; c.fillText(name, x0 - 22, y);\n      c.strokeStyle = 'rgba(38,34,46,.25)'; c.lineWidth = 1; c.setLineDash([3, 4]); c.beginPath(); c.moveTo(x0, y); c.lineTo(x1, y); c.stroke(); c.setLineDash([]);\n      for (let fr = 0; fr <= 29; fr++) { const xx = lerp(x0, x1, f(fr / 29)); c.fillStyle = col; c.globalAlpha = .28; c.fillRect(xx - .8, y - 9, 1.6, 18); } c.globalAlpha = 1;\n      const x = lerp(x0, x1, f(seg(t, .35, 1.55))); c.globalAlpha = fade; ink(c, ell(x, y, 11, 11, 12), { fill: col, w: 2, r, jit: .8 }); c.globalAlpha = 1; });\n  }"
+  },
+  {
+    "id": "boil",
+    "nombre": "Línea que hierve",
+    "categoria": "Fundamentos",
+    "fuente": "ClaudeAnimationBase · regla 1",
+    "verificacion": "Verificado",
+    "nota_verificacion": "Traducido del código fuente o del prompt publicado",
+    "bucle_s": 2,
+    "que_se_mueve": "El mismo dibujo tres veces. Quieto parece pantalla congelada. Con azar nuevo cada cuadro, tiembla de forma molesta. Con \"boil\" a 12 fps y semilla por elemento parece dibujado a mano.",
+    "pasos": [
+      "Siembra el azar con la clave del elemento y el número de dibujo: boil(clave, t) = rng(clave + floor(t·12)).",
+      "Cada elemento usa su propia clave, así lo que se mueve no altera lo demás.",
+      "Desplaza cada punto del contorno ±1–2 px con ese azar."
+    ],
+    "parametros": [
+      "12 dibujos/s",
+      "jitter 1.2–2 px",
+      "clave por elemento"
+    ],
+    "codigo": "draw(c, t) {\n    paper(c); const labels = ['quieto (muerto)', 'azar por cuadro (mal)', 'boil 12 fps (bien)'];\n    labels.forEach((lb, i) => { const cx = 110 + i * 210, cy = 160;\n      const r = i === 0 ? () => .5 : i === 1 ? rngFrom('f' + i + Math.floor(t * 60)) : boil('flor' + i, t);\n      for (let p = 0; p < 6; p++) { const a = p / 6 * TAU + .3; ink(c, ell(cx + Math.cos(a) * 34, cy + Math.sin(a) * 34, 22, 14, 14, a), { fill: S.rose, w: 2.2, r, jit: 2 }); }\n      ink(c, ell(cx, cy, 20, 20, 14), { fill: S.ochre, w: 2.2, r, jit: 2 });\n      ink(c, [[cx, cy + 22], [cx + 6, cy + 80], [cx - 2, cy + 140]], { close: false, w: 3, stroke: '#4E7A3F', r, jit: 2 });\n      c.font = '600 12px \"JetBrains Mono\", monospace'; c.fillStyle = i === 2 ? S.teal : i === 1 ? S.red : S.ink; c.textAlign = 'center'; c.fillText(lb, cx, 336); });\n  }"
+  },
+  {
+    "id": "doses",
+    "nombre": "Animación en doses",
+    "categoria": "Fundamentos",
+    "fuente": "ClaudeAnimationBase · onTwos()",
+    "verificacion": "Verificado",
+    "nota_verificacion": "Traducido del código fuente o del prompt publicado",
+    "bucle_s": 2.4,
+    "que_se_mueve": "Arriba la pelota se redibuja en cada cuadro (60 fps). Abajo cada dibujo se sostiene 2 cuadros: 12 dibujos por segundo, como la animación tradicional. Se siente más \"a mano\" y con más punch.",
+    "pasos": [
+      "Envuelve el tiempo de la toma: tt = onTwos(t) = floor(t·12)/12.",
+      "Calcula todo con tt en lugar de t.",
+      "Úsalo en tomas de personaje; deja la cámara en t continuo si quieres suavidad."
+    ],
+    "parametros": [
+      "12 dibujos/s",
+      "floor(t·12)/12"
+    ],
+    "codigo": "draw(c, t) {\n    paper(c); const path = tt => { const k = ease(seg(tt % 2.4, .2, 1.1)) - ease(seg(tt % 2.4, 1.3, 2.2)); return lerp(90, 550, k); };\n    [[t, 105, 'continuo', S.blue], [onTwos(t), 245, 'en doses', S.red]].forEach(([tt, y, lb, col], i) => {\n      for (let g = 1; g <= 4; g++) { const gt = Math.max(0, tt - g * (1 / 12)); c.globalAlpha = .12; ink(c, ell(path(i ? onTwos(gt) : gt), y, 26, 26, 14), { fill: col, stroke: null }); } c.globalAlpha = 1;\n      ink(c, ell(path(tt), y, 26, 26, 14), { fill: col, w: 2.4, r: boil('d' + i, t), jit: 1.2 });\n      c.font = '600 12px \"JetBrains Mono\", monospace'; c.fillStyle = S.ink; c.textAlign = 'left'; c.fillText(lb, 24, y - 44); });\n  }"
+  },
+  {
+    "id": "salto",
+    "nombre": "Salto con aplastar y estirar",
+    "categoria": "Fundamentos",
+    "fuente": "PDoomVideo · jump()",
+    "verificacion": "Verificado",
+    "nota_verificacion": "Traducido del código fuente o del prompt publicado",
+    "bucle_s": 2.4,
+    "que_se_mueve": "Bolo se agacha 0.12 s (anticipación), se estira al despegar, se redondea arriba, se aplasta al caer y rebota. La antena llega tarde y se asienta con un resorte.",
+    "pasos": [
+      "Antes del despegue: sq sube a +0.18 con ease en 0.12 s.",
+      "En el aire: dy = −h·4k(1−k) (parábola) y sq = −0.16·|1−2k| (estirado al subir y bajar).",
+      "Al caer: sq = 0.22·e^(−8a)·cos(20a), un rebote que muere.",
+      "Antena: ring() con un golpe al despegar y otro al caer."
+    ],
+    "parametros": [
+      "anticipación 0.12 s",
+      "sq +0.18 / −0.16 / 0.22",
+      "h = 4u"
+    ],
+    "codigo": "draw(c, t) {\n    paper(c); ground(c, 300);\n    const j = jump(t, .7, 1.3, 4), ant = -ring(t, [.7, 1.3], 5, 16) * 1.4;\n    bolo(c, 320, 300, 13, { t, key: 's', ...j, ant, eyes: t > .55 && t < 1.35 ? 'open' : 'happy', lookY: j.dy < -1 ? -1 : 0, mouth: t > .7 && t < 1.3 ? 'O' : 'smile' });\n  }"
+  },
+  {
+    "id": "take",
+    "nombre": "\"Take\" de sorpresa",
+    "categoria": "Fundamentos",
+    "fuente": "PDoomVideo · take() + emotes",
+    "verificacion": "Verificado",
+    "nota_verificacion": "Traducido del código fuente o del prompt publicado",
+    "bucle_s": 2.8,
+    "que_se_mueve": "Aparece una estrella. Primero se mueven los ojos, luego la cara se entrecierra, el cuerpo se aplasta poquito y se estira de golpe mientras brota el signo de exclamación pintado.",
+    "pasos": [
+      "Causa primero: la estrella aparece en 0.6 s con backOut.",
+      "Los ojos voltean en 0.85 s (el pensamiento se ve).",
+      "Take en 1.05 s: aplastar 0.1 s, luego sq = −0.26·e^(−6a)·cos(16a) y dy = −1.2·e^(−7a).",
+      "Emote \"!\" con backOut, desaparece suave."
+    ],
+    "parametros": [
+      "amt 1.2",
+      "ojos 0.2 s antes",
+      "emote 0.25 s"
+    ],
+    "codigo": "draw(c, t) {\n    paper(c); ground(c, 300, S.sap, 5); const sk = backOut(seg(t, .6, .9)) * (1 - seg(t, 2.4, 2.7));\n    if (sk > 0) { c.save(); c.translate(520, 120); c.rotate(t * .8); ink(c, star(0, 0, 26 * sk, .45), { fill: S.ochre, w: 2.2, r: boil('st', t), jit: 1, smooth: false }); c.restore(); }\n    const tk = take(t, 1.05, 1.2), look = ease(seg(t, .85, 1.0));\n    bolo(c, 250, 300, 13, { t, key: 'tk', ...tk, lookX: look, lookY: -look * .7, squint: Math.max(0, 1 - Math.abs(t - .98) / .08) * .9, eyes: t > 1.0 ? 'wide' : 'open', mouth: t > 1.0 ? 'o' : null });\n    emote(c, '!', 340, 135 + tk.dy * 13, 18, seg(t, 1.05, 1.3) * (1 - seg(t, 2.2, 2.5)), boil('em', t));\n  }"
+  },
+  {
+    "id": "inercia",
+    "nombre": "Inercia y rebote secundario",
+    "categoria": "Fundamentos",
+    "fuente": "ClaudeAnimationBase · spring()",
+    "verificacion": "Verificado",
+    "nota_verificacion": "Traducido del código fuente o del prompt publicado",
+    "bucle_s": 2.6,
+    "que_se_mueve": "Bolo se desliza y frena. El cuerpo se inclina hacia atrás al arrancar y hacia adelante al frenar; la antena se queda atrás, rebasa y se asienta al final. Las partes no se mueven a la vez.",
+    "pasos": [
+      "Posición con ease: x = lerp(x0, x1, ease(seg(t, .3, 1.1))).",
+      "Velocidad aproximada v = derivada numérica del progreso.",
+      "Inclinación del cuerpo = −v·0.15 + spring(t, 1.1)·0.25.",
+      "Antena = −v·1.8 + spring(t, 1.12, 4, 14)·2.2 (más tarde y más larga que el cuerpo)."
+    ],
+    "parametros": [
+      "spring k=4–6",
+      "w=14–18",
+      "antena +0.02 s de retraso"
+    ],
+    "codigo": "draw(c, t) {\n    paper(c); ground(c, 300, S.sap, 7); const k = ease(seg(t, .3, 1.1)), v = (ease(seg(t + .02, .3, 1.1)) - ease(seg(t - .02, .3, 1.1))) / .04;\n    const x = lerp(120, 470, k), rot = -v * .12 + spring(t, 1.1, 5, 15) * .22, ant = -v * 1.6 + spring(t, 1.13, 4, 13) * 2.2;\n    for (let i = 0; i < 3; i++) { c.strokeStyle = 'rgba(38,34,46,.3)'; c.lineWidth = 2; c.beginPath(); c.moveTo(x - 70 - i * 6, 250 + i * 14); c.lineTo(x - 70 - i * 6 - v * 40, 250 + i * 14); c.stroke(); }\n    bolo(c, x, 300, 13, { t, key: 'in', rot, ant, walk: t < 1.1 ? t * 8 : null, eyes: 'open', lookX: v > .3 ? 1 : 0, mouth: v > .5 ? 'smile' : null });\n  }"
+  },
+  {
+    "id": "arco",
+    "nombre": "Lanzamiento en arco",
+    "categoria": "Fundamentos",
+    "fuente": "ClaudeAnimationBase · arcPt()",
+    "verificacion": "Verificado",
+    "nota_verificacion": "Traducido del código fuente o del prompt publicado",
+    "bucle_s": 2.8,
+    "que_se_mueve": "Bolo echa el brazo hacia atrás (anticipación), lanza, la pelota sale de la mano y viaja en arco girando, rebota con un arco más chico y se aplasta al tocar el suelo.",
+    "pasos": [
+      "Brazo: kf con [[.3, 0.4],[.6, −1.2],[.72, 1.3],[1.0, 0.2]] (atrás, adelante, reposo).",
+      "La pelota nace en la posición de la mano en el instante del lanzamiento.",
+      "Vuelo: arcPt(mano, destino, 120, k) con k = seg(t, .72, 1.5).",
+      "Rebote: arcPt(destino, final, 35, …) más corto; aplastar la pelota al contacto."
+    ],
+    "parametros": [
+      "altura 120 px",
+      "rebote 35 px",
+      "vuelo 0.78 s"
+    ],
+    "codigo": "draw(c, t) {\n    paper(c); ground(c, 300, S.sap, 9); const aR = kf(t, [[.3, .4], [.6, -1.2], [.72, 1.3], [1.0, .2]], ease);\n    const hands = bolo(c, 150, 300, 12, { t, key: 'ar', aR, aL: -.6, lookX: t > .72 ? 1 : .3, lookY: t > .72 && t < 1.3 ? -.6 : 0, eyes: 'open', mouth: t > .72 && t < 1.4 ? 'O' : 'smile', rot: kf(t, [[.3, 0], [.6, -.12], [.75, .1], [1.0, 0]]) });\n    const hand = [210, 250], tgt = [470, 288], end = [560, 288]; let p, squash = 0;\n    if (t < .72) p = hands.R || hand; else if (t < 1.5) p = arcPt(hand, tgt, 120, seg(t, .72, 1.5)); else if (t < 1.85) p = arcPt(tgt, end, 35, seg(t, 1.5, 1.85)); else p = end;\n    if (t >= 1.5) squash = .35 * Math.exp(-14 * (t - 1.5)) + .25 * Math.exp(-14 * Math.max(0, t - 1.85)) * (t > 1.85);\n    c.save(); c.translate(p[0], p[1]); c.rotate(t > .72 ? (t - .72) * 9 : 0); c.scale(1 + squash, 1 - squash);\n    ink(c, ell(0, 0, 11, 11, 12), { fill: S.red, w: 2, r: boil('ball', t), jit: .6 }); c.strokeStyle = S.cream; c.lineWidth = 2; c.beginPath(); c.arc(0, 0, 7, .3, 1.8); c.stroke(); c.restore();\n  }"
+  },
+  {
+    "id": "pulso",
+    "nombre": "Pulso y anti-gemelos",
+    "categoria": "Fundamentos",
+    "fuente": "PDoomVideo · pulse() + regla \"avoid twinning\"",
+    "verificacion": "Verificado",
+    "nota_verificacion": "Traducido del código fuente o del prompt publicado",
+    "bucle_s": 5.455,
+    "que_se_mueve": "Todos rebotan al beat de 88 BPM. A la izquierda, tres Bolos idénticos en fase: se ven como copias. A la derecha, mismo pulso pero con desfase, amplitud y color distintos por personaje (hash): se ven vivos.",
+    "pasos": [
+      "pulse(t) = e^(−frac(t/BEAT)·6): vale 1 en el beat y decae.",
+      "Rebote: dy = −pulse·1.2, sq = −pulse·0.12 al subir, +0.15 al tocar.",
+      "Para cada bailarín i: fase = hash(i)·0.15 s, amplitud 0.7–1.3, tono propio.",
+      "La barra de arriba es el metrónomo: un destello por beat."
+    ],
+    "parametros": [
+      "88 BPM",
+      "BEAT 0.682 s",
+      "fase 0–0.15 s"
+    ],
+    "codigo": "draw(c, t) {\n    paper(c); ground(c, 300, S.sap, 11); const p0 = pulse(t);\n    c.fillStyle = mix(S.paper, S.red, .2 + .8 * p0); c.fillRect(0, 0, W * frac(t / BEAT), 6);\n    [0, 1, 2].forEach(i => { const p = pulse(t); bolo(c, 70 + i * 85, 300, 6.5, { t, key: 'g' + i, dy: -p * 1.4, sq: p > .7 ? .14 : -p * .12, eyes: 'happy', mouth: 'smile' }); });\n    [0, 1, 2].forEach(i => { const ph = hash(i + 3) * .15, a = .7 + .6 * hash(i + 9), p = pulse(t - ph); const cols = [S.teal, S.violet, S.rose];\n      bolo(c, 400 + i * 85, 300, 6.5 * (.9 + .25 * hash(i + 5)), { t, key: 'v' + i, col: cols[i], dy: -p * 1.4 * a, sq: p > .7 ? .14 * a : -p * .12 * a, rot: wob(t, .5, hash(i)) * .08, eyes: i === 1 ? 'happy' : 'open', lookX: wob(t, .3, i * .3), mouth: 'smile', aL: i === 0 ? .6 + p : -.4, aR: i === 2 ? .2 + p * .8 : null }); });\n    c.font = '600 12px \"JetBrains Mono\", monospace'; c.fillStyle = S.ink; c.textAlign = 'center'; c.fillText('gemelos (mal)', 155, 336); c.fillText('desfasados (bien)', 485, 336);\n  }"
+  },
+  {
+    "id": "emociones",
+    "nombre": "Cambio de emoción actuado",
+    "categoria": "Fundamentos",
+    "fuente": "ClaudeAnimationBase · emotions()",
+    "verificacion": "Verificado",
+    "nota_verificacion": "Traducido del código fuente o del prompt publicado",
+    "bucle_s": 3.6,
+    "que_se_mueve": "La cara nunca cambia de golpe. Antes de cada cambio los ojos se entrecierran y el cuerpo se aplasta; la nueva expresión aparece bajo los ojos casi cerrados, luego un \"take\" y el emote. El color del cuerpo se mezcla en 0.3 s.",
+    "pasos": [
+      "Claves: [[0,\"neutral\"],[1.1,\"triste\"],[2.3,\"feliz\"]].",
+      "Entrecerrar: squint sube los 0.1 s previos y baja 0.12 s después.",
+      "Cambia ojos/boca en el instante de la clave (con squint ≈ 1, no se nota el corte).",
+      "take(t, clave + 0.03, tamaño según emoción) y emote con backOut.",
+      "Color: mix(colorAnterior, colorNuevo, ease(seg(t, clave, clave + .3)))."
+    ],
+    "parametros": [
+      "anticipación 0.1 s",
+      "mezcla de color 0.3 s",
+      "take 0.6–1.2"
+    ],
+    "codigo": "draw(c, t) {\n    paper(c); ground(c, 300, S.sap, 13);\n    const keys = [[0, { eyes: 'open', mouth: null, col: S.teal }], [1.1, { eyes: 'sad', mouth: 'frown', col: '#5E86A8', emo: 'cloud', amt: .6 }], [2.3, { eyes: 'happy', mouth: 'smile', col: '#4FB08A', emo: 'heart', amt: 1.2, blush: 1 }]];\n    let i = 0; while (i + 1 < keys.length && t >= keys[i + 1][0]) i++;\n    const [tk, cur] = keys[i], prev = keys[Math.max(0, i - 1)][1]; let squint = 0;\n    keys.slice(1).forEach(([k]) => { squint = Math.max(squint, t < k ? seg(t, k - .1, k) : 1 - seg(t, k, k + .12)); });\n    const tkv = i ? take(t, tk + .03, cur.amt) : { sq: 0, dy: 0 }, sad = cur.eyes === 'sad';\n    const idle = sad ? { dy: 0, sq: .03 + .02 * wob(t, .4), rot: 0 } : cur.eyes === 'happy' ? { dy: -pulse(t) * .5, sq: -pulse(t) * .05, rot: wob(t, .7) * .05 } : { dy: 0, sq: .015 * wob(t, .5), rot: 0 };\n    bolo(c, 320, 300, 13, { t, key: 'em', eyes: cur.eyes, mouth: cur.mouth, squint, col: mix(prev.col, cur.col, ease(seg(t, tk, tk + .3))), sq: tkv.sq + idle.sq, dy: tkv.dy + idle.dy, rot: idle.rot, blush: cur.blush ? ease(seg(t, tk, tk + .3)) : 0, lookY: sad ? .8 : 0, ant: sad ? -1.2 : spring(t, tk, 5, 15) * 1.5 });\n    if (cur.emo) emote(c, cur.emo, 410, 140 + (cur.emo === 'cloud' ? wob(t, .6) * 4 : 0), 22, seg(t, tk + .05, tk + .3), boil('emo', t));\n  }"
+  },
+  {
+    "id": "camara",
+    "nombre": "Cámara viva: deriva, empuje y sacudida",
+    "categoria": "Fundamentos",
+    "fuente": "PDoomVideo · camBegin() + shakeXY()",
+    "verificacion": "Verificado",
+    "nota_verificacion": "Traducido del código fuente o del prompt publicado",
+    "bucle_s": 3.2,
+    "que_se_mueve": "La cámara nunca está muerta: deriva lenta, se acerca poco a poco al personaje y, cuando cae la caja, sacude con un temblor que decae en 0.3 s mientras un destello marca el golpe.",
+    "pasos": [
+      "Deriva: cx = centro + 14·sin(t·0.6).",
+      "Empuje: zoom = kf(t, [[0, 1],[1.6, 1.22]], ease).",
+      "Impacto en 1.75 s: amplitud = 9·e^(−10·(t−1.75)), se suma shake(t, amp) a la cámara.",
+      "Destello: flash con alfa 0.5·e^(−18·(t−1.75))."
+    ],
+    "parametros": [
+      "deriva 14 px",
+      "zoom 1→1.22",
+      "sacudida 9 px, decae en ~0.3 s"
+    ],
+    "codigo": "draw(c, t) {\n    const hit = 1.75, amp = t > hit ? 9 * Math.exp(-10 * (t - hit)) : 0, [sx, sy] = shake(t, amp), z = kf(t, [[0, 1], [1.6, 1.22], [3.2, 1.22]]);\n    paper(c); c.save(); c.translate(W / 2, H / 2); c.scale(z, z); c.translate(-(320 + 14 * Math.sin(t * .6)) + sx, -(220) + sy);\n    c.fillStyle = S.paper; c.fillRect(-60, -60, W + 120, H + 120);\n    paper(c); wash(c, ell(140, 230, 160, 70, 20), '#B9D3C4', 3); wash(c, ell(520, 240, 190, 80, 20), '#A9C8B5', 4); ground(c, 300, S.sap, 15);\n    const by = t < hit ? lerp(-60, 255, easeIn(seg(t, 1.25, hit))) : 255, bsq = t > hit ? .25 * Math.exp(-12 * (t - hit)) * Math.cos(25 * (t - hit)) : 0;\n    c.save(); c.translate(430, by + 40); c.scale(1 + bsq, 1 - bsq); ink(c, rect(-28, -50, 56, 50), { fill: S.ochre, w: 2.4, r: boil('box', t), jit: 1.2, smooth: false }); c.restore();\n    const tk = take(t, hit + .05, .9); bolo(c, 300, 300, 12, { t, key: 'cam', ...tk, eyes: t > hit ? 'wide' : 'open', lookX: t > 1.3 ? .9 : 0, lookY: t > 1.3 && t < hit ? -.8 : 0, mouth: t > hit ? 'O' : null });\n    c.restore(); if (t > hit) { c.fillStyle = S.cream; c.globalAlpha = .5 * Math.exp(-18 * (t - hit)); c.fillRect(0, 0, W, H); c.globalAlpha = 1; }\n  }"
+  },
+  {
+    "id": "pincel",
+    "nombre": "Barrido de pincel",
+    "categoria": "Transiciones",
+    "fuente": "PDoomVideo · brushWipe()",
+    "verificacion": "Verificado",
+    "nota_verificacion": "Traducido del código fuente o del prompt publicado",
+    "bucle_s": 2.6,
+    "que_se_mueve": "Cinco trazos gruesos cruzan la pantalla con retrasos distintos hasta cubrirla. Bajo la cobertura total cambia la escena, y los trazos se arrastran fuera mostrando la nueva. Es la transición de capítulo del video musical.",
+    "pasos": [
+      "p = seg(t, inicio, fin). Con p < 0.5 cada trazo crece con easeOut; con p > 0.5 se va con ease.",
+      "Retrasos por trazo: [0, .14, .06, .18, .1]. Todo inclinado −0.1 rad.",
+      "Bordes deshilachados con hash + temblor; vetas internas de color más claro.",
+      "La escena A se dibuja hasta p = 0.5 y la B desde ahí."
+    ],
+    "parametros": [
+      "5 trazos",
+      "retrasos [0,.14,.06,.18,.1]",
+      "corte en p=0.5"
+    ],
+    "codigo": "draw(c, t) {\n    const p = seg(t, .6, 1.9);\n    if (p < .5) { paper(c, '#DCEBF2'); const r = boil('sun', t); ink(c, ell(480, 110, 44, 44, 18), { fill: S.ochre, w: 2.4, r, jit: 1.2 }); ground(c, 290, S.sap, 17); bolo(c, 260, 290, 11, { t, key: 'pa', eyes: 'happy', mouth: 'smile', dy: -pulse(t) * .4 }); }\n    else { paper(c, '#2A3160'); const r = boil('moon', t); for (let i = 0; i < 30; i++) { c.fillStyle = S.cream; c.globalAlpha = .5 + .5 * hash(i + Math.floor(t * 3)); c.fillRect(hash(i) * W, hash(i + 40) * 220, 2, 2); } c.globalAlpha = 1;\n      ink(c, ell(150, 100, 36, 36, 18), { fill: S.cream, w: 2.2, r, jit: 1 }); ground(c, 290, '#3B4A6B', 19); bolo(c, 380, 290, 11, { t, key: 'pb', eyes: 'closed', col: '#4D8FA0' }); emote(c, 'spark', 470, 150, 14, 1, r); }\n    brushWipe(c, p, t);\n  }"
+  },
+  {
+    "id": "iris",
+    "nombre": "Iris circular y con forma",
+    "categoria": "Transiciones",
+    "fuente": "PDoomVideo · iris() / irisShape()",
+    "verificacion": "Verificado",
+    "nota_verificacion": "Traducido del código fuente o del prompt publicado",
+    "bucle_s": 3.2,
+    "que_se_mueve": "El iris se cierra apuntando al personaje (easeIn), sostiene un instante en negro y se abre con forma de corazón (easeOut). El iris con forma sirve para revelar desde una boca, un ojo o una cerradura.",
+    "pasos": [
+      "Calcula la posición en pantalla del personaje para centrar el iris.",
+      "Cerrar: radio = lerp(700, 0, easeIn(seg(t, 1.0, 1.55))).",
+      "Sostener 0.25 s en negro (la pausa también es lectura).",
+      "Abrir con otra figura: heart(cx, cy, lerp(0, 900, easeOut(seg(t, 1.8, 2.6)))).",
+      "Pinta FUERA de la figura con fill(\"evenodd\")."
+    ],
+    "parametros": [
+      "cierre 0.55 s easeIn",
+      "pausa 0.25 s",
+      "apertura 0.8 s easeOut"
+    ],
+    "codigo": "draw(c, t) {\n    paper(c); ground(c, 300, S.sap, 21); const after = t > 1.7;\n    bolo(c, after ? 380 : 260, 300, 12, { t, key: 'ir', eyes: after ? 'happy' : 'open', mouth: after ? 'smile' : null, blush: after ? 1 : 0, col: after ? '#4FB08A' : S.teal, lookX: after ? -.5 : .4, dy: after ? -pulse(t) * .5 : 0 });\n    if (after) emote(c, 'heart', 450, 140, 18, seg(t, 2.2, 2.5), boil('h', t));\n    if (t > 1.0 && t < 1.8) { const rr = lerp(700, 0, easeIn(seg(t, 1.0, 1.55))); if (rr < 3) { c.fillStyle = S.ink; c.fillRect(0, 0, W, H); } else irisShape(c, ell(260, 245, rr, rr, 48)); }\n    else if (t >= 1.8 && t < 2.7) irisShape(c, heart(380, 230, lerp(1, 900, easeOut(seg(t, 1.8, 2.6))), 60));\n  }"
+  },
+  {
+    "id": "rasgado",
+    "nombre": "Papel rasgado",
+    "categoria": "Transiciones",
+    "fuente": "Video de Reca (@joshaeeee)",
+    "verificacion": "Observado",
+    "nota_verificacion": "Visto en cuadros extraídos del video",
+    "bucle_s": 2.8,
+    "que_se_mueve": "La escena actual es una hoja de papel: un borde dentado la parte, la mitad se levanta (crece un poco, su sombra se alarga) y sale girando, mostrando la escena siguiente debajo. El borde roto tiene la fibra blanca del papel.",
+    "pasos": [
+      "Borde dentado: puntos en x = 330 + (hash(i)−.5)·40 a lo largo de la altura.",
+      "Levantar 0.12 s: escala 1→1.04, sombra de 0 a 14 px.",
+      "Salir: traslación x −easeIn(k)·720, rotación −0.45·k, con k = seg(t, .9, 1.7).",
+      "Línea crema de 3 px sobre el borde roto = fibra del papel."
+    ],
+    "parametros": [
+      "levantar 0.12 s",
+      "salida 0.8 s easeIn",
+      "rotación −0.45 rad"
+    ],
+    "codigo": "draw(c, t) {\n    paper(c, '#1F4A3A'); c.strokeStyle = 'rgba(255,248,234,.08)'; c.lineWidth = 1; for (let x = 0; x < W; x += 24) { c.beginPath(); c.moveTo(x, 0); c.lineTo(x, H); c.stroke(); } for (let y = 0; y < H; y += 24) { c.beginPath(); c.moveTo(0, y); c.lineTo(W, y); c.stroke(); }\n    word(c, 'NUEVO', 320, 180, 62, S.ochre, { pop: seg(t, 1.3, 1.6), rot: -.05 });\n    const edge = []; for (let i = 0; i <= 18; i++) edge.push([330 + (hash(i * 3.1) - .5) * 44, -10 + i * (H + 20) / 18]);\n    const k = seg(t, .9, 1.7), lift = ease(seg(t, .75, .9)), tx = -easeIn(k) * 720, rot = -.45 * easeIn(k), sc = 1 + .04 * lift;\n    const sheet = cc => { paper(cc, '#F2DCC8'); wash(cc, ell(180, 160, 150, 100, 20), '#E9B9A0', 23); word(cc, 'ANTES', 200, 170, 44, S.red, { rot: -.04 }); bolo(cc, 470, 300, 11, { t, key: 'rs', eyes: 'open', lookX: -.6 }); };\n    c.save(); c.beginPath(); c.moveTo(-10, -10); edge.forEach(p => c.lineTo(p[0], p[1])); c.lineTo(-10, H + 10); c.closePath();\n    c.translate(330, 180); c.rotate(rot); c.scale(sc, sc); c.translate(-330 + tx, -180);\n    c.shadowColor = 'rgba(20,15,10,.35)'; c.shadowBlur = 14 * lift; c.shadowOffsetX = 6 * lift; c.shadowOffsetY = 8 * lift;\n    c.beginPath(); c.moveTo(-10, -10); edge.forEach(p => c.lineTo(p[0], p[1])); c.lineTo(-10, H + 10); c.closePath(); c.fillStyle = '#F2DCC8'; c.fill(); c.shadowColor = 'transparent'; c.clip(); sheet(c); c.restore();\n    c.save(); c.translate(330, 180); c.rotate(rot); c.scale(sc, sc); c.translate(-330 + tx, -180); c.strokeStyle = S.cream; c.lineWidth = 3; c.beginPath(); edge.forEach((p, i) => i ? c.lineTo(p[0], p[1]) : c.moveTo(p[0], p[1])); c.stroke(); c.restore();\n    c.save(); c.beginPath(); c.moveTo(W + 10, -10); edge.forEach(p => c.lineTo(p[0], p[1])); c.lineTo(W + 10, H + 10); c.closePath(); c.clip();\n    if (t < .9) { sheet(c); c.strokeStyle = S.cream; c.lineWidth = 3 * lift; c.beginPath(); edge.forEach((p, i) => i ? c.lineTo(p[0], p[1]) : c.moveTo(p[0], p[1])); c.stroke(); }\n    else { const k2 = seg(t, 1.0, 1.8); c.translate(330, 180); c.rotate(.4 * easeIn(k2)); c.translate(-330 + easeIn(k2) * 760, -180 + easeIn(k2) * 40); sheet(c); }\n    c.restore();\n  }"
+  },
+  {
+    "id": "latigo",
+    "nombre": "Paneo látigo con estela",
+    "categoria": "Transiciones",
+    "fuente": "ClaudeAnimationBase · regla 6",
+    "verificacion": "Verificado",
+    "nota_verificacion": "Traducido del código fuente o del prompt publicado",
+    "bucle_s": 2.6,
+    "que_se_mueve": "La cámara cruza de una escena a otra en 0.28 s. Mientras va rápido, la escena se dibuja varias veces desplazada con alfa baja (estela) y aparecen líneas de velocidad. Lo que importa queda quieto antes y después.",
+    "pasos": [
+      "Mundo: escena A en x 0–640 y escena B en x 640–1280.",
+      "camX = 640·easeInOutQuint(seg(t, 1.0, 1.28)).",
+      "Velocidad v = derivada de camX; si |v| es alta, dibuja 5 copias desplazadas −v·i·0.004 con alfa 0.18.",
+      "Líneas horizontales con largo proporcional a v."
+    ],
+    "parametros": [
+      "0.28 s",
+      "easeInOutQuint",
+      "5 copias, alfa 0.18"
+    ],
+    "codigo": "draw(c, t) {\n    const camAt = tt => 640 * easeInOutQuint(seg(tt, 1.0, 1.28)), cx = camAt(t), v = (camAt(t + .01) - camAt(t - .01)) / .02;\n    const world = (ox, a) => { c.save(); c.translate(-ox, 0); c.globalAlpha = a;\n      c.fillStyle = '#E9D9C4'; c.fillRect(0, 0, 640, H); wash(c, ell(320, 140, 120, 80, 20), S.ochre, 25); ground(c, 300, S.sap, 27);\n      bolo(c, 230, 300, 11, { t, key: 'w1', eyes: 'open', lookX: 1 });\n      c.translate(640, 0); c.fillStyle = '#D5E3EE'; c.fillRect(0, 0, 640, H); wash(c, ell(330, 130, 140, 70, 20), S.sky, 29); ground(c, 300, S.teal, 31);\n      bolo(c, 360, 300, 11, { t, key: 'w2', col: S.violet, eyes: t > 1.4 ? 'happy' : 'open', lookX: -1, ...take(t, 1.4, .8) }); c.restore(); };\n    paper(c); world(cx, 1);\n    if (Math.abs(v) > 300) { for (let i = 1; i <= 5; i++) world(cx - v * i * .004, .18);\n      c.strokeStyle = 'rgba(38,34,46,.35)'; c.lineWidth = 2; for (let i = 0; i < 14; i++) { const y = hash(i) * H, x = hash(i + 50) * W, l = Math.abs(v) * .08 * (.5 + hash(i + 9)); c.beginPath(); c.moveTo(x, y); c.lineTo(x + l, y); c.stroke(); } }\n  }"
+  },
+  {
+    "id": "sfx",
+    "nombre": "Onomatopeya de cómic",
+    "categoria": "Transiciones",
+    "fuente": "PDoomVideo · sfx()",
+    "verificacion": "Verificado",
+    "nota_verificacion": "Traducido del código fuente o del prompt publicado",
+    "bucle_s": 2.6,
+    "que_se_mueve": "En el impacto aparece una estrella de choque y la palabra \"¡PUM!\": entra con rebote, tiembla con amplitud que se apaga y se desvanece en el último cuarto de segundo. Marca el golpe y sirve de puente entre tomas.",
+    "pasos": [
+      "edad = t − t_impacto; vida = 1.2 s.",
+      "Escala = backOut(edad·5): llega en 0.2 s con sobrepaso.",
+      "rot = −0.08 + sin(edad·20)·0.03·(1 − edad/vida).",
+      "alfa = 1 − seg(edad, vida − 0.25, vida).",
+      "Estrella de choque detrás: escala easeOut, gira un poco."
+    ],
+    "parametros": [
+      "vida 1.2 s",
+      "pop ×5",
+      "temblor 20 rad/s"
+    ],
+    "codigo": "draw(c, t) {\n    paper(c); ground(c, 300, S.sap, 33); const hit = .9, age = t - hit;\n    const x = t < hit ? lerp(-40, 300, easeIn(seg(t, .3, hit))) : 300 + (1 - Math.exp(-6 * age)) * 30;\n    if (age > 0 && age < 1.2) { c.save(); c.translate(360, 170); c.rotate(age * .5); const s = easeOut(seg(age, 0, .15)) * (1 - seg(age, .8, 1.1)); ink(c, star(0, 0, 90 * s, .55, 9), { fill: S.ochre, w: 2.6, r: boil('burst', t), jit: 2, smooth: false }); c.restore();\n      word(c, '¡PUM!', 360, 170, 54, S.red, { pop: age * 5, rot: -.08 + Math.sin(age * 20) * .03 * (1 - age / 1.2), alpha: 1 - seg(age, .95, 1.2), stroke: S.cream }); }\n    ink(c, rect(430, 200, 30, 100), { fill: '#9B7A5A', w: 2.4, r: boil('wall', t), jit: 1, smooth: false });\n    const tk = age > 0 ? { sq: .3 * Math.exp(-9 * age) * Math.cos(18 * age), dy: 0 } : { sq: 0, dy: 0 };\n    bolo(c, x, 300, 11, { t, key: 'sf', ...tk, rot: age > 0 ? -.15 * Math.exp(-5 * age) : .08, eyes: age > 0 && age < .8 ? 'closed' : 'open', mouth: age > 0 ? 'o' : 'smile', walk: t < hit ? t * 9 : null });\n  }"
+  },
+  {
+    "id": "golpe",
+    "nombre": "Palabra que golpea al beat",
+    "categoria": "Tipografía cinética",
+    "fuente": "Video de Reca (@joshaeeee) · palabras gigantes sobre el presentador",
+    "verificacion": "Observado",
+    "nota_verificacion": "Visto en cuadros extraídos del video",
+    "bucle_s": 5.455,
+    "que_se_mueve": "Una palabra por beat, enorme, entra desde 2.2× con rebote y una rotación pequeña distinta para cada una. Detrás, un trazo de marcador se dibuja de izquierda a derecha. La palabra anterior sale hacia arriba. En Reca así aparecían \"10 MIN\", \"ROTI\" y \"KARDA\" sobre la persona hablando.",
+    "pasos": [
+      "Índice de palabra = floor(t / BEAT) % N; edad = t − inicio del beat.",
+      "Escala = lerp(2.2, 1, backOut(edad/0.18)).",
+      "Rotación = (hash(i) − .5)·0.12; sombra de tinta desplazada (0.045, 0.055)·tamaño.",
+      "Marcador: rectángulo con ancho easeOut(seg(edad, .04, .22)).",
+      "Salida: los últimos 0.1 s del beat sube 20 px y se desvanece."
+    ],
+    "parametros": [
+      "0.18 s de entrada",
+      "2.2× → 1×",
+      "1 palabra/beat"
+    ],
+    "codigo": "draw(c, t) {\n    paper(c, '#E7DCCB'); const words = ['DIEZ', 'MINUTOS', 'Y', 'LISTO'], cols = [S.red, S.blue, S.ink, S.teal], hl = [S.ochre, '#F3C6CF', null, '#BFE3D2'];\n    c.save(); c.globalAlpha = .9; ink(c, [[420, 360], [430, 230], [470, 175], [540, 160], [600, 180], [630, 240], [640, 360]], { fill: '#C9B9A6', stroke: null }); ink(c, ell(530, 120, 46, 54, 20), { fill: '#C9B9A6', stroke: null }); c.restore();\n    const bi = Math.floor(t / BEAT), i = bi % 4, age = t - bi * BEAT, out = seg(age, BEAT - .1, BEAT), size = i === 1 ? 64 : 92;\n    c.font = `800 ${size}px Unbounded, \"Arial Black\", sans-serif`; const tw = c.measureText(words[i]).width;\n    if (hl[i]) { const wv = (tw + 40) * easeOut(seg(age, .04, .22)); c.save(); c.translate(250, 185 - out * 20); c.rotate(-.03); c.globalAlpha = 1 - out; ink(c, [[-tw / 2 - 20, -size * .3], [-tw / 2 - 20 + wv, -size * .34], [-tw / 2 - 20 + wv, size * .32], [-tw / 2 - 20, size * .36]], { fill: hl[i], stroke: null }); c.restore(); }\n    const k = backOut(seg(age, 0, .18)), sc = lerp(2.2, 1, k);\n    c.save(); c.translate(250, 180 - out * 20); c.scale(sc, sc); word(c, words[i], 0, 0, size, cols[i], { rot: (hash(i) - .5) * .12, alpha: (1 - out) * clamp(age / .04) }); c.restore();\n  }"
+  },
+  {
+    "id": "stickers",
+    "nombre": "Stickers que entran escalonados",
+    "categoria": "Tipografía cinética",
+    "fuente": "Video de Reca (@joshaeeee) · íconos recortados en fila",
+    "verificacion": "Observado",
+    "nota_verificacion": "Visto en cuadros extraídos del video",
+    "bucle_s": 3.4,
+    "que_se_mueve": "Cuatro stickers con borde blanco de recorte y sombra entran uno tras otro (cada 0.14 s) con rebote y rotación que se asienta. Luego flotan con fases distintas. Al final salen en el mismo orden.",
+    "pasos": [
+      "Inicio de cada sticker: t0 = 0.3 + i·0.14.",
+      "Escala = backOut(seg(t, t0, t0 + .3)); rotación = (hash(i)−.5)·0.5·(1−k) + spring(t, t0+.3)·0.1.",
+      "Borde de recorte: dibuja la figura con trazo crema de 7 px y sombra suave, luego el relleno.",
+      "Flotar: dy = wob(t, 0.6, hash(i))·4 px.",
+      "Salida: easeIn de escala a 0 desde 2.8 + i·0.08."
+    ],
+    "parametros": [
+      "escalón 0.14 s",
+      "entrada 0.3 s backOut",
+      "borde 7 px"
+    ],
+    "codigo": "draw(c, t) {\n    paper(c, '#E9E1D3'); const shapes = [\n      r => ink(c, ell(0, 0, 34, 34, 22), { fill: '#E8B66B', w: 2.2, r, jit: 1.2 }),\n      r => ink(c, [[-30, -32], [-12, -38], [0, -30], [12, -38], [30, -32], [40, -10], [26, -6], [26, 36], [-26, 36], [-26, -6], [-40, -10]], { fill: S.red, w: 2.2, r, jit: 1, smooth: false }),\n      r => ink(c, [[-26, 38], [-26, -18], [0, -40], [26, -18], [26, 38]], { fill: '#C46B3D', w: 2.2, r, jit: 1, smooth: false }),\n      r => ink(c, heart(0, 0, 36), { fill: S.rose, w: 2.2, r, jit: 1 }) ];\n    shapes.forEach((fn, i) => { const t0 = .3 + i * .14, k = seg(t, t0, t0 + .3), s = backOut(k) * (1 - easeIn(seg(t, 2.8 + i * .08, 3.1 + i * .08))); if (s <= .01) return;\n      const x = 140 + i * 120, y = 175 + wob(t, .6, hash(i)) * 4, rot = (hash(i) - .5) * .5 * (1 - k) + spring(t, t0 + .3, 6, 16) * .1 + (hash(i + 7) - .5) * .12;\n      c.save(); c.translate(x, y); c.rotate(rot); c.scale(s, s);\n      c.save(); c.shadowColor = 'rgba(30,20,10,.28)'; c.shadowBlur = 10; c.shadowOffsetY = 5;\n      const outline = [ell(0, 0, 34, 34, 22), [[-30, -32], [-12, -38], [0, -30], [12, -38], [30, -32], [40, -10], [26, -6], [26, 36], [-26, 36], [-26, -6], [-40, -10]], [[-26, 38], [-26, -18], [0, -40], [26, -18], [26, 38]], heart(0, 0, 36)][i];\n      c.beginPath(); outline.forEach((p, j) => j ? c.lineTo(p[0], p[1]) : c.moveTo(p[0], p[1])); c.closePath(); c.strokeStyle = S.cream; c.lineWidth = 14; c.lineJoin = 'round'; c.stroke(); c.fillStyle = S.cream; c.fill(); c.restore();\n      fn(boil('stk' + i, t)); c.restore(); });\n  }"
+  },
+  {
+    "id": "anotacion",
+    "nombre": "Anotación dibujada a mano",
+    "categoria": "Tipografía cinética",
+    "fuente": "Video de Reca (@joshaeeee) · círculo rosa y notas a mano",
+    "verificacion": "Observado",
+    "nota_verificacion": "Visto en cuadros extraídos del video",
+    "bucle_s": 3.6,
+    "que_se_mueve": "Un círculo a mano rodea al protagonista (empieza y termina un poco desfasado, como trazo real), luego una flecha curva sale de la nota y la nota se escribe letra por letra con letra manuscrita. Cada elemento espera a que el anterior termine.",
+    "pasos": [
+      "Círculo: espiral de 1.08 vueltas con radio que varía ±6 px; dibújalo con drawOn(puntos, easeOut(seg(t, .4, 1.0))).",
+      "Flecha: curva cuadrática de la nota al círculo, drawOn con ease en .1.15–1.5; la punta aparece al final.",
+      "Texto: muestra floor(seg(t, 1.5, 2.5)·n) letras con fuente manuscrita.",
+      "Salida conjunta: alfa baja de 3.2 a 3.5."
+    ],
+    "parametros": [
+      "círculo 0.6 s",
+      "flecha 0.35 s",
+      "texto ~12 letras/s"
+    ],
+    "codigo": "draw(c, t) {\n    paper(c, '#E4DED3'); ground(c, 300, '#B8C7A8', 35); bolo(c, 220, 300, 12, { t, key: 'an', eyes: 'open', lookX: .3, mouth: 'smile', dy: -pulse(t) * .3 });\n    const a = 1 - seg(t, 3.2, 3.5); c.globalAlpha = a;\n    const circ = []; for (let i = 0; i <= 64; i++) { const k = i / 64, ang = -2.2 + k * TAU * 1.08, rr = 92 + Math.sin(k * 9) * 5 + k * 8; circ.push([220 + Math.cos(ang) * rr * 1.1, 215 + Math.sin(ang) * rr]); }\n    const pc = drawOn(circ, easeOut(seg(t, .4, 1.0))); if (pc.length > 1) ink(c, pc, { close: false, stroke: S.rose, w: 4.5, r: boil('circ', t), jit: .8 });\n    const A = [412, 112], B = [370, 66], Cp = [322, 150]; const curve = []; for (let i = 0; i <= 20; i++) { const k = i / 20; curve.push([(1 - k) ** 2 * A[0] + 2 * (1 - k) * k * B[0] + k * k * Cp[0], (1 - k) ** 2 * A[1] + 2 * (1 - k) * k * B[1] + k * k * Cp[1]]); }\n    const pa = drawOn(curve, ease(seg(t, 1.15, 1.5))); if (pa.length > 1) ink(c, pa, { close: false, stroke: S.ink, w: 2.6, r: boil('arr', t), jit: .6 });\n    if (t > 1.5) { const q = backOut(seg(t, 1.5, 1.65)); c.save(); c.translate(Cp[0], Cp[1]); c.rotate(Math.atan2(Cp[1] - curve[18][1], Cp[0] - curve[18][0])); c.scale(q, q); ink(c, [[-14, -8], [0, 0], [-14, 8]], { close: false, stroke: S.ink, w: 2.6, r: boil('tip', t), jit: .4 }); c.restore(); }\n    const txt = '¡este soy yo!', n = Math.floor(seg(t, 1.5, 2.5) * txt.length); c.font = '600 34px Caveat, \"Comic Sans MS\", cursive'; c.fillStyle = S.ink; c.textAlign = 'left'; c.textBaseline = 'middle';\n    c.save(); c.translate(420, 112); c.rotate(-.06); c.fillText(txt.slice(0, n), 0, 0); c.restore(); c.globalAlpha = 1;\n  }"
+  },
+  {
+    "id": "karaoke",
+    "nombre": "Barra de karaoke",
+    "categoria": "Tipografía cinética",
+    "fuente": "PDoomVideo · karaoke() + drawKaraokeText()",
+    "verificacion": "Verificado",
+    "nota_verificacion": "Traducido del código fuente o del prompt publicado",
+    "bucle_s": 4,
+    "que_se_mueve": "Una barra de tinta crece desde el centro en 0.18 s; cuando ya cubre 85 %, aparece la letra en crema y se va rellenando de ocre de izquierda a derecha al ritmo del canto. Al final la barra se encoge en 0.12 s.",
+    "pasos": [
+      "grow = easeOut((t−a)/0.18)·(1 − ease((t−(b−0.12))/0.12)).",
+      "Barra: polígono de 8 puntos con temblor, ancho = (anchoTexto + 110)·grow.",
+      "Duración de canto = min(b − a − 0.1, 0.45 + letras·0.075).",
+      "Relleno: recorta cada palabra a su fracción cantada y píntala en ocre encima de la crema."
+    ],
+    "parametros": [
+      "crece 0.18 s",
+      "encoge 0.12 s",
+      "0.075 s por letra"
+    ],
+    "codigo": "draw(c, t) {\n    paper(c, '#E3D7EA'); bolo(c, 320, 250, 11, { t, key: 'ka', eyes: 'happy', mouth: 'O', dy: -pulse(t) * .7, sq: -pulse(t) * .06, aL: .5 + pulse(t) * .6, aR: .3, col: S.violet });\n    const a = .5, b = 3.6, txt = 'cada día un poco más rápido', grow = easeOut((t - a) / .18) * (1 - ease((t - (b - .12)) / .12)); if (grow < .02) return;\n    c.font = '800 25px \"Atkinson Hyperlegible\", sans-serif'; const tw = c.measureText(txt).width, w = (tw + 60) * grow, x0 = 320 - w / 2, y0 = 290, r = boil('kbar', t), j = () => (r() - .5) * 6;\n    ink(c, [[x0 + j(), y0 + j()], [x0 + w / 2, y0 - 2 + j()], [x0 + w + j(), y0 + j()], [x0 + w + 8 + j(), y0 + 22], [x0 + w + j(), y0 + 44 + j()], [x0 + w / 2, y0 + 46 + j()], [x0 + j(), y0 + 44 + j()], [x0 - 8 + j(), y0 + 22]], { fill: S.ink, stroke: null, smooth: false });\n    if (grow < .85) return; const words = txt.split(' '), sp = c.measureText(' ').width, ws = words.map(s => c.measureText(s).width), total = ws.reduce((p, q) => p + q, 0) + sp * (words.length - 1);\n    const singDur = Math.min(b - a - .1, .45 + txt.length * .075), sung = clamp((t - a) / singDur) * txt.replace(/ /g, '').length; let x = 320 - total / 2, done = 0;\n    c.textBaseline = 'middle'; c.textAlign = 'left'; words.forEach((s, i) => { const f = clamp((sung - done) / s.length); done += s.length; c.fillStyle = S.cream; c.fillText(s, x, y0 + 23);\n      if (f > 0) { c.save(); c.beginPath(); c.rect(x - 2, y0, ws[i] * f + 2, 46); c.clip(); c.fillStyle = S.ochre; c.fillText(s, x, y0 + 23); c.restore(); } x += ws[i] + sp; });\n  }"
+  },
+  {
+    "id": "gancho",
+    "nombre": "Letra gigante a la izquierda, personaje a la derecha",
+    "categoria": "Tipografía cinética",
+    "fuente": "Prompt de @donaldjewkes · dirección de las letras",
+    "verificacion": "Verificado",
+    "nota_verificacion": "Traducido del código fuente o del prompt publicado",
+    "bucle_s": 5.4,
+    "que_se_mueve": "Primero el \"modo gancho\": las palabras de la letra se apilan grandes a la izquierda, una por beat, y el personaje baila a la derecha sobre un fondo tranquilo. Luego cambia a \"modo subtítulo\": las palabras salen volando, el personaje pasa al centro y la letra queda chica abajo. El prompt pide justo esta alternancia.",
+    "pasos": [
+      "Modo gancho (0–2.7 s): palabra i entra en t = 0.2 + i·BEAT con backOut desde la izquierda (x −80 → 40).",
+      "Fondo detrás del texto liso, para que la letra respire.",
+      "Cambio (2.7–3.0 s): las palabras salen con easeIn hacia arriba, escalonadas 0.04 s; el personaje viaja al centro con ease.",
+      "Modo subtítulo: texto de 22 px en la parte baja, aparece con easeOut."
+    ],
+    "parametros": [
+      "1 palabra/beat",
+      "gancho al inicio",
+      "cambio 0.3 s"
+    ],
+    "codigo": "draw(c, t) {\n    paper(c, '#F1E4E8'); wash(c, [[340, -20], [W + 20, -20], [W + 20, H + 20], [380, H + 20], [360, 200]], '#E9C9D6', 37);\n    const L = ['SUBE', 'SUBE', 'Y NO', 'PARA'], cols = [S.red, S.violet, S.ink, S.red], sw = 2.7;\n    L.forEach((s, i) => { const t0 = .2 + i * BEAT, k = seg(t, t0, t0 + .22), o = easeIn(seg(t, sw + i * .04, sw + .25 + i * .04)); if (k <= 0 || o >= 1) return;\n      const x = lerp(-80, 40, backOut(k)); c.save(); c.globalAlpha = 1 - o; word(c, s, x, 70 + i * 66 - o * 120, 54, cols[i], { align: 'left', rot: -.03 }); c.restore(); });\n    const toC = ease(seg(t, sw, sw + .35)), bx = lerp(490, 320, toC), p = pulse(t);\n    bolo(c, bx, 300, lerp(13, 11, toC), { t, key: 'gh', col: S.rose, eyes: 'happy', mouth: 'smile', dy: -p * .9, sq: -p * .08, aL: .3 + p * .9, aR: 1.2 - p * .5, rot: wob(t, .73) * .07 });\n    const sub = easeOut(seg(t, sw + .3, sw + .55)); if (sub > 0) { c.globalAlpha = sub; c.font = '700 22px \"Atkinson Hyperlegible\", sans-serif'; c.textAlign = 'center'; c.fillStyle = S.ink; c.fillText('sube, sube y no para', 320, 338 + (1 - sub) * 8); c.globalAlpha = 1; }\n  }"
+  },
+  {
+    "id": "burbujas",
+    "nombre": "Burbujas que brotan del producto",
+    "categoria": "Tipografía cinética",
+    "fuente": "Video de Reca (@joshaeeee) · dispositivo sobre cuadrícula verde",
+    "verificacion": "Observado",
+    "nota_verificacion": "Visto en cuadros extraídos del video",
+    "bucle_s": 3.6,
+    "que_se_mueve": "El producto descansa sobre una cuadrícula verde oscura. Su botón late y de él brotan burbujas de chat que viajan en arco a su lugar, se inflan con rebote y quedan flotando con fases distintas, con la colita apuntando al aparato.",
+    "pasos": [
+      "Botón: escala 1 + 0.08·pulse(t).",
+      "Burbuja i nace en t0 = 0.5 + i·0.22 en el centro del producto.",
+      "Viaje: arcPt(centro, destino, 60, easeOut(seg(t, t0, t0+.35))); escala backOut.",
+      "Cola: triángulo orientado hacia el producto (atan2).",
+      "Flotar: dy = wob(t, .5, hash(i))·3."
+    ],
+    "parametros": [
+      "escalón 0.22 s",
+      "viaje 0.35 s",
+      "arco 60 px"
+    ],
+    "codigo": "draw(c, t) {\n    paper(c, S.green); c.strokeStyle = 'rgba(255,248,234,.09)'; c.lineWidth = 1; for (let x = 8; x < W; x += 26) { c.beginPath(); c.moveTo(x, 0); c.lineTo(x, H); c.stroke(); } for (let y = 4; y < H; y += 26) { c.beginPath(); c.moveTo(0, y); c.lineTo(W, y); c.stroke(); }\n    const r = boil('dev', t); ink(c, rrect(250, 190, 140, 120, 22), { fill: '#F3EFE6', w: 2.4, r, jit: .8, smooth: false });\n    for (let i = 0; i < 5; i++) { c.strokeStyle = 'rgba(38,34,46,.25)'; c.lineWidth = 2; c.beginPath(); c.moveTo(270, 210 + i * 8); c.lineTo(330, 210 + i * 8); c.stroke(); }\n    const bs = 1 + .08 * pulse(t); c.save(); c.translate(355, 275); c.scale(bs, bs); ink(c, ell(0, 0, 18, 18, 16), { fill: '#E8743B', w: 2.2, r, jit: .6 }); c.restore();\n    const bubbles = [[130, 95, 'hola ma'], [320, 60, '¿cenaste?'], [505, 100, 'te quiero'], [110, 225, '📞'], [530, 230, 'foto']];\n    bubbles.forEach(([tx, ty, label], i) => { const t0 = .5 + i * .22, k = seg(t, t0, t0 + .35), out = easeIn(seg(t, 3.15, 3.4)); if (k <= 0) return;\n      const p = arcPt([320, 240], [tx, ty + wob(t, .5, hash(i)) * 3], 60, easeOut(k)), s = backOut(k) * (1 - out); if (s < .02) return;\n      c.save(); c.translate(p[0], p[1]); c.scale(s, s); const ang = Math.atan2(240 - p[1], 320 - p[0]); c.font = '700 15px \"Atkinson Hyperlegible\", sans-serif'; const w = Math.max(44, c.measureText(label).width + 26);\n      c.save(); c.rotate(ang); ink(c, [[w * .25, -7], [w * .5 + 14, 0], [w * .25, 7]], { fill: S.cream, w: 2, r: boil('tl' + i, t), jit: .4, smooth: false }); c.restore();\n      ink(c, rrect(-w / 2, -17, w, 34, 15), { fill: S.cream, w: 2, r: boil('bb' + i, t), jit: .5, smooth: false });\n      c.fillStyle = S.ink; c.textAlign = 'center'; c.textBaseline = 'middle'; c.fillText(label, 0, 1); c.restore(); });\n  }"
+  },
+  {
+    "id": "grafica",
+    "nombre": "Gráfica que se dibuja sola",
+    "categoria": "Tipografía cinética",
+    "fuente": "Video de Reca (@joshaeeee) · \"LEARNING CURVE\"",
+    "verificacion": "Observado",
+    "nota_verificacion": "Visto en cuadros extraídos del video",
+    "bucle_s": 3.4,
+    "que_se_mueve": "Los ejes se trazan, luego la curva crece de izquierda a derecha con un punto que la va montando, y al final la etiqueta cae con rebote. Fondo de papel cuadriculado.",
+    "pasos": [
+      "Ejes: drawOn con easeOut en 0.2–0.55 s (primero Y, luego X).",
+      "Curva: puntos de una exponencial suave; drawOn con ease en 0.6–1.9 s.",
+      "Punto en la punta: círculo que late con pulse.",
+      "Etiqueta: word con pop = seg(t, 1.9, 2.15) y rotación −0.05."
+    ],
+    "parametros": [
+      "ejes 0.35 s",
+      "curva 1.3 s ease",
+      "etiqueta 0.25 s"
+    ],
+    "codigo": "draw(c, t) {\n    paper(c, '#F0EDE4'); c.strokeStyle = 'rgba(76,134,198,.14)'; c.lineWidth = 1; for (let x = 0; x < W; x += 20) { c.beginPath(); c.moveTo(x, 0); c.lineTo(x, H); c.stroke(); } for (let y = 0; y < H; y += 20) { c.beginPath(); c.moveTo(0, y); c.lineTo(W, y); c.stroke(); }\n    const r = boil('ax', t), ox = 110, oy = 300; const yA = drawOn([[ox, oy], [ox, 60]], easeOut(seg(t, .2, .4))), xA = drawOn([[ox, oy], [580, oy]], easeOut(seg(t, .35, .55)));\n    if (yA.length > 1) ink(c, yA, { close: false, w: 3, r, jit: .6 }); if (xA.length > 1) ink(c, xA, { close: false, w: 3, r, jit: .6 });\n    const curve = []; for (let i = 0; i <= 40; i++) { const k = i / 40; curve.push([ox + 10 + k * 450, oy - 10 - (Math.exp(k * 2.6) - 1) / (Math.exp(2.6) - 1) * 210 - Math.sin(k * 14) * 6 * (1 - k)]); }\n    const pc = drawOn(curve, ease(seg(t, .6, 1.9))); if (pc.length > 1) { ink(c, pc, { close: false, stroke: S.red, w: 5, r: boil('cv', t), jit: .8 }); const tip = pc[pc.length - 1], s = 1 + .25 * pulse(t);\n      ink(c, ell(tip[0], tip[1], 8 * s, 8 * s, 12), { fill: S.ochre, w: 2.2, r: boil('tp', t), jit: .4 }); }\n    word(c, 'CURVA DE', 330, 70, 30, S.ink, { pop: seg(t, 1.9, 2.15), rot: -.05, shadow: false }); word(c, 'APRENDIZAJE', 345, 108, 34, S.red, { pop: seg(t, 2.0, 2.25), rot: -.05 });\n  }"
+  },
+  {
+    "id": "cierre",
+    "nombre": "Tarjeta final con logo",
+    "categoria": "Tipografía cinética",
+    "fuente": "Video de Reca (@joshaeeee) · cierre en verde oscuro",
+    "verificacion": "Observado",
+    "nota_verificacion": "Visto en cuadros extraídos del video",
+    "bucle_s": 3.6,
+    "que_se_mueve": "Sobre verde oscuro, el disco del logo entra con rebote, sus dos trazos internos se dibujan, las letras del nombre suben una por una y al final aparece el lema con un subrayado que se traza. Termina con una pausa larga: la última lectura necesita tiempo.",
+    "pasos": [
+      "Disco: escala backOut(seg(t, .2, .55)).",
+      "Trazos internos: drawOn con easeOut, el segundo 0.1 s después del primero.",
+      "Letras: cada una con t0 = 0.75 + i·0.06, sube 14 px con easeOut y aparece.",
+      "Lema 1.5 s; subrayado drawOn 1.6–2.0 s; mantener hasta el final."
+    ],
+    "parametros": [
+      "letra cada 0.06 s",
+      "pausa final ≥1.4 s"
+    ],
+    "codigo": "draw(c, t) {\n    paper(c, S.green); const out = seg(t, 3.35, 3.6); c.globalAlpha = 1 - out;\n    const s = backOut(seg(t, .2, .55)); c.save(); c.translate(320, 140); c.scale(s, s); ink(c, ell(0, 0, 54, 54, 28), { fill: '#2E6B55', stroke: S.cream, w: 3, r: boil('logo', t), jit: .6 }); c.restore();\n    [[[-22, 22], [-26, -6], [-12, -28], [0, -8]], [[2, 22], [-2, -6], [12, -28], [24, -8]]].forEach((P, i) => { const pp = drawOn(P.map(([x, y]) => [320 + x, 140 + y]), easeOut(seg(t, .5 + i * .1, .85 + i * .1))); if (pp.length > 1) ink(c, pp, { close: false, stroke: S.cream, w: 5, r: boil('lg' + i, t), jit: .4 }); });\n    const name = 'NOVA'; c.font = '800 40px Unbounded, \"Arial Black\", sans-serif'; c.textAlign = 'center'; c.textBaseline = 'middle'; const sp = 48;\n    [...name].forEach((ch, i) => { const k = easeOut(seg(t, .75 + i * .06, 1.05 + i * .06)); if (k <= 0) return; c.globalAlpha = k * (1 - out); c.fillStyle = S.cream; c.fillText(ch, 320 + (i - 1.5) * sp, 240 + (1 - k) * 14); });\n    const tg = easeOut(seg(t, 1.5, 1.8)); c.globalAlpha = tg * (1 - out); c.font = '400 18px \"Atkinson Hyperlegible\", sans-serif'; c.fillStyle = '#CFE3D8'; c.fillText('cerca de quien quieres', 320, 290);\n    const ul = drawOn([[230, 306], [320, 309], [410, 304]], easeOut(seg(t, 1.6, 2.0))); if (ul.length > 1) ink(c, ul, { close: false, stroke: S.ochre, w: 3, r: boil('ul', t), jit: .5 }); c.globalAlpha = 1;\n  }"
+  },
+  {
+    "id": "remotion",
+    "nombre": "Línea de tiempo estilo Remotion",
+    "categoria": "Explicativos y producto",
+    "fuente": "@kimmonismus · stack Remotion + SVG/Canvas",
+    "verificacion": "Inferido",
+    "nota_verificacion": "[DATO NO VERIFICADO] Recreación del género a partir del texto del post",
+    "bucle_s": 4.2,
+    "que_se_mueve": "Patrón típico de un explicativo hecho en Remotion: un contador de año que corre con interpolate() y se frena, una línea de tiempo que se traza y tarjetas que aparecen con spring() en cada hito. El stack está confirmado en el post; este diseño concreto es una recreación del género. [DATO NO VERIFICADO]",
+    "pasos": [
+      "Remotion trabaja en cuadros: frame = floor(t·30).",
+      "Contador: interpolate(frame, [0, 90], [2017, 2026], {extrapolateRight:\"clamp\", easing: Easing.out(Easing.cubic)}).",
+      "Tarjeta i: spring({frame: frame − inicio_i, fps: 30, config: {damping: 12}}) para escala y opacidad.",
+      "Línea: SVG path con strokeDashoffset = largo·(1 − progreso).",
+      "Cada escena va en un <Sequence from={…} durationInFrames={…}>."
+    ],
+    "parametros": [
+      "30 fps",
+      "spring damping 12",
+      "Easing.out(cubic)"
+    ],
+    "codigo": "draw(c, t) {\n    paper(c, '#ECEFF3'); const frame = Math.floor(t * 30);\n    const sprg = (f, damping = 12) => { if (f <= 0) return 0; const tt = f / 30, w0 = 10, z = damping / (2 * Math.sqrt(100)); return 1 - Math.exp(-z * w0 * tt) * Math.cos(w0 * Math.sqrt(1 - z * z) * tt); };\n    const year = Math.round(lerp(2017, 2026, easeOut(clamp(frame / 90))));\n    c.font = '800 64px Unbounded, \"Arial Black\", sans-serif'; c.textAlign = 'left'; c.textBaseline = 'middle'; c.fillStyle = S.ink; c.fillText(String(year), 40, 80);\n    c.font = '600 12px \"JetBrains Mono\", monospace'; c.fillStyle = '#586070'; c.fillText('frame ' + String(frame).padStart(3, '0') + ' · 30 fps', 44, 128);\n    const x0 = 80, x1 = 560, y = 225, k = easeOut(clamp(frame / 100)); c.strokeStyle = S.ink; c.lineWidth = 3; c.lineCap = 'round'; c.beginPath(); c.moveTo(x0, y); c.lineTo(lerp(x0, x1, k), y); c.stroke();\n    const items = [[0, '2017', 'Transformers'], [.33, '2020', 'Escala'], [.66, '2023', 'Chat'], [1, '2026', 'Agentes']];\n    items.forEach(([p, yr, lb], i) => { const f0 = 12 + i * 22, s = sprg(frame - f0); if (s <= 0) return; const x = lerp(x0, x1, p);\n      c.fillStyle = S.blue; c.beginPath(); c.arc(x, y, 7 * Math.min(1.2, s), 0, TAU); c.fill();\n      c.save(); c.translate(x, y + 58); c.scale(s, s); c.globalAlpha = clamp(s); c.fillStyle = '#FFFFFF'; c.strokeStyle = '#C3C9C2'; c.lineWidth = 1.2; c.beginPath(); c.roundRect(-52, -28, 104, 56, 8); c.fill(); c.stroke();\n      c.fillStyle = S.blue; c.font = '600 11px \"JetBrains Mono\", monospace'; c.textAlign = 'center'; c.fillText(yr, 0, -10); c.fillStyle = S.ink; c.font = '700 14px \"Atkinson Hyperlegible\", sans-serif'; c.fillText(lb, 0, 10); c.restore(); });\n  }"
+  },
+  {
+    "id": "features",
+    "nombre": "Mascota presenta funciones",
+    "categoria": "Explicativos y producto",
+    "fuente": "@achxvi · fórmula \"mascota + funciones + oferta\"",
+    "verificacion": "Inferido",
+    "nota_verificacion": "[DATO NO VERIFICADO] Recreación del género a partir del texto del post",
+    "bucle_s": 4,
+    "que_se_mueve": "La mascota voltea a ver cada tarjeta un instante ANTES de que llegue, guiando el ojo del espectador. Las tarjetas se reparten en abanico desde abajo con rebote, escalonadas 0.35 s, y cada una deja una pausa para leerse. Recreación de la fórmula descrita en el hilo. [DATO NO VERIFICADO]",
+    "pasos": [
+      "Tarjeta i llega en t0 = 0.5 + i·0.7 (0.35 s de entrada, el resto es lectura).",
+      "La mirada de la mascota apunta a la tarjeta i desde t0 − 0.15 s: guía el ojo.",
+      "Entrada: desde y+220 y rotación −0.3 con backOut; rotación final distinta por tarjeta.",
+      "El brazo de la mascota señala con un pequeño rebote (spring) en cada llegada."
+    ],
+    "parametros": [
+      "mirada 0.15 s antes",
+      "entrada 0.35 s",
+      "lectura 0.35 s"
+    ],
+    "codigo": "draw(c, t) {\n    paper(c, '#F2EBDD'); ground(c, 310, '#D9CDB6', 39);\n    const cards = [[330, 120, 'Rápido', S.ochre], [450, 150, 'Seguro', S.teal], [570, 125, 'Fácil', S.rose]]; let target = -1;\n    cards.forEach(([x, y, lb, col], i) => { const t0 = .5 + i * .7; if (t > t0 - .15) target = i; const k = seg(t, t0, t0 + .35); if (k <= 0) return; const q = backOut(k), out = easeIn(seg(t, 3.6, 3.9));\n      c.save(); c.translate(x, lerp(y + 220, y, q) + out * 260); c.rotate(lerp(-.3, (hash(i) - .5) * .16, q)); ink(c, rrect(-52, -62, 104, 124, 10), { fill: S.cream, w: 2.2, r: boil('fc' + i, t), jit: .6, smooth: false });\n      ink(c, ell(0, -22, 22, 22, 16), { fill: col, w: 2, r: boil('fi' + i, t), jit: .5 }); c.font = '800 16px Unbounded, \"Arial Black\", sans-serif'; c.fillStyle = S.ink; c.textAlign = 'center'; c.textBaseline = 'middle'; c.fillText(lb, 0, 30); c.restore(); });\n    const tx = target < 0 ? 0 : (cards[target][0] - 140) / 400, ty = target < 0 ? 0 : -.6, arm = target < 0 ? -.5 : .5 + spring(t, .5 + target * .7, 6, 18) * .5;\n    bolo(c, 140, 310, 12, { t, key: 'ft', col: S.blue, lookX: ease(clamp(tx * 1.6)), lookY: ty, aR: arm, aL: -.7, eyes: 'open', mouth: 'smile', dy: -pulse(t) * .3 });\n  }"
+  },
+  {
+    "id": "oferta",
+    "nombre": "Cierre con oferta",
+    "categoria": "Explicativos y producto",
+    "fuente": "@achxvi · \"termina con una oferta\"",
+    "verificacion": "Inferido",
+    "nota_verificacion": "[DATO NO VERIFICADO] Recreación del género a partir del texto del post",
+    "bucle_s": 3.6,
+    "que_se_mueve": "El precio anterior se tacha con un trazo que se dibuja, el nuevo precio golpea con rebote, el botón respira al pulso, unos destellos titilan y un cursor entra en arco y hace clic: el botón se aplasta y rebota. Recreación del cierre que describe el hilo. [DATO NO VERIFICADO]",
+    "pasos": [
+      "Precio viejo visible desde 0.2 s; tachado drawOn 0.6–0.85 s.",
+      "Precio nuevo: word con pop = seg(t, .9, 1.1) y escala 1.3→1.",
+      "Botón: escala 1 + 0.03·pulse(t); destellos con alfa = 0.5 + 0.5·sin(t·6 + i).",
+      "Cursor: arcPt de afuera al botón en 1.6–2.2 s con ease; clic en 2.3: el botón se aplasta 0.12 y vuelve con spring."
+    ],
+    "parametros": [
+      "tachado 0.25 s",
+      "golpe 0.2 s",
+      "clic: sq 0.12 + spring"
+    ],
+    "codigo": "draw(c, t) {\n    paper(c, '#FBEFE3'); const r = boil('of', t);\n    c.globalAlpha = easeOut(seg(t, .2, .4)); c.font = '700 30px \"Atkinson Hyperlegible\", sans-serif'; c.textAlign = 'center'; c.textBaseline = 'middle'; c.fillStyle = '#7C7468'; c.fillText('$499', 320, 70); c.globalAlpha = 1;\n    const st = drawOn([[282, 74], [358, 66]], easeOut(seg(t, .6, .85))); if (st.length > 1) ink(c, st, { close: false, stroke: S.red, w: 4, r, jit: .5 });\n    const k = seg(t, .9, 1.1); if (k > 0) { c.save(); c.translate(320, 140); const sc = lerp(1.3, 1, easeOut(k)); c.scale(sc, sc); word(c, '$199', 0, 0, 70, S.red, { pop: k * 1.2, rot: -.04 }); c.restore(); }\n    const click = 2.3, csq = t > click ? .12 * Math.exp(-10 * (t - click)) * Math.cos(16 * (t - click)) : (t > click - .08 ? .12 * seg(t, click - .08, click) : 0), bs = (1 + .03 * pulse(t)) * easeOut(seg(t, 1.1, 1.35));\n    if (bs > 0) { c.save(); c.translate(320, 245); c.scale(bs * (1 + csq), bs * (1 - csq)); ink(c, rrect(-110, -32, 220, 64, 32), { fill: S.ink, w: 2, r, jit: .5, smooth: false });\n      c.font = '800 20px Unbounded, \"Arial Black\", sans-serif'; c.fillStyle = S.cream; c.fillText('LO QUIERO', 0, 2); c.restore(); }\n    for (let i = 0; i < 4; i++) { const a = .5 + .5 * Math.sin(t * 6 + i * 1.7); if (t < 1.2) continue; c.globalAlpha = a; ink(c, star([180, 470, 200, 450][i], [200, 190, 290, 300][i], 9 + 4 * a, .3, 4), { fill: S.ochre, w: 1.6, r, jit: .3, smooth: false }); } c.globalAlpha = 1;\n    if (t > 1.6) { const p = arcPt([600, 360], [350, 258], -70, ease(seg(t, 1.6, 2.2))), press = t > click - .08 && t < click + .1 ? .85 : 1;\n      c.save(); c.translate(p[0], p[1]); c.scale(press, press); ink(c, [[0, 0], [0, 26], [7, 20], [12, 31], [17, 29], [12, 18], [21, 18]], { fill: S.cream, w: 2, r, jit: .3, smooth: false }); c.restore();\n      if (t > click) { const age = t - click; c.strokeStyle = S.ochre; c.lineWidth = 2.5; c.globalAlpha = 1 - seg(age, .1, .4); for (let i = 0; i < 6; i++) { const a = i / 6 * TAU, r0 = 18 + age * 90; c.beginPath(); c.moveTo(350 + Math.cos(a) * r0, 258 + Math.sin(a) * r0); c.lineTo(350 + Math.cos(a) * (r0 + 10), 258 + Math.sin(a) * (r0 + 10)); c.stroke(); } c.globalAlpha = 1; } }\n  }"
+  },
+  {
+    "id": "rotoscopia",
+    "nombre": "Rotoscopia: dibujo encima de video base",
+    "categoria": "Explicativos y producto",
+    "fuente": "Prompt de @donaldjewkes · Seedance 2.5 + overlay JS",
+    "verificacion": "Verificado",
+    "nota_verificacion": "Traducido del código fuente o del prompt publicado",
+    "bucle_s": 3.2,
+    "que_se_mueve": "La técnica central del remake de Claude Pop: primero se genera un video base con IA (aquí, la figura gris suave) y luego se redibuja encima con trazo de tinta que hierve y va en doses, hasta que solo se ve el dibujo. La línea vertical alterna entre el video base y el dibujo terminado.",
+    "pasos": [
+      "Video base = cualquier fuente con buen movimiento y física (en el prompt: Seedance 2.5 con personajes de fal).",
+      "Para cada cuadro, toma las posiciones clave del base (aquí: cabeza, cuerpo, piernas en función de t).",
+      "Redibuja con ink(), boil por elemento y tiempo en doses: tt = onTwos(t).",
+      "El prompt pide que al final NO se vea el video base: solo el dibujo."
+    ],
+    "parametros": [
+      "dibujo en doses",
+      "boil 12 fps",
+      "base oculto al final"
+    ],
+    "codigo": "draw(c, t) {\n    const pose = tt => { const ph = tt * 2.2 * TAU, x = 180 + tt * 70, b = Math.abs(Math.sin(ph)) * 8; return { x, hy: 140 - b, by: 200 - b, l1: Math.sin(ph) * 22, l2: -Math.sin(ph) * 22 }; };\n    const split = 320 + Math.sin(t * 1.8) * 170;\n    c.save(); c.beginPath(); c.rect(0, 0, split, H); c.clip(); c.fillStyle = '#9DA3A8'; c.fillRect(0, 0, W, H); c.fillStyle = '#868C92'; c.fillRect(0, 280, W, 80);\n    const p = pose(t); c.fillStyle = '#5C6268'; c.beginPath(); c.arc(p.x, p.hy, 22, 0, TAU); c.fill(); c.beginPath(); c.ellipse(p.x, p.by, 26, 42, 0, 0, TAU); c.fill();\n    c.strokeStyle = '#5C6268'; c.lineWidth = 12; c.lineCap = 'round'; [p.l1, p.l2].forEach(l => { c.beginPath(); c.moveTo(p.x, p.by + 30); c.lineTo(p.x + l, 280); c.stroke(); });\n    c.font = '600 12px \"JetBrains Mono\", monospace'; c.fillStyle = '#2B2F33'; c.textAlign = 'left'; c.fillText('video base (IA)', 14, 22); c.restore();\n    c.save(); c.beginPath(); c.rect(split, 0, W - split, H); c.clip(); paper(c, '#F3E6D6'); ground(c, 282, '#E2B9A4', 41);\n    const tt = onTwos(t), q = pose(tt), r = boil('roto', tt);\n    [q.l1, q.l2].forEach((l, i) => ink(c, [[q.x + (i ? 6 : -6), q.by + 30], [q.x + l * .6 + (i ? 4 : -4), q.by + 58], [q.x + l, 280]], { close: false, stroke: S.ink, w: 9, r, jit: 1.4 }));\n    ink(c, ell(q.x, q.by, 27, 43, 18), { fill: S.violet, w: 2.6, r, jit: 1.6 }); ink(c, ell(q.x, q.hy, 23, 23, 16), { fill: '#F2C9A8', w: 2.6, r, jit: 1.4 });\n    ink(c, [[q.x - 24, q.hy - 6], [q.x - 10, q.hy - 30], [q.x + 14, q.hy - 28], [q.x + 26, q.hy - 4]], { fill: S.ink, w: 2, r, jit: 1.6 });\n    c.fillStyle = S.ink; c.beginPath(); c.arc(q.x + 8, q.hy + 2, 2.6, 0, TAU); c.fill();\n    c.font = '600 12px \"JetBrains Mono\", monospace'; c.fillStyle = S.ink; c.textAlign = 'right'; c.fillText('dibujo encima (JS)', W - 14, 22); c.restore();\n    c.strokeStyle = S.red; c.lineWidth = 2; c.beginPath(); c.moveTo(split, 0); c.lineTo(split, H); c.stroke();\n  }"
+  }
+]

@@ -93,3 +93,11 @@ de Claude Code (Git Bash) no arranca en esta máquina (sale con código 2 sin me
   cuadro en que lo dice (alineación forzada). Una cita en pantalla se lee literal; el texto que la voz
   no dice tal cual aparece completo, sin iluminarse.
 - Convención de nombres de entrada: `Autor - Título - Parte.pdf`.
+
+## Biblioteca de conocimiento audiovisual (`conocimiento/`)
+
+Antes de diseñar escenas, efectos, 3D o personajes, **consúltala** (técnica, herramienta, licencia, qué está instalado):
+`saber buscar "<petición>"` · `saber ver <id> [--breve]` · `saber contexto "<petición>"` (también `scriptorium saber …`).
+Es independiente del resto (solo biblioteca estándar de Python) para que la usen otros proyectos y modelos locales.
+Instrucciones: `conocimiento/AGENTS.md`; manual: `conocimiento/README.md`. Lo nuevo que junte el usuario va crudo a
+`conocimiento/bandeja/` y se procesa con el flujo `agregar-conocimiento` (no inventar: `por-verificar`).

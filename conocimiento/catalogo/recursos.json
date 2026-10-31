@@ -1,0 +1,4395 @@
+[
+ {
+  "id": "agent-skills",
+  "nombre": "Agent Skills (estándar)",
+  "tipo": "referencia",
+  "areas": [
+   "conocimiento"
+  ],
+  "prioridad": "ahora",
+  "estado_local": "en-uso",
+  "capacidades": [
+   "control-por-agente"
+  ],
+  "resumen": "Formato abierto de skills: una carpeta con SKILL.md (name + description en el encabezado) que el agente carga solo cuando la necesita.",
+  "web": "https://agentskills.io",
+  "docs": [
+   "https://developers.openai.com/codex/skills",
+   "https://code.claude.com/docs/en/skills"
+  ],
+  "licencia": "Especificación abierta.",
+  "agentes": "Claude Code (`.claude/skills/`), Codex (`.agents/skills/` en el repo), OpenCode, Cursor y otros. Gemini CLI usa GEMINI.md (puede importar AGENTS.md con @).",
+  "relacionados": [
+   "remotion-skills",
+   "scenario-skills"
+  ],
+  "fuentes": [
+   "bandeja/2026-10-31-encargo-biblioteca-motion.md"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "parcial",
+  "ficha": "fichas/agent-skills.md",
+  "estado": {}
+ },
+ {
+  "id": "animejs",
+  "nombre": "Anime.js",
+  "tipo": "libreria",
+  "areas": [
+   "motion-graphics"
+  ],
+  "prioridad": "complemento",
+  "estado_local": "no-instalado",
+  "capacidades": [
+   "tipografia-cinetica",
+   "trazo-svg",
+   "morphing",
+   "easing-timing"
+  ],
+  "resumen": "Motor de animación JavaScript ligero (MIT): CSS, SVG, DOM y objetos JS, con líneas de tiempo, escalonado, trazos y morphing SVG.",
+  "lenguajes": [
+   "JavaScript"
+  ],
+  "exporta_video": "indirecto",
+  "web": "https://animejs.com",
+  "repo": "juliangarnier/anime",
+  "paquetes": {
+   "npm": [
+    "animejs"
+   ]
+  },
+  "licencia": "MIT",
+  "relacionados": [
+   "gsap",
+   "motion"
+  ],
+  "fuentes": [
+   "bandeja/2026-10-31-encargo-biblioteca-motion.md"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "verificado",
+  "ficha": "fichas/animejs.md",
+  "estado": {
+   "revisado": "2026-10-31",
+   "github": {
+    "nombre": "juliangarnier/anime",
+    "descripcion": "JavaScript animation engine",
+    "estrellas": 74124,
+    "ultimo_push": "2026-08-21",
+    "archivado": false,
+    "licencia": "MIT",
+    "web": "https://animejs.com",
+    "temas": [
+     "animation",
+     "anime",
+     "canvas",
+     "css",
+     "javascript",
+     "javascript-library",
+     "svg"
+    ]
+   },
+   "npm": {
+    "animejs": {
+     "version": "4.5.0",
+     "licencia": "MIT"
+    }
+   },
+   "docs": [
+    ".cache/docs/animejs/README.md"
+   ]
+  }
+ },
+ {
+  "id": "awesome-code-video",
+  "nombre": "Awesome Code Video",
+  "tipo": "referencia",
+  "areas": [
+   "video-explicativo",
+   "motion-graphics"
+  ],
+  "prioridad": "ahora",
+  "estado_local": "no-instalado",
+  "capacidades": [
+   "composicion-video",
+   "video-explicativo",
+   "mapas-geograficos",
+   "transiciones"
+  ],
+  "resumen": "Lista curada (CC0) de plantillas, recetas de toma, estilos visuales y marcos para hacer video con código; fuente para descubrir recursos nuevos.",
+  "exporta_video": "no-aplica",
+  "web": "https://awesomecodevideo.com",
+  "repo": "imjszhang/awesome-code-video",
+  "licencia": "CC0-1.0 (la lista); cada recurso enlazado conserva su licencia.",
+  "relacionados": [
+   "video-shotcraft",
+   "lemo-opuscar",
+   "map-motion",
+   "hyperframes",
+   "remotion-plantillas",
+   "awesome-video-as-code"
+  ],
+  "fuentes": [
+   "bandeja/2026-10-31-encargo-biblioteca-motion.md"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "verificado",
+  "ficha": "fichas/awesome-code-video.md",
+  "estado": {
+   "revisado": "2026-10-31",
+   "github": {
+    "nombre": "imjszhang/awesome-code-video",
+    "descripcion": "Curated video templates, motion graphics, shot recipes and visual styles for making videos with code. Explore reusable resources for Remotion, HyperFrames, Manim, GSAP and Three.js.",
+    "estrellas": 0,
+    "ultimo_push": "2026-10-31",
+    "archivado": false,
+    "licencia": "CC0-1.0",
+    "web": "https://awesomecodevideo.com",
+    "temas": [
+     "animation",
+     "awesome",
+     "awesome-list",
+     "creative-coding",
+     "data-visualization",
+     "explainer-video",
+     "gsap",
+     "hyperframes",
+     "javascript",
+     "manim",
+     "motion-graphics",
+     "programmatic-video",
+     "python",
+     "remotion",
+     "threejs",
+     "typescript",
+     "video-as-code",
+     "video-templates"
+    ]
+   },
+   "docs": [
+    ".cache/docs/awesome-code-video/README.md"
+   ]
+  }
+ },
+ {
+  "id": "awesome-video-as-code",
+  "nombre": "Awesome Video as Code",
+  "tipo": "referencia",
+  "areas": [
+   "video-explicativo",
+   "motion-graphics"
+  ],
+  "prioridad": "complemento",
+  "estado_local": "no-instalado",
+  "capacidades": [
+   "composicion-video",
+   "control-por-agente"
+  ],
+  "resumen": "Lista más amplia de herramientas, flujos y ejemplos de video dirigido por agentes; referida por awesome-code-video.",
+  "repo": "voidforall/awesome-video-as-code",
+  "licencia": "por verificar",
+  "relacionados": [
+   "awesome-code-video"
+  ],
+  "fuentes": [
+   "awesome-code-video"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "por-verificar",
+  "ficha": "fichas/awesome-video-as-code.md",
+  "estado": {
+   "revisado": "2026-10-31",
+   "github": {
+    "nombre": "voidforall/awesome-video-as-code",
+    "descripcion": "Video creation through code written or directed by AI agents",
+    "estrellas": 4,
+    "ultimo_push": "2026-10-03",
+    "archivado": false,
+    "licencia": "CC0-1.0",
+    "web": null,
+    "temas": [
+     "agentic-video",
+     "ai-video",
+     "awesome",
+     "awesome-list",
+     "creative-coding",
+     "hyperframes",
+     "motion-graphics",
+     "remotion",
+     "video-as-code"
+    ]
+   },
+   "docs": [
+    ".cache/docs/awesome-video-as-code/README.md"
+   ]
+  }
+ },
+ {
+  "id": "biblioteca-movimiento",
+  "nombre": "Biblioteca de Movimiento (recetas Canvas 2D)",
+  "tipo": "referencia",
+  "areas": [
+   "motion-graphics",
+   "personajes"
+  ],
+  "prioridad": "ahora",
+  "estado_local": "en-uso",
+  "capacidades": [
+   "easing-timing",
+   "transiciones",
+   "tipografia-cinetica",
+   "estilo-dibujado",
+   "camara",
+   "personajes-2d",
+   "subtitulos-karaoke"
+  ],
+  "resumen": "27 recetas de animación (Canvas 2D, funciones puras del tiempo) destiladas de PDoomVideo, ClaudeAnimationBase y videos virales; con motor base y prompt para modelos locales.",
+  "lenguajes": [
+   "JavaScript"
+  ],
+  "exporta_video": "indirecto",
+  "licencia": "Página propia; las recetas citan su fuente y nivel de verificación (verificado, observado, inferido).",
+  "agentes": "Escrita para modelos de 7–30B: prompt de sistema + motor de 180 líneas + recetas con código.",
+  "relacionados": [
+   "pdoom-video",
+   "claude-animation-base",
+   "p5-brush"
+  ],
+  "fuentes": [
+   "recetas/canvas2d/biblioteca-movimiento.html"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "verificado",
+  "ficha": "fichas/biblioteca-movimiento.md",
+  "estado": {}
+ },
+ {
+  "id": "blender-mcp",
+  "nombre": "MCP for Blender",
+  "tipo": "mcp",
+  "areas": [
+   "3d",
+   "personajes"
+  ],
+  "prioridad": "complemento",
+  "estado_local": "no-instalado",
+  "capacidades": [
+   "control-por-agente",
+   "escena-3d"
+  ],
+  "resumen": "Servidor MCP comunitario que deja a un agente leer la escena de Blender y ejecutar Python dentro de ella (objetos, materiales, render).",
+  "lenguajes": [
+   "Python"
+  ],
+  "exporta_video": "no-aplica",
+  "web": "https://www.mcp-for-blender.com/",
+  "repo": "ahujasid/mcp-for-blender",
+  "paquetes": {
+   "pypi": [
+    "mcp-for-blender"
+   ]
+  },
+  "licencia": "MIT",
+  "agentes": "Su instalador detecta Claude Desktop, Claude Code, Codex, Cursor, VS Code, Windsurf, OpenCode y Antigravity. Cualquier cliente MCP con un modelo local (p. ej. OpenCode + Ollama) también sirve.",
+  "requisitos": "uv; Blender con el complemento activado y el servidor iniciado (panel N → MCP for Blender → Start MCP Server).",
+  "relacionados": [
+   "blender",
+   "scenario-skills"
+  ],
+  "fuentes": [
+   "bandeja/2026-10-31-chatgpt-personajes-y-biblioteca.md"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "verificado",
+  "ficha": "fichas/blender-mcp.md",
+  "estado": {
+   "revisado": "2026-10-31",
+   "github": {
+    "nombre": "ahujasid/mcp-for-blender",
+    "descripcion": "Community plugin to control Blender 3D with any LLM of your choice. Not affiliated with the official Blender Foundation.",
+    "estrellas": 32921,
+    "ultimo_push": "2026-10-29",
+    "archivado": false,
+    "licencia": "MIT",
+    "web": "https://www.mcp-for-blender.com/",
+    "temas": [
+     "3d-modeling",
+     "ai",
+     "blender",
+     "blender-addon",
+     "blender-mcp",
+     "claude",
+     "generative-ai",
+     "llm",
+     "mcp",
+     "model-context-protocol",
+     "python"
+    ]
+   },
+   "pypi": {
+    "mcp-for-blender": {
+     "version": "2.2.6",
+     "publicado": "2026-10-28",
+     "licencia": "MIT"
+    }
+   },
+   "docs": [
+    ".cache/docs/blender-mcp/README.md"
+   ]
+  }
+ },
+ {
+  "id": "blender",
+  "nombre": "Blender",
+  "tipo": "aplicacion",
+  "areas": [
+   "3d",
+   "personajes",
+   "anime"
+  ],
+  "prioridad": "complemento",
+  "estado_local": "instalado",
+  "capacidades": [
+   "escena-3d",
+   "personajes-3d",
+   "movimiento-humano",
+   "animacion-tradicional",
+   "render-toon",
+   "camara",
+   "control-por-agente"
+  ],
+  "resumen": "Suite 3D libre (modelado, rigging, animación, Grease Pencil 2D, render EEVEE/Cycles) con API de Python; instalada la 5.2.2.",
+  "lenguajes": [
+   "Python"
+  ],
+  "exporta_video": "si",
+  "web": "https://www.blender.org",
+  "repo": "blender/blender",
+  "docs": [
+   "https://docs.blender.org/api/current/",
+   "https://docs.blender.org/manual/en/latest/"
+  ],
+  "licencia": "GPL-2.0-or-later (lo que tú creas con Blender es tuyo).",
+  "agentes": "API `bpy` completa; scripts sin interfaz con `blender -b archivo.blend -P script.py`; MCP comunitario (blender-mcp) y skills expertas (scenario-skills).",
+  "relacionados": [
+   "blender-mcp",
+   "scenario-skills",
+   "vrm-addon-blender",
+   "mmd-tools",
+   "remotion-template-three"
+  ],
+  "fuentes": [
+   "bandeja/2026-10-31-chatgpt-personajes-y-biblioteca.md"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "verificado",
+  "ficha": "fichas/blender.md",
+  "estado": {
+   "revisado": "2026-10-31",
+   "github": {
+    "nombre": "blender/blender",
+    "descripcion": "Official mirror of Blender",
+    "estrellas": 21484,
+    "ultimo_push": "2026-10-31",
+    "archivado": false,
+    "licencia": "NOASSERTION",
+    "web": "https://developer.blender.org/docs/handbook/contributing/using_git/#github-mirror",
+    "temas": [
+     "3d",
+     "animation",
+     "b3d",
+     "computer-graphics",
+     "modeling",
+     "rendering"
+    ]
+   },
+   "docs": [
+    ".cache/docs/blender/README.md"
+   ]
+  }
+ },
+ {
+  "id": "book-of-shaders",
+  "nombre": "The Book of Shaders",
+  "tipo": "referencia",
+  "areas": [
+   "motion-graphics"
+  ],
+  "prioridad": "complemento",
+  "estado_local": "no-instalado",
+  "capacidades": [
+   "shaders",
+   "arte-generativo"
+  ],
+  "resumen": "Guía paso a paso de fragment shaders (formas, color, patrones, ruido, fractales) con editor en vivo; la mejor introducción.",
+  "web": "https://thebookofshaders.com",
+  "repo": "patriciogonzalezvivo/thebookofshaders",
+  "licencia": "Copyright de Patricio Gonzalez Vivo (sin licencia libre declarada en el repo).",
+  "relacionados": [
+   "lygia"
+  ],
+  "fuentes": [
+   "bandeja/2026-10-31-encargo-biblioteca-motion.md"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "verificado",
+  "ficha": "fichas/book-of-shaders.md",
+  "estado": {
+   "revisado": "2026-10-31",
+   "github": {
+    "nombre": "patriciogonzalezvivo/thebookofshaders",
+    "descripcion": "Step-by-step guide through the abstract and complex universe of Fragment Shaders.",
+    "estrellas": 7064,
+    "ultimo_push": "2026-02-28",
+    "archivado": false,
+    "licencia": "NOASSERTION",
+    "web": "http://TheBookOfShaders.com",
+    "temas": [
+     "book",
+     "fragment-shader",
+     "glsl",
+     "glsl-editors",
+     "glsl-sandbox",
+     "glsl-shader",
+     "glsl-shaders",
+     "shader",
+     "shaders",
+     "tutorial"
+    ]
+   },
+   "docs": [
+    ".cache/docs/book-of-shaders/README.md"
+   ]
+  }
+ },
+ {
+  "id": "canvas-sketch",
+  "nombre": "canvas-sketch",
+  "tipo": "herramienta",
+  "areas": [
+   "motion-graphics"
+  ],
+  "prioridad": "complemento",
+  "estado_local": "no-instalado",
+  "capacidades": [
+   "arte-generativo",
+   "geometria"
+  ],
+  "resumen": "Marco de Matt DesLauriers para arte generativo en el navegador con exportación de cuadros y video; aún marcado beta.",
+  "lenguajes": [
+   "JavaScript"
+  ],
+  "exporta_video": "si",
+  "repo": "mattdesl/canvas-sketch",
+  "paquetes": {
+   "npm": [
+    "canvas-sketch"
+   ]
+  },
+  "licencia": "MIT",
+  "relacionados": [
+   "p5js",
+   "threejs"
+  ],
+  "fuentes": [
+   "bandeja/2026-10-31-encargo-biblioteca-motion.md"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "verificado",
+  "ficha": "fichas/canvas-sketch.md",
+  "estado": {
+   "revisado": "2026-10-31",
+   "github": {
+    "nombre": "mattdesl/canvas-sketch",
+    "descripcion": "[beta] A framework for making generative artwork in JavaScript and the browser.",
+    "estrellas": 5317,
+    "ultimo_push": "2026-06-02",
+    "archivado": false,
+    "licencia": "MIT",
+    "web": null,
+    "temas": []
+   },
+   "npm": {
+    "canvas-sketch": {
+     "version": "0.7.8",
+     "licencia": "MIT"
+    }
+   },
+   "docs": [
+    ".cache/docs/canvas-sketch/README.md"
+   ]
+  }
+ },
+ {
+  "id": "claude-animation-base",
+  "nombre": "ClaudeAnimationBase",
+  "tipo": "plantilla",
+  "areas": [
+   "motion-graphics",
+   "personajes"
+  ],
+  "prioridad": "complemento",
+  "estado_local": "no-instalado",
+  "capacidades": [
+   "estilo-dibujado",
+   "personajes-2d",
+   "easing-timing",
+   "composicion-video"
+  ],
+  "resumen": "Kit para animar personajes pintados a mano con un agente: p5.js + p5.brush, el personaje Clawd, 31 emociones actuadas y una guía de animación para el modelo. MIT.",
+  "lenguajes": [
+   "JavaScript"
+  ],
+  "exporta_video": "si",
+  "repo": "JohnHeibel/ClaudeAnimationBase",
+  "licencia": "MIT",
+  "agentes": "«Read ANIMATION_GUIDE.md, then make a 15-second video…»: el modelo hace storyboard, construye toma por toma, revisa hojas de contacto y escribe out/video.mp4.",
+  "requisitos": "Node.js, Google Chrome (o Chromium de Playwright) y ffmpeg. Sin GPU, los rellenos de acuarela son lentos (segundos por cuadro).",
+  "relacionados": [
+   "pdoom-video",
+   "p5-brush",
+   "p5js",
+   "biblioteca-movimiento"
+  ],
+  "fuentes": [
+   "recetas/canvas2d/biblioteca-movimiento.html"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "verificado",
+  "ficha": "fichas/claude-animation-base.md",
+  "estado": {
+   "revisado": "2026-10-31",
+   "github": {
+    "nombre": "JohnHeibel/ClaudeAnimationBase",
+    "descripcion": "A starter kit for animating hand-painted cartoons with Claude: p5.js + p5.brush, the Clawd character, 31 acted emotions and a guide for the model",
+    "estrellas": 2361,
+    "ultimo_push": "2026-09-24",
+    "archivado": false,
+    "licencia": "MIT",
+    "web": null,
+    "temas": []
+   },
+   "docs": [
+    ".cache/docs/claude-animation-base/README.md"
+   ]
+  }
+ },
+ {
+  "id": "d3",
+  "nombre": "D3",
+  "tipo": "libreria",
+  "areas": [
+   "motion-graphics",
+   "video-explicativo"
+  ],
+  "prioridad": "ahora",
+  "estado_local": "no-instalado",
+  "capacidades": [
+   "datos-graficas",
+   "diagramas",
+   "mapas-geograficos"
+  ],
+  "resumen": "La librería de visualización de datos: escalas, ejes, formas (líneas, áreas, arcos), layouts (árbol, fuerza, pack) y proyecciones geográficas.",
+  "lenguajes": [
+   "JavaScript"
+  ],
+  "exporta_video": "indirecto",
+  "web": "https://d3js.org",
+  "repo": "d3/d3",
+  "paquetes": {
+   "npm": [
+    "d3"
+   ]
+  },
+  "licencia": "ISC",
+  "agentes": "Muy conocida por los modelos.",
+  "relacionados": [
+   "mermaid",
+   "map-motion"
+  ],
+  "fuentes": [
+   "bandeja/2026-10-31-encargo-biblioteca-motion.md"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "verificado",
+  "ficha": "fichas/d3.md",
+  "estado": {
+   "revisado": "2026-10-31",
+   "github": {
+    "nombre": "d3/d3",
+    "descripcion": "Bring data to life with SVG, Canvas and HTML. :bar_chart::chart_with_upwards_trend::tada:",
+    "estrellas": 113832,
+    "ultimo_push": "2026-10-21",
+    "archivado": false,
+    "licencia": "ISC",
+    "web": "https://d3js.org",
+    "temas": [
+     "chart",
+     "charts",
+     "d3",
+     "data-visualization",
+     "svg",
+     "visualization"
+    ]
+   },
+   "npm": {
+    "d3": {
+     "version": "7.9.0",
+     "licencia": "ISC"
+    }
+   },
+   "docs": [
+    ".cache/docs/d3/README.md"
+   ]
+  }
+ },
+ {
+  "id": "drei",
+  "nombre": "Drei",
+  "tipo": "libreria",
+  "areas": [
+   "3d"
+  ],
+  "prioridad": "complemento",
+  "estado_local": "no-instalado",
+  "capacidades": [
+   "escena-3d",
+   "tipografia-cinetica"
+  ],
+  "resumen": "Ayudantes para React Three Fiber: cargar modelos (useGLTF), texto 3D, entornos HDRI, controles de cámara, contornos y más.",
+  "lenguajes": [
+   "TypeScript",
+   "React"
+  ],
+  "exporta_video": "indirecto",
+  "web": "https://docs.pmnd.rs/drei",
+  "repo": "pmndrs/drei",
+  "paquetes": {
+   "npm": [
+    "@react-three/drei"
+   ]
+  },
+  "licencia": "MIT",
+  "relacionados": [
+   "react-three-fiber",
+   "threejs"
+  ],
+  "fuentes": [
+   "bandeja/2026-10-31-encargo-biblioteca-motion.md"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "verificado",
+  "ficha": "fichas/drei.md",
+  "estado": {
+   "revisado": "2026-10-31",
+   "github": {
+    "nombre": "pmndrs/drei",
+    "descripcion": "🥉 useful helpers for react-three-fiber",
+    "estrellas": 10086,
+    "ultimo_push": "2026-10-21",
+    "archivado": false,
+    "licencia": "MIT",
+    "web": "https://docs.pmnd.rs/drei",
+    "temas": [
+     "helpers",
+     "hooks",
+     "react",
+     "react-three-fiber",
+     "threejs"
+    ]
+   },
+   "npm": {
+    "@react-three/drei": {
+     "version": "10.7.9",
+     "licencia": "MIT"
+    }
+   },
+   "docs": [
+    ".cache/docs/drei/README.md"
+   ]
+  }
+ },
+ {
+  "id": "ffmpeg",
+  "nombre": "FFmpeg",
+  "tipo": "herramienta",
+  "areas": [
+   "video-explicativo",
+   "audio-voz"
+  ],
+  "prioridad": "ahora",
+  "estado_local": "en-uso",
+  "capacidades": [
+   "composicion-video",
+   "sincronia-audio",
+   "visualizacion-audio"
+  ],
+  "resumen": "La navaja suiza de audio y video: convertir, recortar, unir, mezclar audio, cuadros a video, normalizar volumen, subtítulos incrustados.",
+  "lenguajes": [
+   "CLI"
+  ],
+  "exporta_video": "si",
+  "web": "https://ffmpeg.org",
+  "repo": "FFmpeg/FFmpeg",
+  "licencia": "LGPL-2.1+ (algunas compilaciones GPL)",
+  "relacionados": [
+   "remotion",
+   "moviepy"
+  ],
+  "fuentes": [
+   "CLAUDE.md"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "verificado",
+  "ficha": "fichas/ffmpeg.md",
+  "estado": {
+   "revisado": "2026-10-31",
+   "github": {
+    "nombre": "FFmpeg/FFmpeg",
+    "descripcion": "Mirror of https://git.ffmpeg.org/ffmpeg.git",
+    "estrellas": 66164,
+    "ultimo_push": "2026-10-31",
+    "archivado": false,
+    "licencia": "NOASSERTION",
+    "web": "https://ffmpeg.org/",
+    "temas": [
+     "audio",
+     "c",
+     "ffmpeg",
+     "fft",
+     "hevc",
+     "hls",
+     "matroska",
+     "mp4",
+     "mpeg",
+     "multimedia",
+     "rtmp",
+     "rtsp",
+     "streaming",
+     "video",
+     "webm"
+    ]
+   },
+   "docs": [
+    ".cache/docs/ffmpeg/README.md"
+   ]
+  }
+ },
+ {
+  "id": "flubber",
+  "nombre": "Flubber",
+  "tipo": "libreria",
+  "areas": [
+   "motion-graphics"
+  ],
+  "prioridad": "complemento",
+  "estado_local": "no-instalado",
+  "capacidades": [
+   "morphing",
+   "geometria"
+  ],
+  "resumen": "Interpolación suave entre dos formas SVG cualesquiera (incluso con distinto número de puntos): el morphing «que se ve bien».",
+  "lenguajes": [
+   "JavaScript"
+  ],
+  "exporta_video": "indirecto",
+  "repo": "veltman/flubber",
+  "paquetes": {
+   "npm": [
+    "flubber"
+   ]
+  },
+  "licencia": "MIT",
+  "relacionados": [
+   "paperjs",
+   "gsap"
+  ],
+  "fuentes": [
+   "bandeja/2026-10-31-encargo-biblioteca-motion.md"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "verificado",
+  "ficha": "fichas/flubber.md",
+  "estado": {
+   "revisado": "2026-10-31",
+   "alertas": [
+    "sin cambios desde 2022-11-08: posiblemente abandonado"
+   ],
+   "github": {
+    "nombre": "veltman/flubber",
+    "descripcion": "Tools for smoother shape animations.",
+    "estrellas": 6945,
+    "ultimo_push": "2022-11-08",
+    "archivado": false,
+    "licencia": "MIT",
+    "web": null,
+    "temas": []
+   },
+   "npm": {
+    "flubber": {
+     "version": "0.4.2",
+     "licencia": "MIT"
+    }
+   },
+   "docs": [
+    ".cache/docs/flubber/README.md"
+   ]
+  }
+ },
+ {
+  "id": "gsap",
+  "nombre": "GSAP",
+  "tipo": "libreria",
+  "areas": [
+   "motion-graphics"
+  ],
+  "prioridad": "complemento",
+  "estado_local": "no-instalado",
+  "capacidades": [
+   "tipografia-cinetica",
+   "morphing",
+   "trazo-svg",
+   "easing-timing",
+   "interfaz-ui"
+  ],
+  "resumen": "Librería de animación JavaScript con línea de tiempo y plugins (SplitText, MorphSVG, DrawSVG, MotionPath), hoy gratuita incluso para uso comercial.",
+  "lenguajes": [
+   "JavaScript"
+  ],
+  "exporta_video": "indirecto",
+  "web": "https://gsap.com",
+  "repo": "greensock/GSAP",
+  "paquetes": {
+   "npm": [
+    "gsap"
+   ]
+  },
+  "llms_txt": "https://gsap.com/llms.txt",
+  "licencia": "Standard «no charge» License: uso comercial y todos los plugins sin costo; prohibido usarla en constructores visuales sin código que compitan con Webflow. No es software libre.",
+  "agentes": "Publica llms.txt; API muy conocida por los modelos.",
+  "relacionados": [
+   "animejs",
+   "motion",
+   "flubber",
+   "opentype-js"
+  ],
+  "fuentes": [
+   "bandeja/2026-10-31-encargo-biblioteca-motion.md"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "verificado",
+  "ficha": "fichas/gsap.md",
+  "estado": {
+   "revisado": "2026-10-31",
+   "github": {
+    "nombre": "greensock/GSAP",
+    "descripcion": "GSAP (GreenSock Animation Platform), a JavaScript animation library for the modern web",
+    "estrellas": 29984,
+    "ultimo_push": "2026-04-13",
+    "archivado": false,
+    "licencia": null,
+    "web": "https://gsap.com",
+    "temas": [
+     "animation",
+     "gsap",
+     "javascript",
+     "javascript-library",
+     "scroll"
+    ]
+   },
+   "npm": {
+    "gsap": {
+     "version": "3.15.0",
+     "licencia": "Standard 'no charge' license: https://gsap.com/standard-license."
+    }
+   },
+   "docs": [
+    ".cache/docs/gsap/README.md",
+    ".cache/docs/gsap/llms.txt"
+   ]
+  }
+ },
+ {
+  "id": "hy-motion",
+  "nombre": "HY-Motion 1.0",
+  "tipo": "modelo-ia",
+  "areas": [
+   "3d",
+   "personajes"
+  ],
+  "prioridad": "futuro",
+  "estado_local": "incompatible",
+  "capacidades": [
+   "movimiento-humano",
+   "personajes-3d"
+  ],
+  "resumen": "Modelo de Tencent que genera movimiento humano 3D (esqueleto) a partir de texto. Pide 24–26 GB de VRAM: no cabe en la GP100 de 16 GB.",
+  "lenguajes": [
+   "Python"
+  ],
+  "exporta_video": "no",
+  "web": "https://hunyuan.tencent.com/motion",
+  "repo": "Tencent-Hunyuan/HY-Motion-1.0",
+  "licencia": "Licencia comunitaria de Tencent Hunyuan (no estándar): revisar restricciones de uso y de territorio antes de usarlo.",
+  "requisitos": "HY-Motion-1.0 (1.0B): 26 GB de VRAM mínimo; Lite (0.46B): 24 GB. Con una semilla, prompt de menos de 30 palabras y menos de 5 s baja el consumo.",
+  "relacionados": [
+   "blender",
+   "mmd-tools"
+  ],
+  "fuentes": [
+   "bandeja/2026-10-31-chatgpt-personajes-y-biblioteca.md"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "verificado",
+  "ficha": "fichas/hy-motion.md",
+  "estado": {
+   "revisado": "2026-10-31",
+   "github": {
+    "nombre": "Tencent-Hunyuan/HY-Motion-1.0",
+    "descripcion": "HY-Motion model for 3D human motion or 3D character animation generation. ",
+    "estrellas": 2639,
+    "ultimo_push": "2026-07-18",
+    "archivado": false,
+    "licencia": "NOASSERTION",
+    "web": "https://hunyuan.tencent.com/motion",
+    "temas": []
+   },
+   "docs": [
+    ".cache/docs/hy-motion/README.md"
+   ]
+  }
+ },
+ {
+  "id": "hyperframes",
+  "nombre": "HyperFrames",
+  "tipo": "motor",
+  "areas": [
+   "video-explicativo",
+   "motion-graphics"
+  ],
+  "prioridad": "complemento",
+  "estado_local": "no-instalado",
+  "capacidades": [
+   "composicion-video",
+   "control-por-agente"
+  ],
+  "resumen": "Composición y render de video a partir de HTML (Chromium sin cabeza + FFmpeg), pensada para escenas escritas por agentes.",
+  "lenguajes": [
+   "HTML",
+   "JavaScript"
+  ],
+  "exporta_video": "si",
+  "repo": "heygen-com/hyperframes",
+  "licencia": "Apache-2.0 (según el README; metadatos de GitHub por actualizar)",
+  "agentes": "Diseñado para escenas generadas por agentes (según awesome-code-video).",
+  "relacionados": [
+   "remotion",
+   "awesome-code-video"
+  ],
+  "fuentes": [
+   "awesome-code-video"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "parcial",
+  "ficha": "fichas/hyperframes.md",
+  "estado": {
+   "revisado": "2026-10-31",
+   "github": {
+    "nombre": "heygen-com/hyperframes",
+    "descripcion": "Write HTML. Render video. Built for agents.",
+    "estrellas": 76565,
+    "ultimo_push": "2026-10-31",
+    "archivado": false,
+    "licencia": "Apache-2.0",
+    "web": "https://hyperframes.heygen.com",
+    "temas": [
+     "ai",
+     "ai-agents",
+     "animation",
+     "claude-code",
+     "ffmpeg",
+     "framework",
+     "gsap",
+     "html",
+     "html-to-video",
+     "mcp",
+     "motion-graphics",
+     "puppeteer",
+     "rendering",
+     "typescript",
+     "video-editor"
+    ]
+   },
+   "docs": [
+    ".cache/docs/hyperframes/README.md"
+   ]
+  }
+ },
+ {
+  "id": "inochi2d",
+  "nombre": "Inochi2D",
+  "tipo": "aplicacion",
+  "areas": [
+   "2d",
+   "personajes",
+   "anime"
+  ],
+  "prioridad": "futuro",
+  "estado_local": "no-instalado",
+  "capacidades": [
+   "personajes-2d",
+   "lip-sync"
+  ],
+  "resumen": "Alternativa libre a Live2D: Inochi Creator arma títeres 2D a partir de ilustraciones por capas (deformaciones, parámetros, expresiones).",
+  "web": "https://inochi2d.com",
+  "repo": "Inochi2D/inochi-creator",
+  "licencia": "BSD-2-Clause (los recursos de marca son de Inochi2D Project).",
+  "relacionados": [
+   "live2d-cubism",
+   "rhubarb-lip-sync"
+  ],
+  "fuentes": [
+   "bandeja/2026-10-31-chatgpt-personajes-y-biblioteca.md"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "parcial",
+  "ficha": "fichas/inochi2d.md",
+  "estado": {
+   "revisado": "2026-10-31",
+   "github": {
+    "nombre": "Inochi2D/inochi-creator",
+    "descripcion": "Inochi2D Rigging Application",
+    "estrellas": 1261,
+    "ultimo_push": "2025-06-16",
+    "archivado": false,
+    "licencia": "BSD-2-Clause",
+    "web": null,
+    "temas": []
+   },
+   "docs": [
+    ".cache/docs/inochi2d/README.md"
+   ]
+  }
+ },
+ {
+  "id": "katex",
+  "nombre": "KaTeX",
+  "tipo": "libreria",
+  "areas": [
+   "video-explicativo"
+  ],
+  "prioridad": "complemento",
+  "estado_local": "no-instalado",
+  "capacidades": [
+   "matematicas"
+  ],
+  "resumen": "Composición tipográfica de fórmulas LaTeX en HTML, rápida y sin servidor: ecuaciones nítidas dentro de escenas de Remotion.",
+  "lenguajes": [
+   "JavaScript"
+  ],
+  "exporta_video": "indirecto",
+  "web": "https://katex.org",
+  "repo": "KaTeX/KaTeX",
+  "paquetes": {
+   "npm": [
+    "katex"
+   ]
+  },
+  "licencia": "MIT",
+  "relacionados": [
+   "manim",
+   "motion-canvas"
+  ],
+  "fuentes": [
+   "bandeja/2026-10-31-encargo-biblioteca-motion.md"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "verificado",
+  "ficha": "fichas/katex.md",
+  "estado": {
+   "revisado": "2026-10-31",
+   "github": {
+    "nombre": "KaTeX/KaTeX",
+    "descripcion": "Fast math typesetting for the web.",
+    "estrellas": 20485,
+    "ultimo_push": "2026-10-30",
+    "archivado": false,
+    "licencia": "MIT",
+    "web": "https://katex.org",
+    "temas": [
+     "javascript",
+     "katex",
+     "latex",
+     "math",
+     "math-typesetting"
+    ]
+   },
+   "npm": {
+    "katex": {
+     "version": "0.19.1",
+     "licencia": "MIT"
+    }
+   },
+   "docs": [
+    ".cache/docs/katex/README.md"
+   ]
+  }
+ },
+ {
+  "id": "kit-scriptorium",
+  "nombre": "Kit de escenas de Scriptorium",
+  "tipo": "plantilla",
+  "areas": [
+   "video-explicativo",
+   "motion-graphics"
+  ],
+  "prioridad": "ahora",
+  "estado_local": "en-uso",
+  "capacidades": [
+   "video-explicativo",
+   "tipografia-cinetica",
+   "subtitulos-karaoke",
+   "sincronia-audio",
+   "transiciones",
+   "camara",
+   "iconos",
+   "composicion-video"
+  ],
+  "resumen": "El kit propio en Remotion: 10 tipos de escena (Portada, Cita, Concepto, Lista, Contraste, Argumento, PalabraClave, Pregunta, Respiro, Cierre) con karaoke alineado a la voz.",
+  "lenguajes": [
+   "TypeScript",
+   "React"
+  ],
+  "exporta_video": "si",
+  "licencia": "Código propio (repo público sin licencia declarada todavía).",
+  "agentes": "El director LLM solo elige escenas, textos y un pictograma por JSON; nunca escribe código. Un agente de desarrollo sí puede agregar escenas nuevas al kit.",
+  "relacionados": [
+   "remotion",
+   "lucide",
+   "wav2vec2-alineacion",
+   "voxcpm",
+   "qwen3-tts"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "verificado",
+  "ficha": "fichas/kit-scriptorium.md",
+  "estado": {}
+ },
+ {
+  "id": "kokoro",
+  "nombre": "Kokoro-82M",
+  "tipo": "modelo-ia",
+  "areas": [
+   "audio-voz"
+  ],
+  "prioridad": "ahora",
+  "estado_local": "en-uso",
+  "capacidades": [
+   "voz-tts"
+  ],
+  "resumen": "TTS ligero de 82M parámetros (~29× tiempo real en la GP100); voz de respaldo de Scriptorium (em_alex, ef_dora).",
+  "lenguajes": [
+   "Python"
+  ],
+  "exporta_video": "no-aplica",
+  "web": "https://hf.co/hexgrad/Kokoro-82M",
+  "repo": "hexgrad/kokoro",
+  "paquetes": {
+   "pypi": [
+    "kokoro"
+   ]
+  },
+  "licencia": "Apache-2.0",
+  "relacionados": [
+   "voxcpm",
+   "qwen3-tts"
+  ],
+  "fuentes": [
+   "CLAUDE.md"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "verificado",
+  "ficha": "fichas/kokoro.md",
+  "estado": {
+   "revisado": "2026-10-31",
+   "github": {
+    "nombre": "hexgrad/kokoro",
+    "descripcion": "https://hf.co/hexgrad/Kokoro-82M",
+    "estrellas": 9818,
+    "ultimo_push": "2025-08-06",
+    "archivado": false,
+    "licencia": "Apache-2.0",
+    "web": null,
+    "temas": []
+   },
+   "pypi": {
+    "kokoro": {
+     "version": "0.9.4",
+     "publicado": "2025-04-05",
+     "licencia": "Apache License\n                                   Version 2."
+    }
+   },
+   "docs": [
+    ".cache/docs/kokoro/README.md"
+   ]
+  }
+ },
+ {
+  "id": "krita-mcp",
+  "nombre": "Krita MCP (krita-cli)",
+  "tipo": "mcp",
+  "areas": [
+   "2d"
+  ],
+  "prioridad": "futuro",
+  "estado_local": "no-instalado",
+  "capacidades": [
+   "control-por-agente",
+   "estilo-dibujado"
+  ],
+  "resumen": "CLI y servidor MCP (50+ herramientas) para que un agente pinte en Krita: capas, trazos, rellenos y formas mediante un complemento con servidor HTTP local.",
+  "lenguajes": [
+   "Python"
+  ],
+  "exporta_video": "no",
+  "repo": "edithatogo/krita-cli",
+  "paquetes": {
+   "pypi": [
+    "krita-cli"
+   ]
+  },
+  "licencia": "MIT",
+  "relacionados": [
+   "opentoonz"
+  ],
+  "fuentes": [
+   "bandeja/2026-10-31-chatgpt-personajes-y-biblioteca.md"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "parcial",
+  "ficha": "fichas/krita-mcp.md",
+  "estado": {
+   "revisado": "2026-10-31",
+   "github": {
+    "nombre": "edithatogo/krita-cli",
+    "descripcion": "Let AI paint in Krita via CLI and MCP. Includes fix for the common export timeout issue.",
+    "estrellas": 9,
+    "ultimo_push": "2026-08-10",
+    "archivado": false,
+    "licencia": "MIT",
+    "web": null,
+    "temas": []
+   },
+   "pypi": {
+    "krita-cli": {
+     "version": "1.0.1",
+     "publicado": "2026-04-19",
+     "licencia": "MIT"
+    }
+   },
+   "docs": [
+    ".cache/docs/krita-mcp/README.md"
+   ]
+  }
+ },
+ {
+  "id": "lancedb",
+  "nombre": "LanceDB",
+  "tipo": "infraestructura",
+  "areas": [
+   "conocimiento"
+  ],
+  "prioridad": "futuro",
+  "estado_local": "no-instalado",
+  "capacidades": [
+   "busqueda-conocimiento"
+  ],
+  "resumen": "Base vectorial embebida (sin servidor) con búsqueda híbrida texto + vectores; candidata si algún día hace falta búsqueda semántica.",
+  "lenguajes": [
+   "Python",
+   "Rust"
+  ],
+  "web": "https://lancedb.com/docs",
+  "repo": "lancedb/lancedb",
+  "paquetes": {
+   "pypi": [
+    "lancedb"
+   ]
+  },
+  "licencia": "Apache-2.0",
+  "relacionados": [
+   "sqlite-fts5",
+   "ollama"
+  ],
+  "fuentes": [
+   "bandeja/2026-10-31-chatgpt-personajes-y-biblioteca.md"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "verificado",
+  "ficha": "fichas/lancedb.md",
+  "estado": {
+   "revisado": "2026-10-31",
+   "github": {
+    "nombre": "lancedb/lancedb",
+    "descripcion": "Developer-friendly OSS embedded retrieval library for multimodal AI. Search More; Manage Less.",
+    "estrellas": 11821,
+    "ultimo_push": "2026-10-31",
+    "archivado": false,
+    "licencia": "Apache-2.0",
+    "web": "https://lancedb.com/docs",
+    "temas": [
+     "approximate-nearest-neighbor-search",
+     "image-search",
+     "nearest-neighbor-search",
+     "recommender-system",
+     "search-engine",
+     "semantic-search",
+     "similarity-search",
+     "vector-database"
+    ]
+   },
+   "pypi": {
+    "lancedb": {
+     "version": "0.41.0",
+     "publicado": "2026-10-29",
+     "licencia": ""
+    }
+   },
+   "docs": [
+    ".cache/docs/lancedb/README.md"
+   ]
+  }
+ },
+ {
+  "id": "lemo-opuscar",
+  "nombre": "Lemo-Opuscar (estilos visuales)",
+  "tipo": "referencia",
+  "areas": [
+   "motion-graphics",
+   "video-explicativo"
+  ],
+  "prioridad": "ahora",
+  "estado_local": "no-instalado",
+  "capacidades": [
+   "video-explicativo",
+   "estilo-dibujado",
+   "datos-graficas",
+   "diagramas"
+  ],
+  "resumen": "Guías de estilo `STYLE.md` reutilizables (suizo, pizarrón, data storytelling, tinta china, papel pop-up, plano técnico…) con películas de demostración.",
+  "exporta_video": "no-aplica",
+  "web": "https://lemomo-ai.github.io/lemo-opuscar/",
+  "repo": "lemomo-ai/lemo-opuscar",
+  "licencia": "Código y documentos: MIT. Películas de demostración y sus cuadros: CC BY 4.0 (uso comercial con crédito).",
+  "agentes": "Cada estilo es un `STYLE.md`: dirección de arte en texto que se le puede dar a un modelo.",
+  "relacionados": [
+   "awesome-code-video"
+  ],
+  "fuentes": [
+   "awesome-code-video"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "parcial",
+  "ficha": "fichas/lemo-opuscar.md",
+  "estado": {
+   "revisado": "2026-10-31",
+   "github": {
+    "nombre": "lemomo-ai/lemo-opuscar",
+    "descripcion": "A toolbox of film styles made in code for Claude Code: 66 ready to use, and your own. Each style is a style prompt plus a demo film made entirely in code by Claude Opus 5.5, with no video model. By Lemomo. · 一套用代码做片的风格工具箱：66 种现成风格，也能做出你自己的",
+    "estrellas": 10106,
+    "ultimo_push": "2026-10-31",
+    "archivado": false,
+    "licencia": "MIT",
+    "web": "https://lemomo-ai.github.io/lemo-opuscar/",
+    "temas": [
+     "agent-skills",
+     "ai-agents",
+     "ai-short-film",
+     "ai-video",
+     "animation",
+     "canvas",
+     "claude",
+     "claude-code",
+     "claude-code-plugin",
+     "claude-code-skill",
+     "creative-coding",
+     "ffmpeg",
+     "filmmaking",
+     "motion-graphics",
+     "opus-5-5",
+     "prompt-library",
+     "text-to-speech",
+     "threejs",
+     "video-production",
+     "webgl"
+    ]
+   },
+   "docs": [
+    ".cache/docs/lemo-opuscar/README.md"
+   ]
+  }
+ },
+ {
+  "id": "live2d-cubism",
+  "nombre": "Live2D Cubism (SDK web)",
+  "tipo": "libreria",
+  "areas": [
+   "2d",
+   "personajes",
+   "anime"
+  ],
+  "prioridad": "futuro",
+  "estado_local": "no-instalado",
+  "capacidades": [
+   "personajes-2d",
+   "lip-sync"
+  ],
+  "resumen": "Estándar comercial de personajes 2D articulados; el SDK web y sus muestras animan modelos Live2D con código. Licencias propietarias.",
+  "lenguajes": [
+   "TypeScript"
+  ],
+  "exporta_video": "indirecto",
+  "web": "https://www.live2d.com/en/sdk/",
+  "repo": "Live2D/CubismWebSamples",
+  "licencia": "Propietaria: Live2D Proprietary Software License + Live2D Open Software License. Personas y empresas pequeñas están exentas de la licencia de publicación (salvo «aplicaciones expandibles»); empresas medianas y grandes la necesitan.",
+  "relacionados": [
+   "inochi2d",
+   "rhubarb-lip-sync"
+  ],
+  "fuentes": [
+   "bandeja/2026-10-31-chatgpt-personajes-y-biblioteca.md"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "verificado",
+  "ficha": "fichas/live2d-cubism.md",
+  "estado": {
+   "revisado": "2026-10-31",
+   "github": {
+    "nombre": "Live2D/CubismWebSamples",
+    "descripcion": null,
+    "estrellas": 397,
+    "ultimo_push": "2026-04-02",
+    "archivado": false,
+    "licencia": "NOASSERTION",
+    "web": null,
+    "temas": []
+   },
+   "docs": [
+    ".cache/docs/live2d-cubism/README.md"
+   ]
+  }
+ },
+ {
+  "id": "lottie-web",
+  "nombre": "Lottie Web",
+  "tipo": "libreria",
+  "areas": [
+   "motion-graphics"
+  ],
+  "prioridad": "complemento",
+  "estado_local": "no-instalado",
+  "capacidades": [
+   "lottie",
+   "iconos"
+  ],
+  "resumen": "Reproduce en la web animaciones de After Effects exportadas como JSON (Bodymovin/Lottie); en Remotion se usa con @remotion/lottie.",
+  "lenguajes": [
+   "JavaScript"
+  ],
+  "exporta_video": "indirecto",
+  "web": "https://airbnb.io/lottie/",
+  "repo": "airbnb/lottie-web",
+  "paquetes": {
+   "npm": [
+    "lottie-web",
+    "@remotion/lottie"
+   ]
+  },
+  "licencia": "MIT (el reproductor; cada animación tiene su propia licencia)",
+  "relacionados": [
+   "remotion"
+  ],
+  "fuentes": [
+   "bandeja/2026-10-31-encargo-biblioteca-motion.md"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "verificado",
+  "ficha": "fichas/lottie-web.md",
+  "estado": {
+   "revisado": "2026-10-31",
+   "github": {
+    "nombre": "airbnb/lottie-web",
+    "descripcion": "Render After Effects animations natively on Web, Android and iOS, and React Native. http://airbnb.io/lottie/",
+    "estrellas": 32311,
+    "ultimo_push": "2025-09-01",
+    "archivado": false,
+    "licencia": "MIT",
+    "web": null,
+    "temas": []
+   },
+   "npm": {
+    "lottie-web": {
+     "version": "5.13.0",
+     "licencia": "MIT"
+    }
+   },
+   "docs": [
+    ".cache/docs/lottie-web/README.md"
+   ]
+  }
+ },
+ {
+  "id": "lucide",
+  "nombre": "Lucide",
+  "tipo": "libreria",
+  "areas": [
+   "motion-graphics",
+   "video-explicativo"
+  ],
+  "prioridad": "ahora",
+  "estado_local": "en-uso",
+  "capacidades": [
+   "iconos",
+   "trazo-svg"
+  ],
+  "resumen": "Íconos de trazo consistentes (fork de Feather, ISC); el kit los dibuja trazo a trazo desde un catálogo cerrado de 73.",
+  "lenguajes": [
+   "SVG",
+   "JavaScript"
+  ],
+  "exporta_video": "no-aplica",
+  "web": "https://lucide.dev",
+  "repo": "lucide-icons/lucide",
+  "paquetes": {
+   "npm": [
+    "lucide"
+   ]
+  },
+  "licencia": "ISC",
+  "relacionados": [
+   "kit-scriptorium"
+  ],
+  "fuentes": [
+   "CLAUDE.md"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "verificado",
+  "ficha": "fichas/lucide.md",
+  "estado": {
+   "revisado": "2026-10-31",
+   "github": {
+    "nombre": "lucide-icons/lucide",
+    "descripcion": "Beautiful & consistent icon toolkit made by the community. Open-source project and a fork of Feather Icons.",
+    "estrellas": 25427,
+    "ultimo_push": "2026-10-31",
+    "archivado": false,
+    "licencia": "NOASSERTION",
+    "web": "https://lucide.dev",
+    "temas": [
+     "feather-icons",
+     "figma",
+     "icons",
+     "react",
+     "svg",
+     "svg-icons",
+     "svgs",
+     "ui-components",
+     "ui-design",
+     "vue"
+    ]
+   },
+   "npm": {
+    "lucide": {
+     "version": "1.66.0",
+     "licencia": "ISC"
+    }
+   },
+   "docs": [
+    ".cache/docs/lucide/README.md"
+   ]
+  }
+ },
+ {
+  "id": "lygia",
+  "nombre": "LYGIA",
+  "tipo": "libreria",
+  "areas": [
+   "motion-graphics"
+  ],
+  "prioridad": "complemento",
+  "estado_local": "no-instalado",
+  "capacidades": [
+   "shaders",
+   "arte-generativo"
+  ],
+  "resumen": "Biblioteca granular de funciones de shader (GLSL, HLSL, Metal, WGSL, CUDA): ruido, color, formas, filtros, iluminación.",
+  "lenguajes": [
+   "GLSL",
+   "WGSL"
+  ],
+  "exporta_video": "no-aplica",
+  "web": "https://lygia.xyz",
+  "repo": "patriciogonzalezvivo/lygia",
+  "licencia": "Doble: Prosperity License (uso no comercial; prueba comercial limitada) y Patron License para patrocinadores y contribuidores. Verificar antes de usar en algo comercial.",
+  "relacionados": [
+   "book-of-shaders",
+   "threejs"
+  ],
+  "fuentes": [
+   "bandeja/2026-10-31-encargo-biblioteca-motion.md"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "verificado",
+  "ficha": "fichas/lygia.md",
+  "estado": {
+   "revisado": "2026-10-31",
+   "github": {
+    "nombre": "patriciogonzalezvivo/lygia",
+    "descripcion": "LYGIA, it's a granular and multi-language (GLSL, HLSL, Metal,  WGSL,  WEGL and CUDA) shader library designed for performance and flexibility",
+    "estrellas": 3477,
+    "ultimo_push": "2026-10-24",
+    "archivado": false,
+    "licencia": "NOASSERTION",
+    "web": "https://lygia.xyz",
+    "temas": [
+     "cuda",
+     "directx",
+     "glsl",
+     "hlsl",
+     "library",
+     "metal",
+     "opengl",
+     "shader",
+     "vulkan",
+     "webgl",
+     "webgpu",
+     "wesl",
+     "wgsl"
+    ]
+   },
+   "docs": [
+    ".cache/docs/lygia/README.md"
+   ]
+  }
+ },
+ {
+  "id": "manim",
+  "nombre": "Manim Community",
+  "tipo": "motor",
+  "areas": [
+   "video-explicativo"
+  ],
+  "prioridad": "ahora",
+  "estado_local": "no-instalado",
+  "capacidades": [
+   "matematicas",
+   "diagramas",
+   "morphing",
+   "geometria",
+   "video-explicativo",
+   "composicion-video"
+  ],
+  "resumen": "Animaciones matemáticas en Python (el estilo de 3Blue1Brown): ecuaciones LaTeX que se transforman, gráficas de funciones, geometría y diagramas precisos.",
+  "lenguajes": [
+   "Python"
+  ],
+  "exporta_video": "si",
+  "web": "https://www.manim.community",
+  "repo": "ManimCommunity/manim",
+  "paquetes": {
+   "pypi": [
+    "manim"
+   ]
+  },
+  "docs": [
+   "https://docs.manim.community"
+  ],
+  "licencia": "MIT",
+  "agentes": "API estable y muy presente en datos de entrenamiento: los modelos la escriben bien.",
+  "requisitos": "Python, Cairo, Pango, FFmpeg; LaTeX (texlive) para ecuaciones.",
+  "relacionados": [
+   "motion-canvas",
+   "katex",
+   "remotion"
+  ],
+  "fuentes": [
+   "bandeja/2026-10-31-encargo-biblioteca-motion.md",
+   "bandeja/2026-10-31-chatgpt-personajes-y-biblioteca.md"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "verificado",
+  "ficha": "fichas/manim.md",
+  "estado": {
+   "revisado": "2026-10-31",
+   "github": {
+    "nombre": "ManimCommunity/manim",
+    "descripcion": "A community-maintained Python framework for creating mathematical animations. ",
+    "estrellas": 42076,
+    "ultimo_push": "2026-10-29",
+    "archivado": false,
+    "licencia": "MIT",
+    "web": "https://www.manim.community",
+    "temas": [
+     "animations",
+     "hacktoberfest",
+     "manim",
+     "math",
+     "python"
+    ]
+   },
+   "pypi": {
+    "manim": {
+     "version": "0.22.1",
+     "publicado": "2026-10-27",
+     "licencia": "MIT"
+    }
+   },
+   "docs": [
+    ".cache/docs/manim/README.md"
+   ]
+  }
+ },
+ {
+  "id": "map-motion",
+  "nombre": "map-motion",
+  "tipo": "libreria",
+  "areas": [
+   "video-explicativo",
+   "motion-graphics"
+  ],
+  "prioridad": "complemento",
+  "estado_local": "no-instalado",
+  "capacidades": [
+   "mapas-geograficos",
+   "camara"
+  ],
+  "resumen": "Presets JSON de mapas animados: del globo a un lugar, rutas de viaje, vuelos, cobertura radial, perfil de elevación.",
+  "repo": "SpaceZephyr/map-motion",
+  "licencia": "Código MIT; fuentes SIL OFL 1.1; los datos de mapas siguen los términos de cada fuente (según el README).",
+  "relacionados": [
+   "awesome-code-video",
+   "d3"
+  ],
+  "fuentes": [
+   "awesome-code-video"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "parcial",
+  "ficha": "fichas/map-motion.md",
+  "estado": {
+   "revisado": "2026-10-31",
+   "github": {
+    "nombre": "SpaceZephyr/map-motion",
+    "descripcion": "地图动效视频 Claude Code skill：基于高德地图真实路线/边界/卫星底图，做地球俯冲、vlog 我在这里、徒步海拔、骑行旅程、航线、行政区高亮等地图动画，12 种风格",
+    "estrellas": 101,
+    "ultimo_push": "2026-10-09",
+    "archivado": false,
+    "licencia": "NOASSERTION",
+    "web": null,
+    "temas": [
+     "amap",
+     "claude-code",
+     "claude-skills",
+     "map-animation",
+     "travel-video"
+    ]
+   },
+   "docs": [
+    ".cache/docs/map-motion/README.md"
+   ]
+  }
+ },
+ {
+  "id": "markmap",
+  "nombre": "markmap",
+  "tipo": "libreria",
+  "areas": [
+   "video-explicativo"
+  ],
+  "prioridad": "ahora",
+  "estado_local": "en-uso",
+  "capacidades": [
+   "diagramas"
+  ],
+  "resumen": "Mapas mentales a partir de Markdown con viñetas; Scriptorium lo usa para el mapa interactivo de cada obra.",
+  "lenguajes": [
+   "JavaScript"
+  ],
+  "exporta_video": "no-aplica",
+  "web": "https://markmap.js.org",
+  "repo": "markmap/markmap",
+  "paquetes": {
+   "npm": [
+    "markmap-lib",
+    "markmap-cli"
+   ]
+  },
+  "licencia": "MIT",
+  "relacionados": [
+   "mermaid",
+   "d3"
+  ],
+  "fuentes": [
+   "CLAUDE.md"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "verificado",
+  "ficha": "fichas/markmap.md",
+  "estado": {
+   "revisado": "2026-10-31",
+   "github": {
+    "nombre": "markmap/markmap",
+    "descripcion": "Build mindmaps with plain text",
+    "estrellas": 13211,
+    "ultimo_push": "2026-09-12",
+    "archivado": false,
+    "licencia": "MIT",
+    "web": "https://markmap.js.org/",
+    "temas": [
+     "markmap",
+     "mindmap"
+    ]
+   },
+   "npm": {
+    "markmap-lib": {
+     "version": "0.18.12",
+     "licencia": "MIT"
+    }
+   },
+   "docs": [
+    ".cache/docs/markmap/README.md"
+   ]
+  }
+ },
+ {
+  "id": "mermaid",
+  "nombre": "Mermaid",
+  "tipo": "libreria",
+  "areas": [
+   "video-explicativo"
+  ],
+  "prioridad": "complemento",
+  "estado_local": "no-instalado",
+  "capacidades": [
+   "diagramas"
+  ],
+  "resumen": "Diagramas desde texto tipo Markdown (flujo, secuencia, estados, línea del tiempo, mapas mentales) renderizados a SVG.",
+  "lenguajes": [
+   "JavaScript"
+  ],
+  "exporta_video": "indirecto",
+  "web": "https://mermaid.js.org",
+  "repo": "mermaid-js/mermaid",
+  "paquetes": {
+   "npm": [
+    "mermaid"
+   ]
+  },
+  "licencia": "MIT",
+  "agentes": "Los modelos chicos escriben Mermaid muy bien: buen formato intermedio para que un LLM describa un diagrama.",
+  "relacionados": [
+   "d3",
+   "markmap"
+  ],
+  "fuentes": [
+   "bandeja/2026-10-31-encargo-biblioteca-motion.md"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "verificado",
+  "ficha": "fichas/mermaid.md",
+  "estado": {
+   "revisado": "2026-10-31",
+   "github": {
+    "nombre": "mermaid-js/mermaid",
+    "descripcion": "Generation of diagrams like flowcharts or sequence diagrams from text in a similar manner as markdown",
+    "estrellas": 90949,
+    "ultimo_push": "2026-10-31",
+    "archivado": false,
+    "licencia": "MIT",
+    "web": "https://mermaid.ai/open-source/",
+    "temas": [
+     "diagrams",
+     "diagrams-as-code",
+     "documentation",
+     "flowchart",
+     "javascript",
+     "mindmap",
+     "typescript",
+     "uml-diagrams"
+    ]
+   },
+   "npm": {
+    "mermaid": {
+     "version": "12.2.0",
+     "licencia": "MIT"
+    }
+   },
+   "docs": [
+    ".cache/docs/mermaid/README.md"
+   ]
+  }
+ },
+ {
+  "id": "mmd-tools",
+  "nombre": "MMD Tools",
+  "tipo": "libreria",
+  "areas": [
+   "3d",
+   "personajes",
+   "anime"
+  ],
+  "prioridad": "futuro",
+  "estado_local": "no-instalado",
+  "capacidades": [
+   "personajes-3d",
+   "movimiento-humano"
+  ],
+  "resumen": "Complemento de Blender para importar y exportar modelos (PMX) y movimientos (VMD) de MikuMikuDance: bailes y coreografías hechas por la comunidad.",
+  "lenguajes": [
+   "Python"
+  ],
+  "exporta_video": "no-aplica",
+  "web": "https://extensions.blender.org/add-ons/mmd-tools/",
+  "repo": "MMD-Blender/blender_mmd_tools",
+  "licencia": "GPL-3.0",
+  "relacionados": [
+   "blender",
+   "vrm-addon-blender"
+  ],
+  "fuentes": [
+   "bandeja/2026-10-31-chatgpt-personajes-y-biblioteca.md"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "verificado",
+  "ficha": "fichas/mmd-tools.md",
+  "estado": {
+   "revisado": "2026-10-31",
+   "github": {
+    "nombre": "MMD-Blender/blender_mmd_tools",
+    "descripcion": "MMD Tools is a Blender addon for importing/exporting Models and Motions of MikuMikuDance.",
+    "estrellas": 3297,
+    "ultimo_push": "2026-10-04",
+    "archivado": false,
+    "licencia": "GPL-3.0",
+    "web": "https://extensions.blender.org/add-ons/mmd-tools/",
+    "temas": [
+     "blender-addon",
+     "mmd"
+    ]
+   },
+   "docs": [
+    ".cache/docs/mmd-tools/README.md"
+   ]
+  }
+ },
+ {
+  "id": "motion-canvas-examples",
+  "nombre": "Ejemplos de Motion Canvas",
+  "tipo": "referencia",
+  "areas": [
+   "video-explicativo",
+   "motion-graphics"
+  ],
+  "prioridad": "complemento",
+  "estado_local": "no-instalado",
+  "capacidades": [
+   "diagramas",
+   "tipografia-cinetica",
+   "morphing"
+  ],
+  "resumen": "Ejemplos oficiales de Motion Canvas; útiles como referencia de patrones, aunque sin cambios desde marzo de 2024.",
+  "lenguajes": [
+   "TypeScript"
+  ],
+  "exporta_video": "no-aplica",
+  "repo": "motion-canvas/examples",
+  "licencia": "MIT",
+  "relacionados": [
+   "motion-canvas"
+  ],
+  "fuentes": [
+   "bandeja/2026-10-31-encargo-biblioteca-motion.md"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "verificado",
+  "ficha": "fichas/motion-canvas-examples.md",
+  "estado": {
+   "revisado": "2026-10-31",
+   "alertas": [
+    "sin cambios desde 2024-03-21: posiblemente abandonado"
+   ],
+   "github": {
+    "nombre": "motion-canvas/examples",
+    "descripcion": "A set of examples for Motion Canvas",
+    "estrellas": 1172,
+    "ultimo_push": "2024-03-21",
+    "archivado": false,
+    "licencia": "MIT",
+    "web": null,
+    "temas": []
+   },
+   "docs": [
+    ".cache/docs/motion-canvas-examples/README.md"
+   ]
+  }
+ },
+ {
+  "id": "motion-canvas",
+  "nombre": "Motion Canvas",
+  "tipo": "motor",
+  "areas": [
+   "video-explicativo",
+   "motion-graphics"
+  ],
+  "prioridad": "ahora",
+  "estado_local": "no-instalado",
+  "capacidades": [
+   "composicion-video",
+   "video-explicativo",
+   "diagramas",
+   "matematicas",
+   "tipografia-cinetica",
+   "morphing",
+   "editor-visual",
+   "sincronia-audio"
+  ],
+  "resumen": "Animaciones vectoriales explicativas con TypeScript y generadores: el código describe la secuencia en orden y un editor muestra la línea de tiempo con el audio.",
+  "lenguajes": [
+   "TypeScript"
+  ],
+  "exporta_video": "si",
+  "web": "https://motion-canvas.io",
+  "repo": "motion-canvas/motion-canvas",
+  "paquetes": {
+   "npm": [
+    "@motion-canvas/core",
+    "@motion-canvas/2d"
+   ]
+  },
+  "docs": [
+   "https://motion-canvas.io/docs"
+  ],
+  "licencia": "MIT",
+  "agentes": "Sin skills oficiales; API pequeña y regular, apta para agentes.",
+  "relacionados": [
+   "revideo",
+   "remotion",
+   "manim",
+   "motion-canvas-examples"
+  ],
+  "fuentes": [
+   "bandeja/2026-10-31-encargo-biblioteca-motion.md",
+   "bandeja/2026-10-31-chatgpt-personajes-y-biblioteca.md"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "verificado",
+  "ficha": "fichas/motion-canvas.md",
+  "estado": {
+   "revisado": "2026-10-31",
+   "github": {
+    "nombre": "motion-canvas/motion-canvas",
+    "descripcion": "Visualize Your Ideas With Code",
+    "estrellas": 19618,
+    "ultimo_push": "2026-07-02",
+    "archivado": false,
+    "licencia": "MIT",
+    "web": "https://motion-canvas.io",
+    "temas": [
+     "animation",
+     "presentation",
+     "visualization"
+    ]
+   },
+   "npm": {
+    "@motion-canvas/core": {
+     "version": "3.17.2",
+     "licencia": "MIT"
+    }
+   },
+   "docs": [
+    ".cache/docs/motion-canvas/README.md"
+   ]
+  }
+ },
+ {
+  "id": "motion",
+  "nombre": "Motion (antes Framer Motion)",
+  "tipo": "libreria",
+  "areas": [
+   "motion-graphics"
+  ],
+  "prioridad": "complemento",
+  "estado_local": "no-instalado",
+  "capacidades": [
+   "interfaz-ui",
+   "easing-timing",
+   "tipografia-cinetica"
+  ],
+  "resumen": "Animación para React y JavaScript: transiciones de interfaz, resortes, gestos, layout animado y scroll.",
+  "lenguajes": [
+   "TypeScript",
+   "React",
+   "JavaScript"
+  ],
+  "exporta_video": "indirecto",
+  "web": "https://motion.dev",
+  "repo": "motiondivision/motion",
+  "paquetes": {
+   "npm": [
+    "motion"
+   ]
+  },
+  "llms_txt": "https://motion.dev/llms.txt",
+  "licencia": "MIT",
+  "relacionados": [
+   "gsap",
+   "animejs"
+  ],
+  "fuentes": [
+   "bandeja/2026-10-31-encargo-biblioteca-motion.md"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "verificado",
+  "ficha": "fichas/motion.md",
+  "estado": {
+   "revisado": "2026-10-31",
+   "github": {
+    "nombre": "motiondivision/motion",
+    "descripcion": "A modern animation library for React and JavaScript",
+    "estrellas": 34728,
+    "ultimo_push": "2026-10-31",
+    "archivado": false,
+    "licencia": "MIT",
+    "web": "https://motion.dev",
+    "temas": [
+     "animation",
+     "animation-js",
+     "motion",
+     "react",
+     "reactanimations",
+     "spring"
+    ]
+   },
+   "npm": {
+    "motion": {
+     "version": "14.9.0",
+     "licencia": "MIT"
+    }
+   },
+   "docs": [
+    ".cache/docs/motion/README.md",
+    ".cache/docs/motion/llms.txt"
+   ]
+  }
+ },
+ {
+  "id": "moviepy",
+  "nombre": "MoviePy",
+  "tipo": "libreria",
+  "areas": [
+   "video-explicativo"
+  ],
+  "prioridad": "complemento",
+  "estado_local": "no-instalado",
+  "capacidades": [
+   "composicion-video"
+  ],
+  "resumen": "Edición de video en Python: cortar, concatenar, superponer texto e imágenes y componer clips sobre FFmpeg.",
+  "lenguajes": [
+   "Python"
+  ],
+  "exporta_video": "si",
+  "web": "https://zulko.github.io/moviepy/",
+  "repo": "Zulko/moviepy",
+  "paquetes": {
+   "pypi": [
+    "moviepy"
+   ]
+  },
+  "licencia": "MIT",
+  "relacionados": [
+   "ffmpeg"
+  ],
+  "fuentes": [
+   "bandeja/2026-10-31-encargo-biblioteca-motion.md"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "verificado",
+  "ficha": "fichas/moviepy.md",
+  "estado": {
+   "revisado": "2026-10-31",
+   "github": {
+    "nombre": "Zulko/moviepy",
+    "descripcion": "Video editing with Python",
+    "estrellas": 15070,
+    "ultimo_push": "2026-08-26",
+    "archivado": false,
+    "licencia": "MIT",
+    "web": "https://zulko.github.io/moviepy/",
+    "temas": [
+     "animation",
+     "gif",
+     "hacktoberfest",
+     "python",
+     "video",
+     "video-editing",
+     "video-processing"
+    ]
+   },
+   "pypi": {
+    "moviepy": {
+     "version": "2.2.1",
+     "publicado": "2025-05-21",
+     "licencia": "MIT License"
+    }
+   },
+   "docs": [
+    ".cache/docs/moviepy/README.md"
+   ]
+  }
+ },
+ {
+  "id": "ollama",
+  "nombre": "Ollama",
+  "tipo": "infraestructura",
+  "areas": [
+   "conocimiento"
+  ],
+  "prioridad": "ahora",
+  "estado_local": "en-uso",
+  "capacidades": [
+   "busqueda-conocimiento"
+  ],
+  "resumen": "Servidor local de modelos (en Windows, alcanzado desde WSL en 127.0.0.1:11434): gemma4:12b por defecto y qwen3:14b; también sirve modelos de embeddings.",
+  "web": "https://ollama.com",
+  "repo": "ollama/ollama",
+  "licencia": "MIT (cada modelo tiene su propia licencia).",
+  "agentes": "Los agentes locales (OpenCode, Codex en modo local, Open WebUI) usan Ollama como proveedor.",
+  "relacionados": [
+   "sqlite-fts5",
+   "lancedb"
+  ],
+  "fuentes": [
+   "CLAUDE.md"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "verificado",
+  "ficha": "fichas/ollama.md",
+  "estado": {
+   "revisado": "2026-10-31",
+   "github": {
+    "nombre": "ollama/ollama",
+    "descripcion": "Get up and running with Kimi, GLM, MiniMax, DeepSeek, gpt-oss, Qwen, Gemma and other models.",
+    "estrellas": 185478,
+    "ultimo_push": "2026-10-31",
+    "archivado": false,
+    "licencia": "MIT",
+    "web": "https://ollama.com",
+    "temas": [
+     "deepseek",
+     "gemma",
+     "glm",
+     "go",
+     "golang",
+     "gpt-oss",
+     "llama",
+     "llm",
+     "llms",
+     "minimax",
+     "mistral",
+     "muse",
+     "ollama",
+     "qwen"
+    ]
+   },
+   "docs": [
+    ".cache/docs/ollama/README.md"
+   ]
+  }
+ },
+ {
+  "id": "opentoonz-mcp",
+  "nombre": "opentoonz-mcp",
+  "tipo": "mcp",
+  "areas": [
+   "2d",
+   "anime"
+  ],
+  "prioridad": "futuro",
+  "estado_local": "no-instalado",
+  "capacidades": [
+   "control-por-agente",
+   "animacion-tradicional"
+  ],
+  "resumen": "Servidor MCP que automatiza OpenToonz sin interfaz: corre su motor de scripts en modo CLI y renderiza con tcomposer → PNG → ffmpeg → MP4.",
+  "lenguajes": [
+   "Python"
+  ],
+  "exporta_video": "si",
+  "repo": "c0d33ngr/opentoonz-mcp",
+  "licencia": "MIT",
+  "requisitos": "OpenToonz 1.x con tcomposer; en Linux funciona mejor un AppImage extraído.",
+  "relacionados": [
+   "opentoonz"
+  ],
+  "fuentes": [
+   "bandeja/2026-10-31-chatgpt-personajes-y-biblioteca.md"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "verificado",
+  "ficha": "fichas/opentoonz-mcp.md",
+  "estado": {
+   "revisado": "2026-10-31",
+   "github": {
+    "nombre": "c0d33ngr/opentoonz-mcp",
+    "descripcion": null,
+    "estrellas": 1,
+    "ultimo_push": "2026-10-16",
+    "archivado": false,
+    "licencia": "MIT",
+    "web": null,
+    "temas": [
+     "animation",
+     "mcp",
+     "opentoonz"
+    ]
+   },
+   "docs": [
+    ".cache/docs/opentoonz-mcp/README.md"
+   ]
+  }
+ },
+ {
+  "id": "opentoonz",
+  "nombre": "OpenToonz",
+  "tipo": "aplicacion",
+  "areas": [
+   "2d",
+   "anime",
+   "personajes"
+  ],
+  "prioridad": "futuro",
+  "estado_local": "no-instalado",
+  "capacidades": [
+   "animacion-tradicional",
+   "personajes-2d"
+  ],
+  "resumen": "Software libre de animación 2D profesional (basado en Toonz): dibujo cuadro por cuadro, escaneo, tintado, efectos y composición; scripts con ToonzScript.",
+  "exporta_video": "si",
+  "web": "https://opentoonz.github.io/",
+  "repo": "opentoonz/opentoonz",
+  "licencia": "BSD modificada (GitHub no la reconoce automáticamente; verificar).",
+  "agentes": "Scripting interno y render sin interfaz con `tcomposer`; MCP comunitario opentoonz-mcp.",
+  "relacionados": [
+   "opentoonz-mcp",
+   "blender"
+  ],
+  "fuentes": [
+   "bandeja/2026-10-31-chatgpt-personajes-y-biblioteca.md"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "parcial",
+  "ficha": "fichas/opentoonz.md",
+  "estado": {
+   "revisado": "2026-10-31",
+   "github": {
+    "nombre": "opentoonz/opentoonz",
+    "descripcion": "OpenToonz - An open-source full-featured 2D animation creation software",
+    "estrellas": 7885,
+    "ultimo_push": "2026-10-28",
+    "archivado": false,
+    "licencia": "NOASSERTION",
+    "web": "https://opentoonz.github.io/",
+    "temas": []
+   },
+   "docs": [
+    ".cache/docs/opentoonz/README.md"
+   ]
+  }
+ },
+ {
+  "id": "opentype-js",
+  "nombre": "opentype.js",
+  "tipo": "libreria",
+  "areas": [
+   "motion-graphics"
+  ],
+  "prioridad": "ahora",
+  "estado_local": "no-instalado",
+  "capacidades": [
+   "tipografia-cinetica",
+   "trazo-svg",
+   "morphing"
+  ],
+  "resumen": "Lee fuentes OpenType/TrueType en JavaScript y da el contorno de cada letra como trazo: base para letras que se dibujan o se deforman.",
+  "lenguajes": [
+   "JavaScript"
+  ],
+  "exporta_video": "indirecto",
+  "web": "https://opentype.js.org",
+  "repo": "opentypejs/opentype.js",
+  "paquetes": {
+   "npm": [
+    "opentype.js"
+   ]
+  },
+  "licencia": "MIT",
+  "relacionados": [
+   "gsap",
+   "flubber"
+  ],
+  "fuentes": [
+   "bandeja/2026-10-31-encargo-biblioteca-motion.md"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "verificado",
+  "ficha": "fichas/opentype-js.md",
+  "estado": {
+   "revisado": "2026-10-31",
+   "github": {
+    "nombre": "opentypejs/opentype.js",
+    "descripcion": "Read and write OpenType fonts using JavaScript.",
+    "estrellas": 5040,
+    "ultimo_push": "2026-08-08",
+    "archivado": false,
+    "licencia": "MIT",
+    "web": "https://opentype.js.org/",
+    "temas": [
+     "font",
+     "glyphs",
+     "javascript",
+     "kerning",
+     "nodejs",
+     "opentype",
+     "opentypejs",
+     "otf",
+     "truetype"
+    ]
+   },
+   "npm": {
+    "opentype.js": {
+     "version": "2.0.0",
+     "licencia": "MIT"
+    }
+   },
+   "docs": [
+    ".cache/docs/opentype-js/README.md"
+   ]
+  }
+ },
+ {
+  "id": "p5-brush",
+  "nombre": "p5.brush",
+  "tipo": "libreria",
+  "areas": [
+   "motion-graphics",
+   "personajes"
+  ],
+  "prioridad": "complemento",
+  "estado_local": "no-instalado",
+  "capacidades": [
+   "estilo-dibujado"
+  ],
+  "resumen": "Pinceles naturales, rellenos tipo acuarela y achurado para p5.js: la textura de los videos de PDoomVideo y ClaudeAnimationBase.",
+  "lenguajes": [
+   "JavaScript"
+  ],
+  "exporta_video": "indirecto",
+  "web": "https://p5-brush.cargo.site/",
+  "repo": "acamposuribe/p5.brush",
+  "paquetes": {
+   "npm": [
+    "p5.brush"
+   ]
+  },
+  "licencia": "MIT",
+  "relacionados": [
+   "p5js",
+   "pdoom-video",
+   "claude-animation-base",
+   "roughjs"
+  ],
+  "fuentes": [
+   "recetas/canvas2d/biblioteca-movimiento.html"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "verificado",
+  "ficha": "fichas/p5-brush.md",
+  "estado": {
+   "revisado": "2026-10-31",
+   "github": {
+    "nombre": "acamposuribe/p5.brush",
+    "descripcion": "Unlock custom brushes, natural fill effects and intuitive hatching in p5.js",
+    "estrellas": 1203,
+    "ultimo_push": "2026-10-28",
+    "archivado": false,
+    "licencia": "MIT",
+    "web": "https://p5-brush.cargo.site/",
+    "temas": [
+     "brush",
+     "brushes",
+     "children",
+     "flowfield",
+     "hatching",
+     "p5",
+     "p5-library",
+     "p5js",
+     "watercolor"
+    ]
+   },
+   "npm": {
+    "p5.brush": {
+     "version": "3.0.0",
+     "licencia": "MIT"
+    }
+   },
+   "docs": [
+    ".cache/docs/p5-brush/README.md"
+   ]
+  }
+ },
+ {
+  "id": "p5js",
+  "nombre": "p5.js",
+  "tipo": "libreria",
+  "areas": [
+   "motion-graphics"
+  ],
+  "prioridad": "complemento",
+  "estado_local": "no-instalado",
+  "capacidades": [
+   "arte-generativo",
+   "particulas",
+   "geometria",
+   "estilo-dibujado"
+  ],
+  "resumen": "La librería de creative coding de Processing en JavaScript: dibujo inmediato en Canvas o WebGL con setup()/draw(); ideal para arte generativo.",
+  "lenguajes": [
+   "JavaScript"
+  ],
+  "exporta_video": "indirecto",
+  "web": "https://p5js.org",
+  "repo": "processing/p5.js",
+  "paquetes": {
+   "npm": [
+    "p5"
+   ]
+  },
+  "licencia": "LGPL-2.1",
+  "agentes": "Muy presente en datos de entrenamiento: los modelos chicos la escriben bien.",
+  "relacionados": [
+   "p5-brush",
+   "canvas-sketch",
+   "claude-animation-base"
+  ],
+  "fuentes": [
+   "bandeja/2026-10-31-encargo-biblioteca-motion.md"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "verificado",
+  "ficha": "fichas/p5js.md",
+  "estado": {
+   "revisado": "2026-10-31",
+   "github": {
+    "nombre": "processing/p5.js",
+    "descripcion": "p5.js is a client-side JS platform that empowers artists, designers, students, and anyone to learn to code and express themselves creatively on the web. It is based on the core principles of Processing. Looking for p5.js 2.0? http://beta.p5js.org",
+    "estrellas": 24283,
+    "ultimo_push": "2026-10-30",
+    "archivado": false,
+    "licencia": "LGPL-2.1",
+    "web": "http://p5js.org/",
+    "temas": [
+     "art",
+     "creative-coding",
+     "design",
+     "education",
+     "graphics",
+     "html",
+     "javascript",
+     "learning",
+     "p5js",
+     "processing",
+     "sound"
+    ]
+   },
+   "npm": {
+    "p5": {
+     "version": "2.3.4",
+     "licencia": "LGPL-2.1"
+    }
+   },
+   "docs": [
+    ".cache/docs/p5js/README.md"
+   ]
+  }
+ },
+ {
+  "id": "paperjs",
+  "nombre": "Paper.js",
+  "tipo": "libreria",
+  "areas": [
+   "motion-graphics"
+  ],
+  "prioridad": "complemento",
+  "estado_local": "no-instalado",
+  "capacidades": [
+   "geometria",
+   "trazo-svg",
+   "morphing"
+  ],
+  "resumen": "Gráficos vectoriales sobre Canvas con un modelo de escena: operaciones booleanas, curvas Bézier, intersecciones y suavizado de trazos.",
+  "lenguajes": [
+   "JavaScript"
+  ],
+  "exporta_video": "indirecto",
+  "web": "http://paperjs.org",
+  "repo": "paperjs/paper.js",
+  "paquetes": {
+   "npm": [
+    "paper"
+   ]
+  },
+  "licencia": "MIT (paquete npm)",
+  "relacionados": [
+   "flubber",
+   "roughjs"
+  ],
+  "fuentes": [
+   "bandeja/2026-10-31-encargo-biblioteca-motion.md"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "verificado",
+  "ficha": "fichas/paperjs.md",
+  "estado": {
+   "revisado": "2026-10-31",
+   "github": {
+    "nombre": "paperjs/paper.js",
+    "descripcion": "The Swiss Army Knife of Vector Graphics Scripting – Scriptographer ported to JavaScript and the browser, using HTML5 Canvas. Created by @lehni & @puckey",
+    "estrellas": 15177,
+    "ultimo_push": "2026-10-30",
+    "archivado": false,
+    "licencia": "NOASSERTION",
+    "web": "http://paperjs.org",
+    "temas": []
+   },
+   "npm": {
+    "paper": {
+     "version": "0.16.0",
+     "licencia": "MIT"
+    }
+   },
+   "docs": [
+    ".cache/docs/paperjs/README.md"
+   ]
+  }
+ },
+ {
+  "id": "pdoom-video",
+  "nombre": "PDoomVideo",
+  "tipo": "referencia",
+  "areas": [
+   "motion-graphics",
+   "personajes"
+  ],
+  "prioridad": "complemento",
+  "estado_local": "no-instalado",
+  "capacidades": [
+   "estilo-dibujado",
+   "easing-timing",
+   "subtitulos-karaoke",
+   "transiciones",
+   "personajes-2d"
+  ],
+  "resumen": "Código del video musical en acuarela hecho por Claude Opus 5.5 con p5.js + p5.brush (1920×1080, 156.6 s, 88 BPM); incluye la ANIMATION_GUIDE que coordinó a los subagentes.",
+  "lenguajes": [
+   "JavaScript"
+  ],
+  "exporta_video": "si",
+  "repo": "JohnHeibel/PDoomVideo",
+  "licencia": "Sin licencia declarada (consultado 2026-10-31): todos los derechos reservados. Leer y aprender sí; no copiar código.",
+  "agentes": "ANIMATION_GUIDE.md y STORYBOARD.md escritos por el modelo para sus subagentes.",
+  "relacionados": [
+   "claude-animation-base",
+   "p5-brush",
+   "biblioteca-movimiento"
+  ],
+  "fuentes": [
+   "recetas/canvas2d/biblioteca-movimiento.html"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "verificado",
+  "ficha": "fichas/pdoom-video.md",
+  "estado": {
+   "revisado": "2026-10-31",
+   "github": {
+    "nombre": "JohnHeibel/PDoomVideo",
+    "descripcion": "Source code for the Claude Opus 5.5 music video for I'm Upping My P(doom)",
+    "estrellas": 2749,
+    "ultimo_push": "2026-09-25",
+    "archivado": false,
+    "licencia": null,
+    "web": null,
+    "temas": []
+   },
+   "docs": [
+    ".cache/docs/pdoom-video/README.md"
+   ]
+  }
+ },
+ {
+  "id": "pixijs",
+  "nombre": "PixiJS",
+  "tipo": "libreria",
+  "areas": [
+   "motion-graphics",
+   "2d"
+  ],
+  "prioridad": "complemento",
+  "estado_local": "no-instalado",
+  "capacidades": [
+   "particulas",
+   "shaders",
+   "geometria",
+   "personajes-2d"
+  ],
+  "resumen": "Motor 2D muy rápido sobre WebGL/WebGPU: miles de sprites, partículas, filtros y shaders 2D.",
+  "lenguajes": [
+   "JavaScript",
+   "TypeScript"
+  ],
+  "exporta_video": "indirecto",
+  "web": "https://pixijs.com",
+  "repo": "pixijs/pixijs",
+  "paquetes": {
+   "npm": [
+    "pixi.js"
+   ]
+  },
+  "llms_txt": "https://pixijs.com/llms.txt",
+  "licencia": "MIT",
+  "agentes": "Publica llms.txt (se baja con `saber actualizar`).",
+  "relacionados": [
+   "threejs",
+   "tsparticles"
+  ],
+  "fuentes": [
+   "bandeja/2026-10-31-encargo-biblioteca-motion.md"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "verificado",
+  "ficha": "fichas/pixijs.md",
+  "estado": {
+   "revisado": "2026-10-31",
+   "github": {
+    "nombre": "pixijs/pixijs",
+    "descripcion": "The HTML5 Creation Engine: Create beautiful digital content with the fastest, most flexible 2D WebGL renderer.",
+    "estrellas": 48606,
+    "ultimo_push": "2026-10-30",
+    "archivado": false,
+    "licencia": "MIT",
+    "web": "http://pixijs.com",
+    "temas": [
+     "canvas",
+     "canvas2d",
+     "data-visualization",
+     "game",
+     "glsl",
+     "javascript",
+     "pixi",
+     "pixijs",
+     "renderer",
+     "rendering",
+     "rendering-2d-graphics",
+     "rendering-engine",
+     "webgl"
+    ]
+   },
+   "npm": {
+    "pixi.js": {
+     "version": "8.22.0",
+     "licencia": "MIT"
+    }
+   },
+   "docs": [
+    ".cache/docs/pixijs/README.md",
+    ".cache/docs/pixijs/llms.txt"
+   ]
+  }
+ },
+ {
+  "id": "pretext",
+  "nombre": "Pretext",
+  "tipo": "libreria",
+  "areas": [
+   "motion-graphics"
+  ],
+  "prioridad": "complemento",
+  "estado_local": "no-instalado",
+  "capacidades": [
+   "tipografia-cinetica",
+   "subtitulos-karaoke"
+  ],
+  "resumen": "Medición de texto y maquetación multilínea en JavaScript/TypeScript (anchos de línea, cortes) para títulos, subtítulos y tarjetas animadas.",
+  "lenguajes": [
+   "TypeScript"
+  ],
+  "repo": "chenglou/pretext",
+  "licencia": "por verificar",
+  "relacionados": [
+   "remotion"
+  ],
+  "fuentes": [
+   "awesome-code-video"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "parcial",
+  "ficha": "fichas/pretext.md",
+  "estado": {
+   "revisado": "2026-10-31",
+   "github": {
+    "nombre": "chenglou/pretext",
+    "descripcion": "Fast, accurate & comprehensive text measurement & layout",
+    "estrellas": 50975,
+    "ultimo_push": "2026-10-15",
+    "archivado": false,
+    "licencia": "NOASSERTION",
+    "web": "http://chenglou.me/pretext/",
+    "temas": []
+   },
+   "docs": [
+    ".cache/docs/pretext/README.md"
+   ]
+  }
+ },
+ {
+  "id": "qwen3-tts",
+  "nombre": "Qwen3-TTS",
+  "tipo": "modelo-ia",
+  "areas": [
+   "audio-voz"
+  ],
+  "prioridad": "ahora",
+  "estado_local": "en-uso",
+  "capacidades": [
+   "voz-tts"
+  ],
+  "resumen": "Serie de TTS de Qwen (Alibaba) con clonación y streaming; el modelo 1.7B Base es la voz de la anfitriona de Scriptorium.",
+  "lenguajes": [
+   "Python"
+  ],
+  "exporta_video": "no-aplica",
+  "repo": "QwenLM/Qwen3-TTS",
+  "licencia": "Apache-2.0",
+  "requisitos": "GPU con CUDA; fp16 en la GP100.",
+  "relacionados": [
+   "voxcpm",
+   "kokoro"
+  ],
+  "fuentes": [
+   "CLAUDE.md"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "verificado",
+  "ficha": "fichas/qwen3-tts.md",
+  "estado": {
+   "revisado": "2026-10-31",
+   "github": {
+    "nombre": "QwenLM/Qwen3-TTS",
+    "descripcion": "Qwen3-TTS is an open-source series of TTS models developed by the Qwen team at Alibaba Cloud, supporting stable, expressive, and streaming speech generation, free-form voice design, and vivid voice cloning.",
+    "estrellas": 14128,
+    "ultimo_push": "2026-03-17",
+    "archivado": false,
+    "licencia": "Apache-2.0",
+    "web": null,
+    "temas": []
+   },
+   "docs": [
+    ".cache/docs/qwen3-tts/README.md"
+   ]
+  }
+ },
+ {
+  "id": "react-three-fiber",
+  "nombre": "React Three Fiber",
+  "tipo": "libreria",
+  "areas": [
+   "3d"
+  ],
+  "prioridad": "complemento",
+  "estado_local": "no-instalado",
+  "capacidades": [
+   "escena-3d",
+   "camara"
+  ],
+  "resumen": "Renderizador de React para Three.js: escenas 3D como componentes JSX; es lo que usa @remotion/three.",
+  "lenguajes": [
+   "TypeScript",
+   "React"
+  ],
+  "exporta_video": "indirecto",
+  "web": "https://docs.pmnd.rs/react-three-fiber",
+  "repo": "pmndrs/react-three-fiber",
+  "paquetes": {
+   "npm": [
+    "@react-three/fiber"
+   ]
+  },
+  "licencia": "MIT",
+  "relacionados": [
+   "threejs",
+   "drei",
+   "remotion-template-three"
+  ],
+  "fuentes": [
+   "bandeja/2026-10-31-encargo-biblioteca-motion.md"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "verificado",
+  "ficha": "fichas/react-three-fiber.md",
+  "estado": {
+   "revisado": "2026-10-31",
+   "github": {
+    "nombre": "pmndrs/react-three-fiber",
+    "descripcion": "🇨🇭 A React renderer for Three.js",
+    "estrellas": 33401,
+    "ultimo_push": "2026-10-21",
+    "archivado": false,
+    "licencia": "MIT",
+    "web": "https://docs.pmnd.rs/react-three-fiber",
+    "temas": [
+     "3d",
+     "animation",
+     "fiber",
+     "react",
+     "renderer",
+     "threejs"
+    ]
+   },
+   "npm": {
+    "@react-three/fiber": {
+     "version": "9.8.2",
+     "licencia": "MIT"
+    }
+   },
+   "docs": [
+    ".cache/docs/react-three-fiber/README.md"
+   ]
+  }
+ },
+ {
+  "id": "remotion-bits",
+  "nombre": "Remotion Bits",
+  "tipo": "libreria",
+  "areas": [
+   "motion-graphics",
+   "video-explicativo"
+  ],
+  "prioridad": "ahora",
+  "estado_local": "no-instalado",
+  "capacidades": [
+   "tipografia-cinetica",
+   "transiciones",
+   "datos-graficas",
+   "escena-3d",
+   "control-por-agente"
+  ],
+  "resumen": "Componentes animados listos para Remotion (gráficas, transiciones, revelado de texto, 3D) con CLI de búsqueda y servidor MCP propio.",
+  "lenguajes": [
+   "TypeScript",
+   "React"
+  ],
+  "exporta_video": "si",
+  "web": "https://remotion-bits.dev",
+  "repo": "av/remotion-bits",
+  "paquetes": {
+   "npm": [
+    "remotion-bits"
+   ]
+  },
+  "licencia": "El repositorio no declara licencia en GitHub (consultado 2026-10-31): verifica el paquete npm antes de copiar código.",
+  "agentes": "CLI `npx remotion-bits find|fetch --json` y servidor MCP `npx remotion-bits mcp` (stdio).",
+  "relacionados": [
+   "remotion",
+   "snapcn"
+  ],
+  "fuentes": [
+   "bandeja/2026-10-31-encargo-biblioteca-motion.md"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "verificado",
+  "ficha": "fichas/remotion-bits.md",
+  "estado": {
+   "revisado": "2026-10-31",
+   "github": {
+    "nombre": "av/remotion-bits",
+    "descripcion": "Ready-made animated components for Remotion — charts, transitions, text reveals, and more",
+    "estrellas": 505,
+    "ultimo_push": "2026-09-15",
+    "archivado": false,
+    "licencia": null,
+    "web": "https://remotion-bits.dev",
+    "temas": [
+     "animation",
+     "components",
+     "motion-graphics",
+     "react",
+     "remotion",
+     "remotion-video",
+     "typescript",
+     "video",
+     "video-editing"
+    ]
+   },
+   "docs": [
+    ".cache/docs/remotion-bits/README.md"
+   ]
+  }
+ },
+ {
+  "id": "remotion-motion-graphics-skill",
+  "nombre": "Remotion Motion Graphics Skills",
+  "tipo": "skill",
+  "areas": [
+   "motion-graphics",
+   "video-explicativo"
+  ],
+  "prioridad": "ahora",
+  "estado_local": "no-instalado",
+  "capacidades": [
+   "camara",
+   "tipografia-cinetica",
+   "estilo-dibujado",
+   "control-por-agente"
+  ],
+  "resumen": "Cuatro skills de dirección de arte para Remotion: compuerta de producción, cámara cinematográfica continua, terminales y titulares de artículo con trazos de rough.js.",
+  "lenguajes": [
+   "Markdown",
+   "TypeScript"
+  ],
+  "exporta_video": "no-aplica",
+  "repo": "Liamrjohnston/remotion-motion-graphics-skill",
+  "licencia": "MIT",
+  "agentes": "Claude Code, Codex, Cursor, OpenCode y otros con Agent Skills.",
+  "relacionados": [
+   "remotion",
+   "remotion-skills",
+   "roughjs"
+  ],
+  "fuentes": [
+   "bandeja/2026-10-31-encargo-biblioteca-motion.md"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "verificado",
+  "ficha": "fichas/remotion-motion-graphics-skill.md",
+  "estado": {
+   "revisado": "2026-10-31",
+   "github": {
+    "nombre": "Liamrjohnston/remotion-motion-graphics-skill",
+    "descripcion": "Production-ready Remotion motion graphics skills for AI video workflows",
+    "estrellas": 148,
+    "ultimo_push": "2026-07-24",
+    "archivado": false,
+    "licencia": "MIT",
+    "web": null,
+    "temas": []
+   },
+   "docs": [
+    ".cache/docs/remotion-motion-graphics-skill/README.md"
+   ]
+  }
+ },
+ {
+  "id": "remotion-plantillas",
+  "nombre": "Plantillas oficiales de Remotion",
+  "tipo": "plantilla",
+  "areas": [
+   "video-explicativo",
+   "motion-graphics"
+  ],
+  "prioridad": "ahora",
+  "estado_local": "no-instalado",
+  "capacidades": [
+   "subtitulos-karaoke",
+   "visualizacion-audio",
+   "escena-3d",
+   "tipografia-cinetica"
+  ],
+  "resumen": "Plantillas de Remotion: audiograma (onda + subtítulos), subtítulos estilo TikTok con palabra activa, Code Hike (código animado), Three (R3F) y overlay.",
+  "lenguajes": [
+   "TypeScript",
+   "React"
+  ],
+  "exporta_video": "si",
+  "web": "https://www.remotion.dev/templates",
+  "docs": [
+   "https://github.com/remotion-dev/remotion/tree/main/packages/template-audiogram",
+   "https://github.com/remotion-dev/remotion/tree/main/packages/template-tiktok",
+   "https://github.com/remotion-dev/remotion/tree/main/packages/template-code-hike"
+  ],
+  "licencia": "Las del monorepo de Remotion (Remotion License).",
+  "agentes": "Proyectos completos que un agente puede leer como ejemplo.",
+  "relacionados": [
+   "remotion",
+   "remotion-template-three"
+  ],
+  "fuentes": [
+   "awesome-code-video"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "parcial",
+  "ficha": "fichas/remotion-plantillas.md",
+  "estado": {}
+ },
+ {
+  "id": "remotion-skills",
+  "nombre": "Remotion Agent Skills",
+  "tipo": "skill",
+  "areas": [
+   "video-explicativo",
+   "motion-graphics"
+  ],
+  "prioridad": "ahora",
+  "estado_local": "no-instalado",
+  "capacidades": [
+   "composicion-video",
+   "control-por-agente"
+  ],
+  "resumen": "Skills oficiales de Remotion (formato Agent Skills): buenas prácticas de markup, crear proyectos, abrir Studio, renderizar y actualizar.",
+  "lenguajes": [
+   "Markdown"
+  ],
+  "exporta_video": "no-aplica",
+  "repo": "remotion-dev/skills",
+  "docs": [
+   "https://www.remotion.dev/docs/ai/skills"
+  ],
+  "licencia": "El repositorio no declara licencia (consultado 2026-10-31): léelo y úsalo, pero no copies su texto a otro proyecto público.",
+  "agentes": "Claude Code, Codex, Cursor y otros compatibles con Agent Skills.",
+  "relacionados": [
+   "remotion",
+   "remotion-motion-graphics-skill",
+   "agent-skills"
+  ],
+  "fuentes": [
+   "bandeja/2026-10-31-encargo-biblioteca-motion.md"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "verificado",
+  "ficha": "fichas/remotion-skills.md",
+  "estado": {
+   "revisado": "2026-10-31",
+   "github": {
+    "nombre": "remotion-dev/skills",
+    "descripcion": "Agent Skills",
+    "estrellas": 5978,
+    "ultimo_push": "2026-10-26",
+    "archivado": false,
+    "licencia": null,
+    "web": null,
+    "temas": []
+   },
+   "docs": [
+    ".cache/docs/remotion-skills/README.md"
+   ]
+  }
+ },
+ {
+  "id": "remotion-template-three",
+  "nombre": "Plantilla Remotion + React Three Fiber",
+  "tipo": "plantilla",
+  "areas": [
+   "3d",
+   "video-explicativo"
+  ],
+  "prioridad": "complemento",
+  "estado_local": "no-instalado",
+  "capacidades": [
+   "escena-3d",
+   "camara",
+   "composicion-video"
+  ],
+  "resumen": "Plantilla mínima oficial de Remotion con React Three Fiber: el punto de partida para meter objetos y modelos 3D en un video.",
+  "lenguajes": [
+   "TypeScript",
+   "React"
+  ],
+  "exporta_video": "si",
+  "web": "https://www.remotion.dev/templates/three",
+  "repo": "remotion-dev/template-three",
+  "paquetes": {
+   "npm": [
+    "@remotion/three"
+   ]
+  },
+  "licencia": "MIT",
+  "agentes": "Ejemplo pequeño y legible.",
+  "relacionados": [
+   "remotion",
+   "react-three-fiber",
+   "threejs",
+   "drei"
+  ],
+  "fuentes": [
+   "bandeja/2026-10-31-chatgpt-personajes-y-biblioteca.md"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "verificado",
+  "ficha": "fichas/remotion-template-three.md",
+  "estado": {
+   "revisado": "2026-10-31",
+   "github": {
+    "nombre": "remotion-dev/template-three",
+    "descripcion": "⚛️  🎥 3️⃣  A minimal boilerplate for Remotion + React Three Fiber",
+    "estrellas": 117,
+    "ultimo_push": "2026-10-22",
+    "archivado": false,
+    "licencia": "MIT",
+    "web": "https://www.remotion.dev/templates/three",
+    "temas": [
+     "fiber",
+     "react",
+     "remotion",
+     "three"
+    ]
+   },
+   "docs": [
+    ".cache/docs/remotion-template-three/README.md"
+   ]
+  }
+ },
+ {
+  "id": "remotion",
+  "nombre": "Remotion",
+  "tipo": "motor",
+  "areas": [
+   "video-explicativo",
+   "motion-graphics"
+  ],
+  "prioridad": "ahora",
+  "estado_local": "en-uso",
+  "capacidades": [
+   "composicion-video",
+   "video-explicativo",
+   "tipografia-cinetica",
+   "transiciones",
+   "subtitulos-karaoke",
+   "sincronia-audio",
+   "camara",
+   "escena-3d",
+   "lottie",
+   "visualizacion-audio",
+   "datos-graficas"
+  ],
+  "resumen": "Videos con React: cada cuadro es una función del número de cuadro; render a MP4 sin cabeza. Es el motor del kit de Scriptorium.",
+  "lenguajes": [
+   "TypeScript",
+   "React"
+  ],
+  "exporta_video": "si",
+  "web": "https://www.remotion.dev",
+  "repo": "remotion-dev/remotion",
+  "paquetes": {
+   "npm": [
+    "remotion",
+    "@remotion/cli",
+    "@remotion/transitions",
+    "@remotion/noise",
+    "@remotion/paths",
+    "@remotion/shapes",
+    "@remotion/three",
+    "@remotion/lottie",
+    "@remotion/media-utils",
+    "@remotion/captions"
+   ]
+  },
+  "docs": [
+   "https://www.remotion.dev/docs",
+   "https://www.remotion.dev/docs/ai/skills"
+  ],
+  "llms_txt": "https://www.remotion.dev/llms.txt",
+  "licencia": "Remotion License: gratis para personas, empresas con hasta 3 empleados, organizaciones sin fines de lucro y evaluación; las demás empresas necesitan Company License.",
+  "agentes": "Skills oficiales (remotion-dev/skills), llms.txt y docs de IA. Plantillas y componentes listos (remotion-bits, snapcn).",
+  "requisitos": "Node; Chromium sin cabeza (Remotion lo descarga). En este equipo corre en WSL con 8 hilos de CPU.",
+  "relacionados": [
+   "remotion-skills",
+   "remotion-bits",
+   "snapcn",
+   "remotion-plantillas",
+   "motion-canvas",
+   "revideo",
+   "hyperframes",
+   "kit-scriptorium"
+  ],
+  "fuentes": [
+   "bandeja/2026-10-31-encargo-biblioteca-motion.md",
+   "bandeja/2026-10-31-chatgpt-personajes-y-biblioteca.md"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "verificado",
+  "ficha": "fichas/remotion.md",
+  "estado": {
+   "revisado": "2026-10-31",
+   "github": {
+    "nombre": "remotion-dev/remotion",
+    "descripcion": "🎥      Make videos programmatically with React",
+    "estrellas": 69443,
+    "ultimo_push": "2026-10-31",
+    "archivado": false,
+    "licencia": "NOASSERTION",
+    "web": "https://remotion.dev",
+    "temas": [
+     "javascript",
+     "react",
+     "video"
+    ]
+   },
+   "npm": {
+    "remotion": {
+     "version": "4.0.539",
+     "licencia": "SEE LICENSE IN LICENSE.md"
+    }
+   },
+   "docs": [
+    ".cache/docs/remotion/README.md",
+    ".cache/docs/remotion/llms.txt"
+   ]
+  }
+ },
+ {
+  "id": "revideo",
+  "nombre": "Revideo",
+  "tipo": "motor",
+  "areas": [
+   "video-explicativo",
+   "motion-graphics"
+  ],
+  "prioridad": "complemento",
+  "estado_local": "no-instalado",
+  "capacidades": [
+   "composicion-video",
+   "video-explicativo",
+   "tipografia-cinetica"
+  ],
+  "resumen": "Derivado de Motion Canvas pensado para renderizar sin interfaz: escenas en TypeScript y `renderVideo()` desde código o CLI.",
+  "lenguajes": [
+   "TypeScript"
+  ],
+  "exporta_video": "si",
+  "web": "https://midrender.com/revideo",
+  "repo": "midrender/revideo",
+  "paquetes": {
+   "npm": [
+    "@revideo/core"
+   ]
+  },
+  "docs": [
+   "https://docs.re.video"
+  ],
+  "licencia": "MIT",
+  "agentes": "API de render por código: fácil de llamar desde un pipeline.",
+  "relacionados": [
+   "motion-canvas",
+   "remotion"
+  ],
+  "fuentes": [
+   "bandeja/2026-10-31-encargo-biblioteca-motion.md"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "verificado",
+  "ficha": "fichas/revideo.md",
+  "estado": {
+   "revisado": "2026-10-31",
+   "alertas": [
+    "renombrado a midrender/revideo"
+   ],
+   "github": {
+    "nombre": "midrender/revideo",
+    "descripcion": "Create Videos with Code",
+    "estrellas": 4162,
+    "ultimo_push": "2026-07-15",
+    "archivado": false,
+    "licencia": "MIT",
+    "web": "https://midrender.com/revideo",
+    "temas": []
+   },
+   "npm": {
+    "@revideo/core": {
+     "version": "0.11.0",
+     "licencia": "MIT"
+    }
+   },
+   "docs": [
+    ".cache/docs/revideo/README.md"
+   ]
+  }
+ },
+ {
+  "id": "rhubarb-lip-sync",
+  "nombre": "Rhubarb Lip Sync",
+  "tipo": "herramienta",
+  "areas": [
+   "personajes",
+   "2d",
+   "audio-voz"
+  ],
+  "prioridad": "complemento",
+  "estado_local": "no-instalado",
+  "capacidades": [
+   "lip-sync",
+   "personajes-2d"
+  ],
+  "resumen": "CLI que genera la animación de boca 2D a partir de una grabación de voz: posiciones de boca con tiempos en JSON, XML o TSV.",
+  "lenguajes": [
+   "CLI"
+  ],
+  "exporta_video": "no-aplica",
+  "repo": "DanielSWolf/rhubarb-lip-sync",
+  "licencia": "por verificar (GitHub no reconoce el archivo de licencia).",
+  "agentes": "CLI con salida JSON: muy fácil de integrar en un pipeline.",
+  "relacionados": [
+   "wav2vec2-alineacion",
+   "live2d-cubism",
+   "inochi2d",
+   "three-vrm"
+  ],
+  "fuentes": [
+   "bandeja/2026-10-31-chatgpt-personajes-y-biblioteca.md"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "parcial",
+  "ficha": "fichas/rhubarb-lip-sync.md",
+  "estado": {
+   "revisado": "2026-10-31",
+   "github": {
+    "nombre": "DanielSWolf/rhubarb-lip-sync",
+    "descripcion": "Rhubarb Lip Sync is a command-line tool that automatically creates 2D mouth animation from voice recordings. You can use it for characters in computer games, in animated cartoons, or in any other project that requires animating mouths based on existing recordings.",
+    "estrellas": 2712,
+    "ultimo_push": "2026-06-16",
+    "archivado": false,
+    "licencia": "NOASSERTION",
+    "web": null,
+    "temas": [
+     "animation",
+     "cli",
+     "command-line",
+     "game-development",
+     "lip-sync"
+    ]
+   }
+  }
+ },
+ {
+  "id": "roughjs",
+  "nombre": "Rough.js",
+  "tipo": "libreria",
+  "areas": [
+   "motion-graphics"
+  ],
+  "prioridad": "ahora",
+  "estado_local": "no-instalado",
+  "capacidades": [
+   "estilo-dibujado",
+   "geometria",
+   "diagramas"
+  ],
+  "resumen": "Formas con aspecto dibujado a mano (estilo Excalidraw) en SVG o Canvas: líneas, rectángulos, elipses, polígonos y trazos SVG.",
+  "lenguajes": [
+   "JavaScript"
+  ],
+  "exporta_video": "indirecto",
+  "web": "http://roughjs.com",
+  "repo": "rough-stuff/rough",
+  "paquetes": {
+   "npm": [
+    "roughjs"
+   ]
+  },
+  "licencia": "MIT",
+  "relacionados": [
+   "p5-brush",
+   "remotion-motion-graphics-skill"
+  ],
+  "fuentes": [
+   "bandeja/2026-10-31-encargo-biblioteca-motion.md"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "verificado",
+  "ficha": "fichas/roughjs.md",
+  "estado": {
+   "revisado": "2026-10-31",
+   "alertas": [
+    "sin cambios desde 2024-07-28: posiblemente abandonado"
+   ],
+   "github": {
+    "nombre": "rough-stuff/rough",
+    "descripcion": "Create graphics with a hand-drawn, sketchy, appearance",
+    "estrellas": 21336,
+    "ultimo_push": "2024-07-28",
+    "archivado": false,
+    "licencia": "MIT",
+    "web": "http://roughjs.com",
+    "temas": [
+     "canvas",
+     "draw",
+     "graphics",
+     "html5-canvas",
+     "svg",
+     "svg-path"
+    ]
+   },
+   "npm": {
+    "roughjs": {
+     "version": "4.6.6",
+     "licencia": "MIT"
+    }
+   },
+   "docs": [
+    ".cache/docs/roughjs/README.md"
+   ]
+  }
+ },
+ {
+  "id": "scenario-skills",
+  "nombre": "Scenario Agent Skills",
+  "tipo": "skill",
+  "areas": [
+   "3d",
+   "personajes",
+   "anime"
+  ],
+  "prioridad": "futuro",
+  "estado_local": "no-instalado",
+  "capacidades": [
+   "control-por-agente",
+   "personajes-3d",
+   "movimiento-humano",
+   "animacion-tradicional",
+   "render-toon",
+   "lip-sync"
+  ],
+  "resumen": "Skills de Scenario: la mayoría usan su servicio de generación (de pago), pero las «expert tools» para Blender (animación, rigging, Grease Pencil, iluminación…) solo necesitan la aplicación.",
+  "lenguajes": [
+   "Markdown",
+   "Python"
+  ],
+  "exporta_video": "no-aplica",
+  "web": "https://www.skills.sh/scenario-labs/skills",
+  "repo": "scenario-labs/skills",
+  "licencia": "MIT",
+  "agentes": "Formato Agent Skills; Claude Code, Cursor, Codex, Copilot y más de 70 agentes.",
+  "relacionados": [
+   "blender",
+   "blender-mcp",
+   "agent-skills"
+  ],
+  "fuentes": [
+   "bandeja/2026-10-31-chatgpt-personajes-y-biblioteca.md"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "verificado",
+  "ficha": "fichas/scenario-skills.md",
+  "estado": {
+   "revisado": "2026-10-31",
+   "github": {
+    "nombre": "scenario-labs/skills",
+    "descripcion": "Get production-ready images, video, audio, and 3D from any AI agent: skills that pick the right model, price before spending, and keep characters and brands consistent through the Scenario MCP, plus expert teams that drive Blender, Maya, ZBrush, Unreal, and Unity.",
+    "estrellas": 1375,
+    "ultimo_push": "2026-10-30",
+    "archivado": false,
+    "licencia": "MIT",
+    "web": "https://www.skills.sh/scenario-labs/skills",
+    "temas": [
+     "3d-models",
+     "agent-skills",
+     "ai-agents",
+     "ai-art",
+     "blender",
+     "claude-code",
+     "claude-skills",
+     "codex",
+     "game-assets",
+     "game-development",
+     "generative-ai",
+     "image-generation",
+     "maya",
+     "mcp",
+     "model-context-protocol",
+     "skills-sh",
+     "unity",
+     "unreal-engine",
+     "video-generation",
+     "zbrush"
+    ]
+   },
+   "docs": [
+    ".cache/docs/scenario-skills/README.md"
+   ]
+  }
+ },
+ {
+  "id": "snapcn",
+  "nombre": "snapcn",
+  "tipo": "libreria",
+  "areas": [
+   "motion-graphics",
+   "video-explicativo"
+  ],
+  "prioridad": "ahora",
+  "estado_local": "no-instalado",
+  "capacidades": [
+   "tipografia-cinetica",
+   "subtitulos-karaoke",
+   "interfaz-ui",
+   "composicion-video"
+  ],
+  "resumen": "Registro estilo shadcn de componentes Remotion para videos de producto: revelado de texto, marcos de dispositivo, terminal, logo y escenas completas.",
+  "lenguajes": [
+   "TypeScript",
+   "React"
+  ],
+  "exporta_video": "si",
+  "web": "https://snapcn.dev",
+  "repo": "shadcn-labs/snapcn",
+  "licencia": "MIT",
+  "agentes": "Componentes que se copian al proyecto con el CLI de shadcn: el agente lee y modifica el código fuente directamente.",
+  "relacionados": [
+   "remotion",
+   "remotion-bits"
+  ],
+  "fuentes": [
+   "bandeja/2026-10-31-encargo-biblioteca-motion.md"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "verificado",
+  "ficha": "fichas/snapcn.md",
+  "estado": {
+   "revisado": "2026-10-31",
+   "github": {
+    "nombre": "shadcn-labs/snapcn",
+    "descripcion": "A shadcn registry of Remotion components for product demo videos. Install a text reveal, device frame, terminal session, logo sting or a whole scene with a command.",
+    "estrellas": 550,
+    "ultimo_push": "2026-10-29",
+    "archivado": false,
+    "licencia": "MIT",
+    "web": "https://snapcn.dev",
+    "temas": [
+     "gemini-cli-extension",
+     "library",
+     "motion-design",
+     "remotion",
+     "remotion-video",
+     "shadcn",
+     "ui",
+     "video-generation",
+     "videos"
+    ]
+   },
+   "docs": [
+    ".cache/docs/snapcn/README.md"
+   ]
+  }
+ },
+ {
+  "id": "sqlite-fts5",
+  "nombre": "SQLite FTS5",
+  "tipo": "infraestructura",
+  "areas": [
+   "conocimiento"
+  ],
+  "prioridad": "ahora",
+  "estado_local": "en-uso",
+  "capacidades": [
+   "busqueda-conocimiento"
+  ],
+  "resumen": "Búsqueda de texto completo integrada en SQLite (y en Python estándar): el índice de esta biblioteca, sin servidores ni dependencias.",
+  "web": "https://www.sqlite.org/fts5.html",
+  "licencia": "Dominio público.",
+  "relacionados": [
+   "lancedb",
+   "ollama"
+  ],
+  "fuentes": [
+   "bandeja/2026-10-31-encargo-biblioteca-motion.md",
+   "bandeja/2026-10-31-chatgpt-personajes-y-biblioteca.md"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "verificado",
+  "ficha": "fichas/sqlite-fts5.md",
+  "estado": {}
+ },
+ {
+  "id": "theatrejs",
+  "nombre": "Theatre.js",
+  "tipo": "libreria",
+  "areas": [
+   "motion-graphics",
+   "3d"
+  ],
+  "prioridad": "futuro",
+  "estado_local": "no-instalado",
+  "capacidades": [
+   "editor-visual",
+   "camara",
+   "escena-3d"
+  ],
+  "resumen": "Editor visual de keyframes para la web (incluido Three.js): se afinan curvas a mano en un estudio y se exporta el estado como JSON.",
+  "lenguajes": [
+   "TypeScript"
+  ],
+  "exporta_video": "indirecto",
+  "web": "https://www.theatrejs.com",
+  "repo": "theatre-js/theatre",
+  "paquetes": {
+   "npm": [
+    "@theatre/core",
+    "@theatre/studio"
+   ]
+  },
+  "licencia": "@theatre/core: Apache-2.0; @theatre/studio: AGPL-3.0.",
+  "relacionados": [
+   "threejs",
+   "react-three-fiber"
+  ],
+  "fuentes": [
+   "bandeja/2026-10-31-encargo-biblioteca-motion.md"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "verificado",
+  "ficha": "fichas/theatrejs.md",
+  "estado": {
+   "revisado": "2026-10-31",
+   "alertas": [
+    "sin cambios desde 2024-08-14: posiblemente abandonado"
+   ],
+   "github": {
+    "nombre": "theatre-js/theatre",
+    "descripcion": "Motion design editor for the web",
+    "estrellas": 12819,
+    "ultimo_push": "2024-08-14",
+    "archivado": false,
+    "licencia": "Apache-2.0",
+    "web": "https://www.theatrejs.com",
+    "temas": [
+     "animation",
+     "devtools",
+     "generative-art",
+     "motion-design",
+     "r3f",
+     "threejs"
+    ]
+   },
+   "npm": {
+    "@theatre/core": {
+     "version": "0.7.2",
+     "licencia": "Apache-2.0"
+    }
+   },
+   "docs": [
+    ".cache/docs/theatrejs/README.md"
+   ]
+  }
+ },
+ {
+  "id": "three-vrm",
+  "nombre": "three-vrm",
+  "tipo": "libreria",
+  "areas": [
+   "3d",
+   "personajes",
+   "anime"
+  ],
+  "prioridad": "complemento",
+  "estado_local": "no-instalado",
+  "capacidades": [
+   "personajes-3d",
+   "lip-sync",
+   "render-toon"
+  ],
+  "resumen": "Carga y anima personajes VRM en Three.js: expresiones (incluidas las vocales de la boca), mirada, huesos humanoides y física de pelo.",
+  "lenguajes": [
+   "TypeScript"
+  ],
+  "exporta_video": "indirecto",
+  "web": "https://pixiv.github.io/three-vrm/packages/three-vrm/examples",
+  "repo": "pixiv/three-vrm",
+  "paquetes": {
+   "npm": [
+    "@pixiv/three-vrm"
+   ]
+  },
+  "licencia": "MIT",
+  "relacionados": [
+   "threejs",
+   "vroid-studio",
+   "remotion-template-three",
+   "rhubarb-lip-sync"
+  ],
+  "fuentes": [
+   "bandeja/2026-10-31-chatgpt-personajes-y-biblioteca.md"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "verificado",
+  "ficha": "fichas/three-vrm.md",
+  "estado": {
+   "revisado": "2026-10-31",
+   "github": {
+    "nombre": "pixiv/three-vrm",
+    "descripcion": "Use VRM on Three.js",
+    "estrellas": 2251,
+    "ultimo_push": "2026-10-22",
+    "archivado": false,
+    "licencia": "MIT",
+    "web": null,
+    "temas": [
+     "3d",
+     "avatar",
+     "gltf",
+     "threejs",
+     "vrm",
+     "webgl"
+    ]
+   },
+   "npm": {
+    "@pixiv/three-vrm": {
+     "version": "3.5.5",
+     "licencia": "MIT"
+    }
+   },
+   "docs": [
+    ".cache/docs/three-vrm/README.md"
+   ]
+  }
+ },
+ {
+  "id": "threejs",
+  "nombre": "Three.js",
+  "tipo": "libreria",
+  "areas": [
+   "3d",
+   "motion-graphics"
+  ],
+  "prioridad": "complemento",
+  "estado_local": "no-instalado",
+  "capacidades": [
+   "escena-3d",
+   "camara",
+   "shaders",
+   "particulas"
+  ],
+  "resumen": "La librería 3D estándar de la web (WebGL/WebGPU): escenas, cámaras, luces, materiales, modelos glTF, sombras y postprocesado.",
+  "lenguajes": [
+   "JavaScript",
+   "TypeScript"
+  ],
+  "exporta_video": "indirecto",
+  "web": "https://threejs.org",
+  "repo": "mrdoob/three.js",
+  "paquetes": {
+   "npm": [
+    "three"
+   ]
+  },
+  "docs": [
+   "https://threejs.org/docs",
+   "https://threejs.org/examples"
+  ],
+  "licencia": "MIT",
+  "agentes": "Muy conocida por los modelos; cuidado con APIs viejas (cambia en cada versión r1xx).",
+  "relacionados": [
+   "react-three-fiber",
+   "drei",
+   "remotion-template-three",
+   "three-vrm"
+  ],
+  "fuentes": [
+   "bandeja/2026-10-31-encargo-biblioteca-motion.md",
+   "bandeja/2026-10-31-chatgpt-personajes-y-biblioteca.md"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "verificado",
+  "ficha": "fichas/threejs.md",
+  "estado": {
+   "revisado": "2026-10-31",
+   "github": {
+    "nombre": "mrdoob/three.js",
+    "descripcion": "JavaScript 3D Library.",
+    "estrellas": 117308,
+    "ultimo_push": "2026-10-31",
+    "archivado": false,
+    "licencia": "MIT",
+    "web": "https://threejs.org/",
+    "temas": [
+     "3d",
+     "augmented-reality",
+     "canvas",
+     "html5",
+     "javascript",
+     "svg",
+     "virtual-reality",
+     "webaudio",
+     "webgl",
+     "webgl2",
+     "webgpu",
+     "webxr"
+    ]
+   },
+   "npm": {
+    "three": {
+     "version": "0.187.0",
+     "licencia": "MIT"
+    }
+   },
+   "docs": [
+    ".cache/docs/threejs/README.md"
+   ]
+  }
+ },
+ {
+  "id": "tsparticles",
+  "nombre": "tsParticles",
+  "tipo": "libreria",
+  "areas": [
+   "motion-graphics"
+  ],
+  "prioridad": "complemento",
+  "estado_local": "no-instalado",
+  "capacidades": [
+   "particulas"
+  ],
+  "resumen": "Partículas configurables por JSON: confeti, fuegos artificiales, nieve, enlaces entre puntos, fondos animados.",
+  "lenguajes": [
+   "TypeScript",
+   "JavaScript"
+  ],
+  "exporta_video": "indirecto",
+  "web": "https://particles.js.org",
+  "repo": "tsparticles/tsparticles",
+  "paquetes": {
+   "npm": [
+    "@tsparticles/engine"
+   ]
+  },
+  "licencia": "MIT",
+  "relacionados": [
+   "pixijs",
+   "threejs"
+  ],
+  "fuentes": [
+   "bandeja/2026-10-31-encargo-biblioteca-motion.md"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "verificado",
+  "ficha": "fichas/tsparticles.md",
+  "estado": {
+   "revisado": "2026-10-31",
+   "github": {
+    "nombre": "tsparticles/tsparticles",
+    "descripcion": "tsParticles - Easily create highly customizable JavaScript particles effects, confetti explosions and fireworks animations and use them as animated backgrounds for your website. Ready to use components available for React.js, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno, Solid, Riot and Web Components.",
+    "estrellas": 9065,
+    "ultimo_push": "2026-10-27",
+    "archivado": false,
+    "licencia": "MIT",
+    "web": "https://particles.js.org",
+    "temas": [
+     "2d",
+     "angular",
+     "animations",
+     "bg",
+     "canvas",
+     "confetti",
+     "fireworks",
+     "hacktoberfest",
+     "html",
+     "javascript",
+     "js",
+     "npm",
+     "particles",
+     "react",
+     "svelte",
+     "ts",
+     "tsparticles",
+     "typescript",
+     "vue",
+     "web"
+    ]
+   },
+   "npm": {
+    "@tsparticles/engine": {
+     "version": "4.5.0",
+     "licencia": "MIT"
+    }
+   },
+   "docs": [
+    ".cache/docs/tsparticles/README.md"
+   ]
+  }
+ },
+ {
+  "id": "unity-mcp",
+  "nombre": "Unity MCP",
+  "tipo": "mcp",
+  "areas": [
+   "3d"
+  ],
+  "prioridad": "futuro",
+  "estado_local": "no-instalado",
+  "capacidades": [
+   "control-por-agente",
+   "escena-3d"
+  ],
+  "resumen": "Puente MCP entre agentes y el editor de Unity: gestionar assets, controlar escenas, editar scripts y automatizar tareas.",
+  "lenguajes": [
+   "C#",
+   "Python"
+  ],
+  "exporta_video": "no-aplica",
+  "web": "https://coplaydev.github.io/unity-mcp/",
+  "repo": "CoplayDev/unity-mcp",
+  "licencia": "MIT",
+  "agentes": "Cualquier cliente MCP (Claude Desktop y Code, Cursor, VS Code, Windsurf, Cline, Gemini CLI…).",
+  "requisitos": "Unity 2021.3 LTS a 6.x; Python 3.10+ con uv.",
+  "relacionados": [
+   "unity"
+  ],
+  "fuentes": [
+   "bandeja/2026-10-31-chatgpt-personajes-y-biblioteca.md"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "verificado",
+  "ficha": "fichas/unity-mcp.md",
+  "estado": {
+   "revisado": "2026-10-31",
+   "github": {
+    "nombre": "CoplayDev/unity-mcp",
+    "descripcion": "Unity MCP acts as a bridge between AI assistants and your Unity Editor. Give your LLM tools to manage assets, control scenes, edit scripts, and automate tasks within Unity.",
+    "estrellas": 15593,
+    "ultimo_push": "2026-10-30",
+    "archivado": false,
+    "licencia": "MIT",
+    "web": "https://coplaydev.github.io/unity-mcp/",
+    "temas": [
+     "ai",
+     "ai-integration",
+     "anthropic",
+     "claude",
+     "copilot",
+     "cursor",
+     "game-development",
+     "gamedev",
+     "gemini",
+     "llm",
+     "mcp",
+     "model-context-protocol",
+     "openai",
+     "unity",
+     "unity3d",
+     "videogames"
+    ]
+   },
+   "docs": [
+    ".cache/docs/unity-mcp/README.md"
+   ]
+  }
+ },
+ {
+  "id": "unity",
+  "nombre": "Unity",
+  "tipo": "aplicacion",
+  "areas": [
+   "3d",
+   "personajes"
+  ],
+  "prioridad": "futuro",
+  "estado_local": "instalado",
+  "capacidades": [
+   "escena-3d",
+   "personajes-3d",
+   "camara",
+   "render-toon"
+  ],
+  "resumen": "Motor de juegos instalado (6000.6.7f1 y 2022.3.22f1): escenas 3D en tiempo real, Timeline/Cinemachine para cinemáticas y Unity Recorder para video.",
+  "lenguajes": [
+   "C#"
+  ],
+  "exporta_video": "si",
+  "web": "https://unity.com",
+  "licencia": "Propietaria; Unity Personal es gratis por debajo de un umbral de ingresos (verificar condiciones vigentes).",
+  "agentes": "Unity MCP (CoplayDev) conecta el editor con agentes.",
+  "relacionados": [
+   "unity-mcp",
+   "vroid-studio"
+  ],
+  "fuentes": [
+   "detectado en el equipo 2026-10-31",
+   "bandeja/2026-10-31-chatgpt-personajes-y-biblioteca.md"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "parcial",
+  "ficha": "fichas/unity.md",
+  "estado": {}
+ },
+ {
+  "id": "video-shotcraft",
+  "nombre": "video-shotcraft",
+  "tipo": "referencia",
+  "areas": [
+   "video-explicativo",
+   "motion-graphics"
+  ],
+  "prioridad": "ahora",
+  "estado_local": "no-instalado",
+  "capacidades": [
+   "camara",
+   "transiciones",
+   "composicion-video"
+  ],
+  "resumen": "Tarjetas de «receta de toma» con demos en Remotion: bloques para armar una película, no películas completas.",
+  "lenguajes": [
+   "TypeScript",
+   "React"
+  ],
+  "exporta_video": "no-aplica",
+  "repo": "Vincentwei1021/video-shotcraft",
+  "licencia": "Apache-2.0 (según el README)",
+  "relacionados": [
+   "awesome-code-video",
+   "remotion"
+  ],
+  "fuentes": [
+   "awesome-code-video"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "parcial",
+  "ficha": "fichas/video-shotcraft.md",
+  "estado": {
+   "revisado": "2026-10-31",
+   "github": {
+    "nombre": "Vincentwei1021/video-shotcraft",
+    "descripcion": "AI video skill for Claude Code & Codex — cinematic, editable product promos with Remotion: 124 shot recipe cards, 150 motion previews, beat sync, sound design, Motion Workbench & JianYing (CapCut CN) export.",
+    "estrellas": 15482,
+    "ultimo_push": "2026-10-29",
+    "archivado": false,
+    "licencia": "Apache-2.0",
+    "web": "https://vincentwei1021.github.io/video-shotcraft/",
+    "temas": [
+     "agent-skills",
+     "ai-agents",
+     "ai-video",
+     "claude-code",
+     "claude-code-skills",
+     "claude-skills",
+     "codex",
+     "motion-design",
+     "motion-graphics",
+     "product-video",
+     "promo-video",
+     "remotion",
+     "video-generation",
+     "video-production"
+    ]
+   },
+   "docs": [
+    ".cache/docs/video-shotcraft/README.md"
+   ]
+  }
+ },
+ {
+  "id": "voxcpm",
+  "nombre": "VoxCPM2",
+  "tipo": "modelo-ia",
+  "areas": [
+   "audio-voz"
+  ],
+  "prioridad": "ahora",
+  "estado_local": "en-uso",
+  "capacidades": [
+   "voz-tts"
+  ],
+  "resumen": "TTS multilingüe sin tokenizador con clonación de voz; es la voz del narrador de Scriptorium (masculina, elegida en cata a ciegas).",
+  "lenguajes": [
+   "Python"
+  ],
+  "exporta_video": "no-aplica",
+  "web": "https://voxcpm.com",
+  "repo": "OpenBMB/VoxCPM",
+  "paquetes": {
+   "pypi": [
+    "voxcpm"
+   ]
+  },
+  "licencia": "Apache-2.0",
+  "requisitos": "GPU con CUDA; en la GP100 ~2.4 s de cómputo por segundo de audio (bf16 emulado).",
+  "relacionados": [
+   "qwen3-tts",
+   "kokoro",
+   "wav2vec2-alineacion"
+  ],
+  "fuentes": [
+   "CLAUDE.md",
+   "HANDOFF.md"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "verificado",
+  "ficha": "fichas/voxcpm.md",
+  "estado": {
+   "revisado": "2026-10-31",
+   "github": {
+    "nombre": "OpenBMB/VoxCPM",
+    "descripcion": "VoxCPM2: Tokenizer-Free TTS for Multilingual Speech Generation, Creative Voice Design, and True-to-Life Cloning",
+    "estrellas": 40916,
+    "ultimo_push": "2026-10-08",
+    "archivado": false,
+    "licencia": "Apache-2.0",
+    "web": "https://voxcpm.com",
+    "temas": [
+     "audio",
+     "deeplearning",
+     "minicpm",
+     "multilingual",
+     "python",
+     "pytorch",
+     "speech",
+     "speech-synthesis",
+     "text-to-speech",
+     "tts",
+     "tts-model",
+     "voice-cloning",
+     "voice-design",
+     "voxcpm"
+    ]
+   },
+   "pypi": {
+    "voxcpm": {
+     "version": "2.0.3",
+     "publicado": "2026-05-11",
+     "licencia": "Apache-2.0"
+    }
+   },
+   "docs": [
+    ".cache/docs/voxcpm/README.md"
+   ]
+  }
+ },
+ {
+  "id": "vrm-addon-blender",
+  "nombre": "VRM Add-on for Blender",
+  "tipo": "libreria",
+  "areas": [
+   "3d",
+   "personajes",
+   "anime"
+  ],
+  "prioridad": "complemento",
+  "estado_local": "no-instalado",
+  "capacidades": [
+   "personajes-3d",
+   "render-toon"
+  ],
+  "resumen": "Importa, edita y exporta personajes VRM (formato anime de VRoid) en Blender 2.93–5.2, con API de Python para automatizar.",
+  "lenguajes": [
+   "Python"
+  ],
+  "exporta_video": "no-aplica",
+  "web": "https://vrm-addon-for-blender.info/",
+  "repo": "saturday06/VRM-Addon-for-Blender",
+  "licencia": "MIT",
+  "agentes": "API de scripting documentada.",
+  "relacionados": [
+   "vroid-studio",
+   "blender",
+   "three-vrm"
+  ],
+  "fuentes": [
+   "bandeja/2026-10-31-chatgpt-personajes-y-biblioteca.md"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "verificado",
+  "ficha": "fichas/vrm-addon-blender.md",
+  "estado": {
+   "revisado": "2026-10-31",
+   "github": {
+    "nombre": "saturday06/VRM-Addon-for-Blender",
+    "descripcion": "VRM Importer, Exporter and Utilities for Blender 2.93 to 5.2",
+    "estrellas": 1732,
+    "ultimo_push": "2026-10-31",
+    "archivado": false,
+    "licencia": "MIT",
+    "web": "https://vrm-addon-for-blender.info/",
+    "temas": [
+     "blender",
+     "vrm"
+    ]
+   },
+   "docs": [
+    ".cache/docs/vrm-addon-blender/README.md"
+   ]
+  }
+ },
+ {
+  "id": "vroid-studio",
+  "nombre": "VRoid Studio",
+  "tipo": "aplicacion",
+  "areas": [
+   "3d",
+   "personajes",
+   "anime"
+  ],
+  "prioridad": "complemento",
+  "estado_local": "instalado",
+  "capacidades": [
+   "personajes-3d",
+   "render-toon"
+  ],
+  "resumen": "Creador gratuito de personajes 3D estilo anime de pixiv: pelo, cara y ropa con controles deslizables y pintura; exporta VRM. Instalado 2.14.0.",
+  "exporta_video": "no",
+  "web": "https://vroid.com/en/studio",
+  "licencia": "Gratis (pixiv); revisar sus términos de uso. Los modelos que creas son tuyos.",
+  "agentes": "Sin API ni MCP conocidos: se usa a mano y lo que sale (VRM) sí se automatiza.",
+  "relacionados": [
+   "vrm-addon-blender",
+   "three-vrm",
+   "blender"
+  ],
+  "fuentes": [
+   "detectado en el equipo 2026-10-31"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "parcial",
+  "ficha": "fichas/vroid-studio.md",
+  "estado": {}
+ },
+ {
+  "id": "wav2vec2-alineacion",
+  "nombre": "wav2vec2 español (alineación forzada)",
+  "tipo": "modelo-ia",
+  "areas": [
+   "audio-voz",
+   "video-explicativo"
+  ],
+  "prioridad": "ahora",
+  "estado_local": "en-uso",
+  "capacidades": [
+   "sincronia-audio",
+   "subtitulos-karaoke"
+  ],
+  "resumen": "Modelo CTC jonatasgrosman/wav2vec2-large-xlsr-53-spanish: da el tiempo real de cada palabra dicha (karaoke, subtítulos) y una transcripción de control.",
+  "lenguajes": [
+   "Python"
+  ],
+  "exporta_video": "no-aplica",
+  "web": "https://huggingface.co/jonatasgrosman/wav2vec2-large-xlsr-53-spanish",
+  "licencia": "Apache-2.0 según su tarjeta en Hugging Face (verificar).",
+  "relacionados": [
+   "voxcpm",
+   "kit-scriptorium",
+   "rhubarb-lip-sync"
+  ],
+  "fuentes": [
+   "CLAUDE.md"
+  ],
+  "verificado": "2026-10-31",
+  "confianza": "parcial",
+  "ficha": "fichas/wav2vec2-alineacion.md",
+  "estado": {}
+ }
+]

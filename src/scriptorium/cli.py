@@ -6,12 +6,15 @@
     scriptorium biblioteca
     scriptorium voces
     scriptorium estado
+    scriptorium saber <buscar|ver|contexto|…>   (biblioteca de conocimiento audiovisual: conocimiento/)
 """
 
 from __future__ import annotations
 
 import argparse
+import subprocess
 import sys
+from pathlib import Path
 
 from rich.table import Table
 
@@ -34,6 +37,10 @@ def _obras(nombre: str) -> list[str]:
 
 
 def main(argv: list[str] | None = None) -> None:
+    argv = sys.argv[1:] if argv is None else argv
+    if argv[:1] == ["saber"]:  # la biblioteca es independiente (solo biblioteca estándar): se le pasan los argumentos tal cual
+        saber = Path(__file__).resolve().parents[2] / "conocimiento" / "herramientas" / "saber.py"
+        sys.exit(subprocess.run([sys.executable, str(saber), *argv[1:]]).returncode)
     p = argparse.ArgumentParser(prog="scriptorium", description="Fábrica local de contenido de humanidades.")
     sub = p.add_subparsers(dest="comando", required=True)
 
@@ -54,6 +61,7 @@ def main(argv: list[str] | None = None) -> None:
     s = sub.add_parser("comparar", help="Prueba de fidelidad entre modelos de Ollama.")
     s.add_argument("obra")
     s.add_argument("--modelos", default="gemma4:12b,qwen3:14b")
+    sub.add_parser("saber", help="Biblioteca de conocimiento audiovisual (scriptorium saber --help).")
 
     a = p.parse_args(argv)
     config.preparar_carpetas()
