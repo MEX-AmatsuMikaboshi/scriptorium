@@ -69,8 +69,9 @@ fecha: 1845
 ## Ajustes (`D:\Scriptorium\ajustes.json`)
 
 - `modelo`: modelo de Ollama para texto y director de video (por defecto `gemma4:12b`).
-- `voz_narrador`, `voz_anfitrion`: voces de Kokoro (`em_alex`, `ef_dora`, `em_santa`).
-- `velocidad_voz`: 1.0 normal, 0.9 más pausado.
+- `voz_narrador`, `voz_anfitrion`: una voz fijada de `voces/voces.json` (`narrador` con VoxCPM2,
+  `anfitriona` con Qwen3-TTS: las elegidas en la cata) o una voz de Kokoro (`em_alex`, `ef_dora`, `em_santa`).
+- `velocidad_voz`: 1.0 normal, 0.9 más pausado (solo Kokoro).
 - `video_hilos`: hilos de CPU para el render (8 por defecto; la PC tiene 16).
 - `palabras_por_bloque`: tamaño de los trozos que lee el modelo en capítulos largos.
 
@@ -85,7 +86,8 @@ fecha: 1845
 
 - **Windows:** Ollama (LLM en la GPU). El Control inteligente de aplicaciones sigue activo.
 - **Ubuntu en WSL2:** todo lo demás (Python con PyTorch 2.14 + CUDA 12.6 para la Quadro GP100,
-  Kokoro para la voz, Remotion + Chromium para el video, ffmpeg). El Control inteligente no
+  VoxCPM2 y Qwen3-TTS para la voz —cada uno en su propio entorno, como proceso aparte— con Kokoro
+  de respaldo, Remotion + Chromium para el video, ffmpeg). El Control inteligente no
   aplica a los programas de Linux.
 - Las etapas corren por lotes (LLM → voz → video) para que en la VRAM haya un solo modelo a la vez.
 - Las respuestas del LLM y los audios se guardan en caché (`~/.cache/scriptorium`): si algo se

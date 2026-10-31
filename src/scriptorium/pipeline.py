@@ -43,7 +43,7 @@ def etapa_texto(obras: list[Obra], ajustes: Ajustes, forzar: bool, con_video: bo
 def etapa_audio(obras: list[Obra], ajustes: Ajustes, con_audio: bool, forzar: bool, con_video: bool) -> None:
     from . import audio
 
-    with audio.Voz(ajustes) as voz:
+    with audio.Voz(ajustes, avisar) as voz:
         for obra in obras:
             consola.rule(f"[bold]Voz · {obra.meta['titulo']}")
             if con_audio:

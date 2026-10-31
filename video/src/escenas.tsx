@@ -1,6 +1,7 @@
 import React, {useMemo} from 'react';
 import {AbsoluteFill, interpolate, random, spring, useCurrentFrame, useVideoConfig} from 'remotion';
 import {Palabras, tamanoPorLongitud, useResorte, useTramo} from './comun';
+import {existePictograma, Pictograma} from './movimiento';
 import {COLORES, ETIQUETA, PAREJA, SANS, SERIF, SUAVE, TENUE, TINTA} from './tema';
 import type {Escena, TipoEscena} from './tipos';
 
@@ -52,17 +53,31 @@ const Portada: React.FC<P> = ({e, meta}) => {
 // ------------------------------------------------------------------ Cita
 
 const Cita: React.FC<P> = ({e, meta}) => {
+	const frame = useCurrentFrame();
 	const acento = COLORES[e.acento];
 	const entrada = useResorte(0);
 	const tamano = tamanoPorLongitud(e.cuerpo, 76);
 	const [desde, hasta] = e.revelar ?? [0.05, 0.92];
+	const deriva = Math.sin(frame / 45) * 10;
 	return (
 		<AbsoluteFill style={{justifyContent: 'center', padding: `0 ${MARGEN + 60}px`}}>
-			<div style={{position: 'absolute', left: 110, top: 30, fontFamily: SERIF, fontSize: 480, lineHeight: 1, color: acento, opacity: 0.13 * entrada}}>
+			<div
+				style={{
+					position: 'absolute',
+					left: 110,
+					top: 30,
+					fontFamily: SERIF,
+					fontSize: 480,
+					lineHeight: 1,
+					color: acento,
+					opacity: 0.13 * entrada,
+					transform: `translate(${(1 - entrada) * -60}px, ${deriva}px) rotate(${(1 - entrada) * -14}deg)`,
+				}}
+			>
 				«
 			</div>
 			<div style={{fontFamily: SERIF, fontSize: tamano, lineHeight: 1.28, color: TINTA}}>
-				<Palabras texto={e.cuerpo} inicio={Math.max(6, e.voz * desde)} fin={e.voz * Math.min(0.97, hasta)} resaltar={e.resaltar} acento={acento} atenuado={0.22} />
+				<Palabras texto={e.cuerpo} inicio={Math.max(6, e.voz * desde)} fin={e.voz * Math.min(0.97, hasta)} reales={e.tiempos_texto} aparece={e.aparece?.texto} resaltar={e.resaltar} acento={acento} atenuado={0.22} />
 			</div>
 			<div style={{display: 'flex', alignItems: 'center', gap: 22, marginTop: 46, opacity: useTramo(20, 45)}}>
 				<Trazo ancho={80} progreso={useResorte(20)} color={acento} />
@@ -85,22 +100,27 @@ const Concepto: React.FC<P> = ({e}) => {
 	const circ = 2 * Math.PI * r;
 	return (
 		<AbsoluteFill style={{flexDirection: 'row', alignItems: 'center', padding: `0 ${MARGEN}px`, gap: 90}}>
-			<svg width={2 * r + 20} height={2 * r + 20} style={{flexShrink: 0}}>
-				<circle cx={r + 10} cy={r + 10} r={r} fill="none" stroke={TENUE} strokeWidth={2} />
-				<circle
-					cx={r + 10}
-					cy={r + 10}
-					r={r}
-					fill="none"
-					stroke={acento}
-					strokeWidth={3}
-					strokeDasharray={circ}
-					strokeDashoffset={circ * (1 - anillo)}
-					transform={`rotate(${-90 + frame * 0.3} ${r + 10} ${r + 10})`}
-					strokeLinecap="round"
-				/>
-				<circle cx={r + 10} cy={r + 10} r={8 + 4 * Math.sin(frame / 12)} fill={acento} opacity={0.9} />
-			</svg>
+			<div style={{position: 'relative', width: 2 * r + 20, height: 2 * r + 20, flexShrink: 0}}>
+				<svg width={2 * r + 20} height={2 * r + 20}>
+					<circle cx={r + 10} cy={r + 10} r={r} fill="none" stroke={TENUE} strokeWidth={2} />
+					<circle
+						cx={r + 10}
+						cy={r + 10}
+						r={r}
+						fill="none"
+						stroke={acento}
+						strokeWidth={3}
+						strokeDasharray={circ}
+						strokeDashoffset={circ * (1 - anillo)}
+						transform={`rotate(${-90 + frame * 0.3} ${r + 10} ${r + 10})`}
+						strokeLinecap="round"
+					/>
+					{!existePictograma(e.icono) && <circle cx={r + 10} cy={r + 10} r={8 + 4 * Math.sin(frame / 12)} fill={acento} opacity={0.9} />}
+				</svg>
+				<AbsoluteFill style={{justifyContent: 'center', alignItems: 'center'}}>
+					<Pictograma nombre={e.icono} tamano={170} color={acento} desde={10} />
+				</AbsoluteFill>
+			</div>
 			<div style={{flex: 1}}>
 				<Etiqueta texto="Concepto" color={acento} opacidad={termino} />
 				<div
@@ -118,7 +138,7 @@ const Concepto: React.FC<P> = ({e}) => {
 					{e.titular}
 				</div>
 				<div style={{fontFamily: SERIF, fontStyle: 'italic', fontSize: tamanoPorLongitud(e.cuerpo, 50), lineHeight: 1.35, color: TINTA}}>
-					<Palabras texto={e.cuerpo} inicio={18} fin={e.voz * 0.9} resaltar={e.resaltar} acento={acento} atenuado={0.12} />
+					<Palabras texto={e.cuerpo} inicio={18} fin={e.voz * 0.9} reales={e.tiempos_texto} aparece={e.aparece?.texto} resaltar={e.resaltar} acento={acento} atenuado={0.12} />
 				</div>
 			</div>
 		</AbsoluteFill>
@@ -135,13 +155,18 @@ const Lista: React.FC<P> = ({e}) => {
 	const paso = (e.voz * 0.82) / n;
 	return (
 		<AbsoluteFill style={{justifyContent: 'center', padding: `0 ${MARGEN + 40}px 60px`}}>
+			{existePictograma(e.icono) && (
+				<div style={{position: 'absolute', right: MARGEN, top: '50%', transform: 'translateY(-55%)', opacity: 0.9}}>
+					<Pictograma nombre={e.icono} tamano={300} color={acento} desde={6} duracion={70} grosor={0.9} />
+				</div>
+			)}
 			<Etiqueta texto={`${n} ${n === 1 ? 'idea' : 'ideas'}`} color={acento} opacidad={useTramo(0, 15)} />
 			<div style={{fontFamily: SERIF, fontWeight: 500, fontSize: tamanoPorLongitud(e.titular, 84), color: TINTA, margin: '14px 0 50px', opacity: useResorte(2)}}>
 				{e.titular}
 			</div>
 			<div style={{display: 'flex', flexDirection: 'column', gap: 30}}>
 				{e.items.map((item, i) => {
-					const s = spring({frame: frame - 12 - i * paso, fps, config: {damping: 16}});
+					const s = spring({frame: frame - (e.aparece?.items?.[i] ?? 12 + i * paso), fps, config: {damping: 16}});
 					return (
 						<div key={i} style={{display: 'flex', alignItems: 'center', gap: 30, opacity: s, transform: `translateX(${(1 - s) * -50}px)`}}>
 							<div
@@ -176,8 +201,8 @@ const Lista: React.FC<P> = ({e}) => {
 const Contraste: React.FC<P> = ({e}) => {
 	const a = COLORES[e.acento];
 	const b = COLORES[PAREJA[e.acento]];
-	const izq = useResorte(4, 16);
-	const der = useResorte(Math.round(e.voz * 0.38), 16);
+	const izq = useResorte(e.aparece?.izquierda ?? 4, 16);
+	const der = useResorte(e.aparece?.derecha ?? Math.round(e.voz * 0.38), 16);
 	const linea = useTramo(0, 30);
 	const Columna: React.FC<{lado: {titulo: string; texto: string}; color: string; s: number; dir: number}> = ({lado, color, s, dir}) => (
 		<div style={{flex: 1, opacity: s, transform: `translateX(${(1 - s) * 60 * dir}px)`, padding: '0 40px'}}>
@@ -228,8 +253,9 @@ const Argumento: React.FC<P> = ({e}) => {
 	const hueco = 36;
 	const tarjeta = (ancho - hueco * (n - 1)) / n;
 	const finPremisas = e.voz * 0.55;
-	const flechas = useTramo(finPremisas, finPremisas + 25);
-	const conclusion = useResorte(Math.round(finPremisas + 18), 16);
+	const llegada = e.aparece?.texto ?? Math.round(finPremisas + 18); // cuando la voz dice la conclusión
+	const flechas = useTramo(llegada - 22, llegada + 3);
+	const conclusion = useResorte(llegada, 16);
 	const yTarjetas = 250;
 	const altoTarjeta = 210;
 	const yConclusion = 640;
@@ -239,7 +265,7 @@ const Argumento: React.FC<P> = ({e}) => {
 				<Etiqueta texto="Premisas" color={SUAVE} />
 			</div>
 			{premisas.map((p, i) => {
-				const s = spring({frame: frame - 6 - (i * finPremisas) / n, fps, config: {damping: 16}});
+				const s = spring({frame: frame - (e.aparece?.items?.[i] ?? 6 + (i * finPremisas) / n), fps, config: {damping: 16}});
 				return (
 					<div
 						key={i}
@@ -262,7 +288,8 @@ const Argumento: React.FC<P> = ({e}) => {
 							lineHeight: 1.35,
 							color: TINTA,
 							opacity: s,
-							transform: `translateY(${(1 - s) * -30}px)`,
+							transform: `perspective(1100px) rotateX(${(1 - s) * -55}deg) translateY(${(1 - s) * -30}px)`,
+							transformOrigin: 'top center',
 						}}
 					>
 						{p}
@@ -322,12 +349,17 @@ const PalabraClave: React.FC<P> = ({e}) => {
 					return <circle key={i} cx={500 + Math.cos(ang) * rr} cy={500 + Math.sin(ang) * rr} r={i % 7 === 0 ? 3.2 : 1.6} fill={i % 7 === 0 ? acento : TINTA} opacity={0.55 * llegada} />;
 				})}
 			</svg>
+			{existePictograma(e.icono) && (
+				<div style={{marginBottom: 18}}>
+					<Pictograma nombre={e.icono} tamano={150} color={acento} desde={2} grosor={1.2} />
+				</div>
+			)}
 			<div style={{fontFamily: SERIF, fontWeight: 500, fontSize: tamanoPorLongitud(e.titular, 190), letterSpacing: `${espaciado}em`, color: acento, opacity: s, transform: `scale(${0.85 + 0.15 * s})`}}>
 				{e.titular}
 			</div>
 			{e.cuerpo && (
 				<div style={{fontFamily: SERIF, fontStyle: 'italic', fontSize: tamanoPorLongitud(e.cuerpo, 44), color: TINTA, maxWidth: 1250, marginTop: 34, lineHeight: 1.35}}>
-					<Palabras texto={e.cuerpo} inicio={24} fin={e.voz * 0.92} acento={acento} resaltar={e.resaltar} />
+					<Palabras texto={e.cuerpo} inicio={24} fin={e.voz * 0.92} reales={e.tiempos_texto} aparece={e.aparece?.texto} acento={acento} resaltar={e.resaltar} />
 				</div>
 			)}
 		</AbsoluteFill>
@@ -337,20 +369,22 @@ const PalabraClave: React.FC<P> = ({e}) => {
 // ------------------------------------------------------------------ Pregunta
 
 const Pregunta: React.FC<P> = ({e}) => {
+	const frame = useCurrentFrame();
 	const acento = COLORES[e.acento];
 	const trazo = useTramo(0, 40);
 	const relleno = useTramo(30, 60);
 	const texto = e.titular || e.cuerpo;
+	const vaiven = Math.sin(frame / 38) * 4 * relleno; // el signo «duda» una vez dibujado
 	return (
 		<AbsoluteFill style={{flexDirection: 'row', alignItems: 'center', padding: `0 ${MARGEN}px`, gap: 70}}>
-			<div style={{position: 'relative', fontFamily: SERIF, fontSize: 560, lineHeight: 0.8, opacity: trazo, transform: `rotate(${(1 - trazo) * -12}deg)`}}>
+			<div style={{position: 'relative', fontFamily: SERIF, fontSize: 560, lineHeight: 0.8, opacity: trazo, transform: `rotate(${(1 - trazo) * -12 + vaiven}deg)`}}>
 				<div style={{color: 'transparent', WebkitTextStroke: `3px ${acento}`}}>?</div>
 				<div style={{position: 'absolute', inset: 0, color: acento, opacity: 0.85 * relleno}}>?</div>
 			</div>
 			<div style={{flex: 1}}>
 				<Etiqueta texto="La pregunta" color={acento} opacidad={trazo} />
 				<div style={{fontFamily: SERIF, fontSize: tamanoPorLongitud(texto, 72), lineHeight: 1.22, color: TINTA, marginTop: 22}}>
-					<Palabras texto={texto} inicio={10} fin={e.voz * 0.9} resaltar={e.resaltar} acento={acento} />
+					<Palabras texto={texto} inicio={10} fin={e.voz * 0.9} reales={e.tiempos_texto} aparece={e.aparece?.texto} resaltar={e.resaltar} acento={acento} />
 				</div>
 			</div>
 		</AbsoluteFill>
@@ -379,8 +413,11 @@ const Respiro: React.FC<P> = ({e}) => {
 					return <circle key={i} cx={x} cy={y} r={i % 9 === 0 ? 3 : 1.7} fill={i % 9 === 0 ? acento : TINTA} opacity={0.6} />;
 				})}
 			</svg>
-			<div style={{fontFamily: SERIF, fontStyle: 'italic', fontSize: tamanoPorLongitud(e.titular, 60), color: TINTA, maxWidth: 520, textAlign: 'center', opacity: useTramo(20, 45)}}>
-				{e.titular}
+			<div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 26}}>
+				<Pictograma nombre={e.icono} tamano={190} color={acento} desde={14} duracion={70} grosor={1.1} />
+				<div style={{fontFamily: SERIF, fontStyle: 'italic', fontSize: tamanoPorLongitud(e.titular, 60), color: TINTA, maxWidth: 520, textAlign: 'center', opacity: useTramo(20, 45)}}>
+					{e.titular}
+				</div>
 			</div>
 		</AbsoluteFill>
 	);

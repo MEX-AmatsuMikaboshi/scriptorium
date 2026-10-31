@@ -26,6 +26,16 @@ regiones de adentro») también es cierto de los ensimismados.
 `scriptorium generar <slug>` con el slug exacto procesa solo esa obra (antes `balmes-el-criterio`
 arrastraba también a `jaime-balmes-el-criterio`).
 
+## Video: más movimiento (30 oct., tarde)
+
+Pedido del usuario: «más movimiento, más animaciones». Hecho sin que el LLM escriba código:
+transiciones `@remotion/transitions` (deslizar/barrido; sin fundidos entre escenas con texto porque
+dos textos encimados se leen sucios), cámara viva (acercamiento + deriva con `@remotion/noise`),
+luces de color por escena en el fondo, pictogramas Lucide que se dibujan trazo a trazo (el director
+elige uno de 73 de `video/src/iconos.json`, restringido por esquema JSON), premisas que giran en 3D,
+comillas y signo de pregunta que se mueven. Ideas para seguir: más tipos de escena (línea del
+tiempo, mapa de conceptos), Lottie, imágenes de dominio público con efecto Ken Burns.
+
 ## Decisiones tomadas (y por qué)
 
 - **WSL2 en vez de desactivar el Control inteligente de aplicaciones**: el usuario no quiso
@@ -50,8 +60,12 @@ arrastraba también a `jaime-balmes-el-criterio`).
    título tipo subpágina («El criterio/02») se sustituye por la «Parte» del nombre de archivo
    («Capitulo II» → «Capítulo II»). Los títulos corridos y números de página de un libro escaneado
    o maquetado no se han probado todavía.
-4. La sincronía palabra-voz en el video es **estimada por longitud de palabra** (no hay alineación
-   real); la cita sí se ilumina en la ventana correcta de la narración.
+4. ~~Sincronía estimada~~ resuelto: alineación forzada real (`alineacion.py`, wav2vec2 español,
+   confianza ~0.99 por palabra). Antes los subtítulos iban 192 ms desfasados en promedio (máx. 757) y
+   el texto en pantalla no era lo que decía la voz (citas parafraseadas; definiciones iluminadas a
+   ritmo fijo). Ahora: karaoke solo de lo que se dice y cuando se dice, citas leídas literal, listas/
+   premisas/contrastes aparecen al mencionarse, subtítulos por frases. La misma pasada transcribe la
+   voz y avisa si se come palabras (Kokoro no lo hacía: el problema era el diseño del kit).
 5. Las capturas con Chromium headless no funcionaron; para revisar HTML usar el navegador integrado
    con `herramientas_wsl/servidor.sh` (ese servidor no admite saltos dentro del audio).
 
@@ -62,10 +76,56 @@ arrastraba también a `jaime-balmes-el-criterio`).
    archivo truncado se regenera solo.
 2. ~~Arreglar la ingesta de PDF~~ hecho (punto 3 de arriba). Falta probarla con un PDF real del
    usuario (libro maquetado con títulos corridos y números de página).
-3. `scriptorium voces` (cata de voces) y que el usuario elija voz. Opcional: Chatterbox
-   Multilingual / Qwen3-TTS (más naturales, más lentos).
+3. **Voz (lo que más le importa al usuario: Kokoro le suena robótica).** Cata a ciegas en
+   `D:\Scriptorium\03_biblioteca\cata\index.html` (5 motores × masculina/femenina; los MP3 se le
+   mandaron por el chat porque estaba por control remoto). **Eligió**: H = Qwen3-TTS femenina («más la
+   parte después de la pausa», la lectura: «más nítido») y G = VoxCPM2 masculina, pero «algo saturada,
+   duele un poco en los oídos». Las demás (Kokoro, Chatterbox, OmniVoice) no le gustaron.
+   - La saturación era real: el decodificador de VoxCPM2 termina en `tanh` y la voz sale ~3× por
+     encima del rango (pico crudo 2.8–3.2), así que tanh aplanaba cada pico (a -13 LUFS, 7 dB más
+     fuerte que las demás). Arreglo: el trabajador sustituye la tanh por identidad y se nivela con
+     ganancia lineal. La toma original se restauró con `arctanh` (es la referencia del narrador).
+   - Integrado: voces fijadas en `voces/voces.json` (+ `narrador.wav`, `anfitriona.wav`), trabajadores
+     por motor (`voz_trabajador.py`), control con el alineador y reintento con otra semilla, nivel común.
+   - En la prueba, clonar el mismo texto de la referencia salía recortado (31–33 % sin oírse): es el
+     modo continuación de VoxCPM2, no pasa con textos distintos. Qwen3 clonado: 0 % sin oírse.
+   - Velocidad VoxCPM2 en la GP100 (s de cómputo por s de audio): bf16 ~2.5, fp16 ~1.9 (sin NaN en
+     la prueba, pero no se ha escuchado), fp32 ~6. Se queda bf16, la precisión nativa. RAM: al cargar
+     pasa de 5 GB (se libera con `malloc_trim`); por eso hay un solo motor cargado a la vez y
+     `Voz.preparar` agrupa por voz todo lo que se va a decir (el podcast alterna voces).
+   - Cap. I regenerado con las dos voces (65 min de punta a punta; el video, a -21.9 LUFS, se le mandó
+     en 720p). Dos defectos que salieron al revisarlo, ya arreglados:
+     - VoxCPM2 genera por parches de 160 ms y a veces para uno antes de acabar la última palabra
+       («su profe-»; 3 de 123 trozos). El trabajador lo deja seguir 2 parches tras pedir parar
+       (`_ParadaTardia`): si ya había acabado sale silencio, que se recorta, así que lo ya generado
+       sigue valiendo. Además `audio._termina_de_golpe` marca una toma que acaba con la voz a pleno
+       y se repite con otra semilla.
+     - `para_voz` leía «V. A todos…» como «Nonecinco» (grupo opcional en `None`) y no convertía
+       «Capítulo I» a media frase («Repaso. Capítulo I…» se leía «i»).
+   - 30 oct., noche: cap. II (`balmes-el-criterio`) regenerándose con las dos voces. En su registro
+     salió un falso positivo del control: el reconocedor oye «por qué» como «porque» y eso contaba
+     como dos palabras perdidas (3 tomas gastadas). `palabras_perdidas` ya no cuenta un cambio que
+     solo mueve espacios. Pulido del kit: renglones equilibrados (`text-wrap: balance`), el subtítulo
+     se oculta mientras el mismo texto se ilumina en grande (citas, conceptos), y una lista sin
+     titular ya no toma de titular un fragmento cortado de la narración.
+   - Cap. II listo (72 min de punta a punta; video 2:12, render 5.3 min). Video: las 13 escenas con
+     todas las palabras alineadas (confianza 0.95–1.00, ≤ 8 % sin oírse). Un aviso real: en las
+     píldoras, la definición literal empieza a media frase («es siempre ligero, superficial…») y
+     VoxCPM2 arranca flojo: el reconocedor oye «en simpre» (confianza 0.50 en «es») en las 3 tomas.
+     Sin escucharlo no se sabe si se nota; posible arreglo: que la píldora diga término y definición
+     en una sola frase para el narrador, o más semillas para trozos que empiezan en minúscula.
+     Detalle del director: en pantalla «llegar a él», la voz dice «llegar a ella» (la verdad).
+   - Al revisar el cap. II, `_ParadaTardia` sin tope dejó 2 de 106 trozos con ~1 s de silencio y un
+     chasquido al final (suelto, VoxCPM2 a veces ya no vuelve a pedir parar). Ahora: 2 parches
+     obligatorios y como máximo 4 tras la primera petición. Probado en las tomas de «su profesión»
+     (completas, conf. 1.00; la que ya estaba bien sale idéntica). Se borraron esos 2 trozos de la
+     caché y se rehízo el cap. II.
+   - La entrada de Balmes, cap. I, §1.4.1, dice «relativas a la practicada su profesión» y «en todas
+     las profesiones ea cada cual»: parecen erratas del texto fuente («a la práctica de su», «es cada
+     cual»). No se tocan (dar formato, no reescribir); preguntarle al usuario.
 4. `scriptorium comparar balmes` (Gemma 4 12B vs Qwen3 14B) para elegir modelo.
-5. Primer commit de git (el repo está iniciado, sin commits; no se hizo sin permiso).
+5. ~~Primer commit~~ hecho y subido a `github.com/MEX-AmatsuMikaboshi/scriptorium` (público, sin
+   licencia todavía: preguntar al usuario si quiere MIT u otra).
 6. Del plan, aún no hecho: transcripción de clases (faster-whisper), video vertical 9:16, grafo
    de conceptos entre obras, línea del tiempo, chat con la biblioteca (Open WebUI), bóveda de
    Obsidian, acceso desde el celular por Wi-Fi, programar `scriptorium noche` en el Programador

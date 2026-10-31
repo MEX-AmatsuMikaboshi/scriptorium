@@ -10,12 +10,17 @@
     "@fontsource/eb-garamond": "5.3.0",
     "@fontsource/inter": "5.3.0",
     "@remotion/cli": "4.0.539",
+    "@remotion/noise": "4.0.539",
+    "@remotion/transitions": "4.0.539",
+    "lucide": "1.65.0",
     "react": "19.3.1",
     "react-dom": "19.3.1",
     "remotion": "4.0.539"
   },
   "devDependencies": {
-    "markmap-cli": "0.18.12"
+    "@types/react": "19.3.0",
+    "markmap-cli": "0.18.12",
+    "typescript": "5.9.3"
   },
   "allowScripts": {
     "esbuild@0.28.1": true

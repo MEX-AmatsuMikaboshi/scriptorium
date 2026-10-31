@@ -30,8 +30,18 @@ export type Escena = {
 	resaltar: string[];
 	/** Fracción [inicio, fin] de la voz en la que se ilumina el texto en pantalla (p. ej. la cita). */
 	revelar?: [number, number];
+	/** Palabras de la narración con el cuadro real (alineación forzada) en que empiezan y terminan. */
+	palabras?: [string, number, number][];
+	/** Frases de subtítulo: rangos [desde, hasta) de índices de `palabras`. */
+	subtitulos?: [number, number][];
+	/** Cuadro en que la voz dice cada palabra del texto principal; null si no lo dice tal cual. */
+	tiempos_texto?: number[] | null;
+	/** Cuadros en que la voz empieza a decir cada elemento en pantalla. */
+	aparece?: {texto?: number; items?: number[]; izquierda?: number; derecha?: number};
 	acento: Acento;
 	semilla: number;
+	/** Pictograma decorativo del catálogo (iconos.json) que se dibuja en la escena. */
+	icono?: string;
 };
 
 export type PropsExplicador = {

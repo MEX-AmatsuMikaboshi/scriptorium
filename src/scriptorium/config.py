@@ -21,6 +21,9 @@ DERIVADOS = DATOS / "02_derivados"
 BIBLIOTECA = DATOS / "03_biblioteca"
 # Archivos intermedios en el disco de Linux (mucho más rápido que el disco USB).
 TRABAJO = Path.home() / ".cache" / "scriptorium"
+# Voces fijadas (referencia sintética + motor que la clona) y los venvs de esos motores.
+VOCES = PROYECTO / "voces"
+ENTORNOS_VOZ = Path.home() / ".local" / "share" / "scriptorium" / "voces"
 
 
 @dataclass
@@ -30,9 +33,10 @@ class Ajustes:
     modelo_juez: str = "gemma4:12b"
     contexto: int = 16384
     temperatura: float = 0.2
-    voz_narrador: str = "em_alex"
-    voz_anfitrion: str = "ef_dora"
-    velocidad_voz: float = 1.0
+    # Una voz fijada de voces/voces.json o un nombre de Kokoro (em_alex, ef_dora).
+    voz_narrador: str = "narrador"
+    voz_anfitrion: str = "anfitriona"
+    velocidad_voz: float = 1.0  # solo Kokoro
     video_fps: int = 60
     video_ancho: int = 1920
     video_alto: int = 1080

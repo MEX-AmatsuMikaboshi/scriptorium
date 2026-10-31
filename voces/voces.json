@@ -1,0 +1,18 @@
+{
+  "narrador": {
+    "motor": "voxcpm2",
+    "descripcion": "Narrador · VoxCPM2 (masculina, voz G de la cata)",
+    "referencia": "narrador.wav",
+    "texto": "¿Cómo podemos alcanzar el conocimiento de la verdad? Para Balmes, el primer medio es atender. Pero la atención no es una fijeza de espíritu que clava la mente sobre los objetos: es una aplicación suave y reposada, que nos deja la agilidad necesaria para pasar sin esfuerzo de unas ocupaciones a otras.",
+    "origen": "Diseñada por descripción con VoxCPM2 (cfg 2.0): «Mexican male narrator in his forties, warm deep voice, calm documentary tone, neutral Latin American Spanish accent». Sintética, de nadie real. Se le deshizo la tanh del decodificador (arctanh) y se niveló a -20 dBFS.",
+    "opciones": {"cfg_value": 2.0, "inference_timesteps": 10}
+  },
+  "anfitriona": {
+    "motor": "qwen3",
+    "descripcion": "Anfitriona · Qwen3-TTS (femenina, voz H de la cata)",
+    "referencia": "anfitriona.wav",
+    "texto": "Tan lejos estoy de considerar la atención como abstracción severa y continuada, que, muy al contrario, cuento en el número de los distraídos no sólo a los atolondrados, sino también a los ensimismados. Aquéllos se derraman por la parte de afuera; éstos divagan por las tenebrosas regiones de adentro.",
+    "origen": "Diseñada por descripción con Qwen3-TTS 1.7B VoiceDesign: «Female narrator in her thirties from Mexico, neutral Latin American Spanish accent, warm and clear voice, friendly and engaging educational tone». Sintética, de nadie real. Es la lectura que el usuario eligió («se escuchó más nítido»); la clona el modelo Base.",
+    "opciones": {}
+  }
+}
